@@ -13,11 +13,13 @@ import { stringify } from "qs";
 import NProgress from "../progress";
 import { getToken, formatToken } from "@/utils/auth";
 import { useUserStoreHook } from "@/store/modules/user";
+import Cookie from "js-cookie";
 
 // 相关配置请参考：www.axios-js.com/zh-cn/docs/#axios-request-config-1
 const defaultConfig: AxiosRequestConfig = {
   // 请求超时时间
   timeout: 10000,
+  baseURL: "/api/v1",
   headers: {
     Accept: "application/json, text/plain, */*",
     "Content-Type": "application/json",
@@ -63,6 +65,9 @@ class PureHttp {
       async (config: PureHttpRequestConfig): Promise<any> => {
         // 开启进度条动画
         NProgress.start();
+        if (Cookie.get("token")) {
+          config.headers.Authorization = Cookie.get("token");
+        }
         // 优先判断post/get等方法是否传入回调，否则执行初始化设置等回调
         if (typeof config.beforeRequestCallback === "function") {
           config.beforeRequestCallback(config);
@@ -124,6 +129,11 @@ class PureHttp {
         // 关闭进度条动画
         NProgress.done();
         // 优先判断post/get等方法是否传入回调，否则执行初始化设置等回调
+        if (response.data.code === 401) {
+          console.log("禁止访问", response.data);
+          // window.location.href = "https://ab-sso.bssrvc66.com"
+          return response.data;
+        }
         if (typeof $config.beforeResponseCallback === "function") {
           $config.beforeResponseCallback(response);
           return response.data;

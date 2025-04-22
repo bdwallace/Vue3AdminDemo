@@ -16,6 +16,7 @@ import { useEpThemeStoreHook } from "@/store/modules/epTheme";
 import { usePermissionStoreHook } from "@/store/modules/permission";
 import ExitFullscreen from "~icons/ri/fullscreen-exit-fill";
 import Fullscreen from "~icons/ri/fullscreen-fill";
+import Cookie from "js-cookie";
 
 const errorInfo =
   "The current routing configuration is incorrect, please check the configuration";
@@ -46,11 +47,12 @@ export function useNav() {
   });
 
   /** 昵称（如果昵称为空则显示用户名） */
-  const username = computed(() => {
-    return isAllEmpty(useUserStoreHook()?.nickname)
-      ? useUserStoreHook()?.username
-      : useUserStoreHook()?.nickname;
-  });
+  // const username = computed(() => {
+  //   return isAllEmpty(useUserStoreHook()?.nickname)
+  //     ? useUserStoreHook()?.username
+  //     : useUserStoreHook()?.nickname;
+  // });
+  const username = Cookie.get("user_name");
 
   /** 设置国际化选中后的样式 */
   const getDropdownItemStyle = computed(() => {
@@ -69,7 +71,7 @@ export function useNav() {
   });
 
   const avatarsStyle = computed(() => {
-    return username.value ? { marginRight: "10px" } : "";
+    return username ? { marginRight: "10px" } : "";
   });
 
   const isCollapse = computed(() => {

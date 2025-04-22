@@ -28,7 +28,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
         "/api/v1": {
           // target : 'http://192.168.10.10:5000'
           // target : 'https://hycloud.bssrvc66.com'
-          target: "http://127.0.0.1:6666"
+          target: "http://127.0.0.1:10088"
         }
       },
       // 预热文件以提前转换和缓存结果，降低启动期间的初始页面加载时长并防止转换瀑布

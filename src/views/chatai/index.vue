@@ -23,17 +23,7 @@ defineOptions({
   name: "ChatAi"
 });
 
-getSupplier()
-  .then(res => {
-    if (res.code === 200) {
-      console.log(res.data);
-    } else {
-      console.error("Error fetching supplier data:", res.message);
-    }
-  })
-  .catch((error) => {
-    console.error("Error fetching supplier data:", error);
-  });
+
 
 const swiperExample: any[] = [
   { id: 0, label: "ChatGPT 风格", component: ChatGPT },

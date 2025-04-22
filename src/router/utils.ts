@@ -211,12 +211,14 @@ function initRouter() {
     }
   } else {
     return new Promise(resolve => {
-      console.log('路由数据：')
-      getAsyncRoutes().then(({ data }) => {
-        console.log(data)
-        handleAsyncRoutes(cloneDeep(data));
-        resolve(router);
-      });
+      console.log("路由数据：");
+      handleAsyncRoutes([]);
+      resolve(router);
+      // getAsyncRoutes().then(({ data }) => {
+      //   console.log(data);
+      //   handleAsyncRoutes(cloneDeep(data));
+      //   resolve(router);
+      // });
     });
   }
 }

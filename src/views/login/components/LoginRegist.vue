@@ -95,7 +95,7 @@ function onBack() {
         <el-input
           v-model="ruleForm.username"
           clearable
-          :placeholder="t('login.pureUsername')"
+          :placeholder="t('login.pureusername')"
           :prefix-icon="useRenderIcon(User)"
         />
       </el-form-item>

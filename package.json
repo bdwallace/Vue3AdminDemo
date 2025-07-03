@@ -32,19 +32,18 @@
     "vite",
     "esm"
   ],
-  "homepage": "https://github.com/",
+  "homepage": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pure-admin/vue-pure-admin.git"
+    "url": ""
   },
   "bugs": {
-    "url": "https://github.com/pure-admin/vue-pure-admin/issues"
+    "url": ""
   },
   "license": "MIT",
   "author": {
-    "name": "xiaoxian521",
-    "email": "pureadmin@163.com",
-    "url": "https://github.com/xiaoxian521"
+    "name": "Spencer",
+    "email": "spencer@tbu.net",
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",

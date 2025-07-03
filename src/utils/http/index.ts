@@ -14,7 +14,9 @@ import NProgress from "../progress";
 import { getToken, formatToken } from "@/utils/auth";
 import { useUserStoreHook } from "@/store/modules/user";
 import Cookie from "js-cookie";
+import { isReactive, toRaw } from 'vue'
 
+type RequestData = Record<string, any>;
 // 相关配置请参考：www.axios-js.com/zh-cn/docs/#axios-request-config-1
 const defaultConfig: AxiosRequestConfig = {
   // 请求超时时间
@@ -31,7 +33,7 @@ const defaultConfig: AxiosRequestConfig = {
   }
 };
 
-class PureHttp {
+export class PureHttp {
   constructor() {
     this.httpInterceptorsRequest();
     this.httpInterceptorsResponse();
@@ -155,50 +157,74 @@ class PureHttp {
     );
   }
 
-  /** 通用请求工具函数 */
+  /** 通用请求函数（自动处理 reactive / 区分 method） */
   public request<T>(
     method: RequestMethods,
     url: string,
-    param?: AxiosRequestConfig,
-    axiosConfig?: PureHttpRequestConfig
+    payload?: RequestData,                      // 业务参数
+    config?: AxiosRequestConfig               // Axios 其他配置项
   ): Promise<T> {
-    const config = {
-      method,
+    const safeData = toPlainObject(payload);
+
+    const finalConfig: AxiosRequestConfig  = {
       url,
-      ...param,
-      ...axiosConfig
-    } as PureHttpRequestConfig;
+      method,
+      ...config
+    };
 
-    // 单独处理自定义请求/响应回调
-    return new Promise((resolve, reject) => {
-      PureHttp.axiosInstance
-        .request(config)
-        .then((response: undefined) => {
-          resolve(response);
-        })
-        .catch(error => {
-          reject(error);
-        });
-    });
+    if (method === 'get') {
+      finalConfig.params = safeData;
+    } else {
+      finalConfig.data = safeData;
+    }
+
+    return PureHttp.axiosInstance.request<T>(finalConfig).then(res => res);
   }
 
-  /** 单独抽离的`post`工具函数 */
-  public post<T, P>(
+  /** GET 封装 */
+  public get<T, P = any>(
     url: string,
-    params?: AxiosRequestConfig<P>,
+    params?: P,
     config?: PureHttpRequestConfig
   ): Promise<T> {
-    return this.request<T>("post", url, params, config);
+    return this.request<T>('get', url, params, config);
   }
 
-  /** 单独抽离的`get`工具函数 */
-  public get<T, P>(
+  /** POST 封装 */
+  public post<T, P = any>(
     url: string,
-    params?: AxiosRequestConfig<P>,
+    data?: P,
     config?: PureHttpRequestConfig
   ): Promise<T> {
-    return this.request<T>("get", url, params, config);
+    return this.request<T>('post', url, data, config);
+  }
+
+  /** PUT 封装 */
+  public put<T, P = any>(
+    url: string,
+    data?: P,
+    config?: PureHttpRequestConfig
+  ): Promise<T> {
+    return this.request<T>('put', url, data, config);
+  }
+
+  /** DELETE 封装 */
+  public delete<T, P = any>(
+    url: string,
+    params?: P,
+    config?: PureHttpRequestConfig
+  ): Promise<T> {
+    return this.request<T>('delete', url, params, config);
   }
 }
 
+// 强制转为普通对象（完全断掉响应式）
+function toPlainObject(obj: any) {
+  try {
+    return JSON.parse(JSON.stringify(toRaw(obj)));
+  } catch {
+    console.log('转换报错')
+    return obj;
+  }
+}
 export const http = new PureHttp();

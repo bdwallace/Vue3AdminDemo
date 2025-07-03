@@ -1,8 +1,8 @@
 <template>
   <el-config-provider :locale="currentLocale">
     <router-view />
-    <ReDialog />
-    <ReDrawer />
+<!--    <ReDialog />-->
+<!--    <ReDrawer />-->
   </el-config-provider>
 </template>
 

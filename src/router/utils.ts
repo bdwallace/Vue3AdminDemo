@@ -201,13 +201,14 @@ function initRouter() {
         resolve(router);
       });
     } else {
-      return new Promise(resolve => {
-        getAsyncRoutes().then(({ data }) => {
-          handleAsyncRoutes(cloneDeep(data));
-          storageLocal().setItem(key, data);
-          resolve(router);
-        });
-      });
+      console.log('从后端获取动态路由')
+    //   return new Promise(resolve => {
+    //     getAsyncRoutes().then(({ data }) => {
+    //       handleAsyncRoutes(cloneDeep(data));
+    //       storageLocal().setItem(key, data);
+    //       resolve(router);
+    //     });
+    //   });
     }
   } else {
     return new Promise(resolve => {

@@ -1,0 +1,147 @@
+<template>
+  <el-container>
+    <div class="main">
+      <div>
+        <el-input placeholder="请输入搜索内容, 支持所有内容模糊搜索, 回车或点击按钮搜索" v-model="params.search"
+                  @change="fetchData" style="width: 70%" class="input-with-select" size="large">
+          <template #append>
+            <el-button :icon="Search" @click="fetchData" />
+          </template>
+<!--          <template #prepend>-->
+<!--            <el-select v-model="select" placeholder="Select" style="width: 80px" >-->
+<!--              <el-option label="Restaurant" value="1" />-->
+<!--              <el-option label="Order No." value="2" />-->
+<!--              <el-option label="Tel" value="3" />-->
+<!--            </el-select>-->
+<!--          </template>-->
+        </el-input>
+
+      </div>
+
+
+      <div class="logTable">
+        <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark"
+                  border :header-cell-style="{background:'#eef1f6',color:'#606266'}"
+                  @selection-change="handleSelectionChange">
+          <el-table-column type="selection" width="60"></el-table-column>
+          <el-table-column prop="user_name" label="请求用户" fit align="center" sortable></el-table-column>
+          <el-table-column prop="request_type" label="请求类型" fit align="center" sortable></el-table-column>
+          <el-table-column prop="user_ip" label="用户IP" fit align="center" sortable></el-table-column>
+          <el-table-column prop="create_time" label="请求时间" fit align="center" sortable></el-table-column>
+          <el-table-column prop="request_path" label="路由地址" fit align="center" sortable></el-table-column>
+          <el-table-column prop="request_param" label="请求参数" fit align="center" sortable>
+            <template #default="{ row }">
+              <el-popover trigger="click" placement="left" :width="400">
+                <pre style="font-family: monospace;font-size: 13px;padding: 10px;background: #f5f5f5;
+                      max-height: 400px; overflow: auto; white-space: pre-wrap; word-wrap: break-word; border-radius: 4px;
+                  " v-html="formattedJSON(row.request_param)"></pre>
+                <template #reference>
+                  <el-button type="primary" text>查看详情</el-button>
+                </template>
+              </el-popover>
+              </template>
+          </el-table-column>
+        </el-table>
+      </div>
+
+      <div style="padding: 10px 16px;text-align: right;">
+        <el-pagination background layout="total, sizes, prev, pager, next, jumper"
+                       :page-size="params.pagesize" :page-sizes="[20,30,50,100]"
+                       :total="params.total"
+                       @current-change="currentChange"
+                       @size-change="handleSizeChange">
+        </el-pagination>
+      </div>
+    </div>
+  </el-container>
+</template>
+
+<script setup lang='ts'>
+
+import {ref, reactive, h} from "vue";
+import {
+  Plus,
+  Search,
+} from '@element-plus/icons-vue'
+import {getLogData} from "@/api/other_routes";
+import {ElMessage} from "element-plus";
+
+defineOptions({
+  name: "Log"
+});
+
+const dialogVisible = ref(false)
+const params = reactive({page: 1, pagesize: 20, total: 0, search: ""})
+const multipleSelection = ref([])
+const tableData = ref([])
+fetchData()
+
+function currentChange(page) {
+  params.page = page
+  fetchData()
+}
+function handleSizeChange(pagesize) {
+  params.pagesize = pagesize
+  fetchData()
+}
+function handleSelectionChange(val) {
+  multipleSelection.value = val
+}
+function fetchData() {
+  console.log('exec fetchDAta')
+  getLogData(params).then(resp => {
+    if (resp.code === 200) {
+      tableData.value = resp.data
+      params.total = resp.total
+    } else {
+      ElMessage({type: 'error', message: resp.msg})
+    }
+  })
+  .catch(error => {
+    console.error("Error fetching supplier data:", error);
+  });
+}
+
+function formattedJSON(raw: any): string {
+  try {
+    let obj =
+      typeof raw === 'string'
+        ? JSON.parse(raw.replace(/'/g, '"'))
+        : raw;
+    return JSON.stringify(obj, null, 2)
+      .replace(/</g, '&lt;') // 防止 HTML 注入
+      .replace(/>/g, '&gt;')
+      .replace(/\n/g, '<br>')
+      .replace(/ /g, '&nbsp;');
+  } catch (e) {
+    return String(raw);
+  }
+}
+
+</script>
+
+<style scoped>
+.main {
+  margin-top: 1px;
+  width: 100%;
+  height: 90%;
+}
+
+.logTable {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*
+.logTable ::v-deep .el-table .cell {
+  white-space: pre-line;
+}
+
+
+.input-with-select .el-input-group__prepend {
+  background-color: #fff;
+}
+*/
+
+</style>

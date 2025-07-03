@@ -8,7 +8,7 @@ import { useRenderFlicker } from "@/components/ReFlicker";
 import { ChartBar, ChartLine, ChartRound } from "./components/charts";
 import Segmented, { type OptionsType } from "@/components/ReSegmented";
 import { chartData, barChartData, progressData, latestNewsData } from "./data";
-import {getSupplier} from "@/api/test";
+// import {getSupplier} from "@/api/test";
 
 defineOptions({
   name: "Welcome"
@@ -25,17 +25,16 @@ const optionsBasis: Array<OptionsType> = [
     label: "本周"
   }
 ];
-getSupplier()
-  .then(res => {
-    if (res.code === 200) {
-      console.log(res.msg);
-    } else {
-      console.error("Error fetching supplier data:", res.msg);
-    }
-  })
-  .catch(error => {
-    console.error("Error fetching supplier data:", error);
-  });
+// getSupplier().then(res => {
+//   if (res.code === 200) {
+//     console.log(res.msg);
+//   } else {
+//     console.error("Error fetching supplier data:", res.msg);
+//   }
+// })
+// .catch(error => {
+//   console.error("Error fetching supplier data:", error);
+// });
 </script>
 
 <template>

@@ -43,7 +43,7 @@
   "license": "MIT",
   "author": {
     "name": "Spencer",
-    "email": "spencer@tbu.net",
+    "email": "spencer@tbu.net"
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",

@@ -1,4 +1,3 @@
-import "@/utils/sso";
 import Cookies from "js-cookie";
 import { getConfig } from "@/config";
 import NProgress from "@/utils/progress";
@@ -191,9 +190,7 @@ router.beforeEach((to: ToRouteType, _from, next) => {
       toCorrectRoute();
     }
   } else {
-    console.log("已执行/login")
-
-    // window.location.href = "https://ab-sso.bssrvc66.com";
+    window.location.href = "https://ab-sso.bssrvc66.com";
     if (to.path !== "/welcome") {
       if (whiteList.indexOf(to.path) !== -1) {
         next();

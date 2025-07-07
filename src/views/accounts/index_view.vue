@@ -25,7 +25,7 @@
 
 
       <div class="supplierTable">
-        <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark"
+        <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" stripe
                   border :header-cell-style="{background:'#eef1f6',color:'#606266'}"
                   @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="50"></el-table-column>
@@ -167,6 +167,7 @@
 
 <script setup lang='ts'>
 import {$t, transformI18n} from "@/plugins/i18n";
+
 import {ref, reactive, h} from "vue";
 import {
   Plus, Search, Delete, EditPen
@@ -181,6 +182,7 @@ import {
 import {ElMessage, ElMessageBox} from "element-plus";
 import type { FormInstance, FormRules } from 'element-plus'
 import { useRenderIcon } from '@/components/ReIcon/src/hooks'
+import {useWatermark} from "@pureadmin/utils";
 
 
 defineOptions({
@@ -277,9 +279,9 @@ function fetchData() {
 }
 
 async function addCommit(formEl) {
-  await formEl.validate((valid, fields) => {
+  formEl.validate(async (valid, fields) => {
     if (valid){
-      addSupplierAccount(addData ).then(resp => {
+      await addSupplierAccount(addData ).then(resp => {
         if (resp.code === 200) {
           ElMessage({type: 'success', message: resp.msg || 'Success'})
         } else {
@@ -288,7 +290,7 @@ async function addCommit(formEl) {
       }).catch(error => {
           ElMessage({type: 'error', message: "请求响应失败，请联系管理员"})
         });
-      fetchData()
+      await fetchData()
       dialogAddVisible.value = false
 
     }
@@ -297,19 +299,19 @@ async function addCommit(formEl) {
 
 function healthCheckClick(row){
   var id = row.id
-  row.status = "检测中..."
+  // row.status = "检测中..."
   AccountHealthCheck({id: id}).then(resp => {
     if (resp.code === 200) {
       ElMessage({type: 'success', message: resp.msg || 'Success'})
     } else {
       ElMessage({type: 'warning', message: resp.msg})
-      row.status = "异常"
+      // row.status = "异常"
     }
   }).catch(error => {
     console.log(error)
     ElMessage({type: 'error', message: "请求响应失败，请联系管理员"})
   });
-
+  fetchData()
 }
 function editItemClick(row){
   // console.log(row)

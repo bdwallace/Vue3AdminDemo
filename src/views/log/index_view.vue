@@ -20,7 +20,7 @@
 
 
       <div class="logTable">
-        <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark"
+        <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" stripe
                   border :header-cell-style="{background:'#eef1f6',color:'#606266'}"
                   @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="60"></el-table-column>
@@ -58,7 +58,7 @@
 
 <script setup lang='ts'>
 
-import {ref, reactive, h} from "vue";
+import {ref, reactive, h, onMounted} from "vue";
 import {
   Plus,
   Search,

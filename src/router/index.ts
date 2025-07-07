@@ -104,7 +104,7 @@ export function resetRouter() {
 }
 
 /** 路由白名单 */
-const whiteList = ["/login"];
+const whiteList = ["/index", "/home"];
 
 const { VITE_HIDE_HOME } = import.meta.env;
 
@@ -132,11 +132,12 @@ router.beforeEach((to: ToRouteType, _from, next) => {
   function toCorrectRoute() {
     whiteList.includes(to.fullPath) ? next(_from.fullPath) : next();
   }
-  if (Cookies.get("token") && Cookies.get("user_name") && userInfo) {
+  console.log(userInfo)
+  if (Cookies.get("token") && Cookies.get("user_name")) {
     // 无权限跳转403页面
-    if (to.meta?.roles && !isOneOfArray(to.meta?.roles, userInfo?.roles)) {
-      next({ path: "/error/403" });
-    }
+    // if (to.meta?.roles && !isOneOfArray(to.meta?.roles, userInfo?.roles)) {
+    //   next({ path: "/error/403" });
+    // }
     // 开启隐藏首页后在浏览器地址栏手动输入首页welcome路由则跳转到404页面
     if (VITE_HIDE_HOME === "true" && to.fullPath === "/welcome") {
       next({ path: "/error/404" });
@@ -190,12 +191,15 @@ router.beforeEach((to: ToRouteType, _from, next) => {
       toCorrectRoute();
     }
   } else {
-    if (to.path !== "/login") {
+    console.log("已执行/login")
+
+    // window.location.href = "https://ab-sso.bssrvc66.com";
+    if (to.path !== "/welcome") {
       if (whiteList.indexOf(to.path) !== -1) {
         next();
       } else {
         removeToken();
-        next({ path: "/login" });
+        next({ path: "/welcome" });
       }
     } else {
       next();

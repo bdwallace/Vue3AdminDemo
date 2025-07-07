@@ -20,7 +20,7 @@
 
 
       <div class="demoTable">
-        <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark"
+        <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" stripe
                   border :header-cell-style="{background:'#eef1f6',color:'#606266'}"
                   @selection-change="handleSelectionChange">
 

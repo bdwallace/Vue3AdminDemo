@@ -10,7 +10,7 @@ export default {
   redirect: "/process",
   meta: {
     icon: "IF-icon-schedule",
-    title: $t("menus.pureProcess"),
+    title: $t("menus.pureApproval"),
     rank: 4
   },
   children: [
@@ -21,6 +21,28 @@ export default {
       meta: {
         icon: "IF-icon-schedule",
         title: $t("menus.pureProcess"),
+
+      }
+    },
+    {
+      path: "/detail/:id",
+      name: "detail",
+      component: () => import("@/views/process/process_detail_view.vue"),
+      meta: {
+        icon: "IF-icon-schedule",
+        title: "详情",
+        showLink: false,
+      }
+    },
+
+    {
+      path: "/setting",
+      name: "setting",
+      component: () => import("@/views/process/approval_setting_view.vue"),
+      meta: {
+        icon: "IF-icon-setting",
+        title: $t("menus.pureApprovalSetting"),
+
       }
     },
 

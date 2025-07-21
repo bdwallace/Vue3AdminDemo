@@ -3,7 +3,7 @@
     <div class="main">
       <div>
         <el-input placeholder="请输入搜索内容, 支持所有内容模糊搜索, 回车或点击按钮搜索" v-model="params.search"
-                  @change="fetchData" style="width: 70%" class="input-with-select" size="large">
+                  style="width: 70%" class="input-with-select" size="large">
           <template #append>
             <el-button :icon="Search" @click="fetchData" />
           </template>
@@ -65,6 +65,8 @@ import {
 } from '@element-plus/icons-vue'
 import {getLogData} from "@/api/other_routes";
 import {ElMessage} from "element-plus";
+import {createPaginationHandlers} from "@/utils/common";
+
 
 defineOptions({
   name: "Log"
@@ -74,21 +76,14 @@ const dialogVisible = ref(false)
 const params = reactive({page: 1, pagesize: 20, total: 0, search: ""})
 const multipleSelection = ref([])
 const tableData = ref([])
-fetchData()
+const {
+  currentChange,
+  handleSizeChange,
+  handleSelectionChange
+} = createPaginationHandlers(params, fetchData, multipleSelection);
 
-function currentChange(page) {
-  params.page = page
-  fetchData()
-}
-function handleSizeChange(pagesize) {
-  params.pagesize = pagesize
-  fetchData()
-}
-function handleSelectionChange(val) {
-  multipleSelection.value = val
-}
+fetchData()
 function fetchData() {
-  console.log('exec fetchDAta')
   getLogData(params).then(resp => {
     if (resp.code === 200) {
       tableData.value = resp.data

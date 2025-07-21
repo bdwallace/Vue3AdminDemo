@@ -7,7 +7,7 @@ import { ReNormalCountTo } from "@/components/ReCountTo";
 import { useRenderFlicker } from "@/components/ReFlicker";
 import { ChartBar, ChartLine, ChartRound } from "./components/charts";
 import Segmented, { type OptionsType } from "@/components/ReSegmented";
-import { chartData, barChartData, progressData, latestNewsData } from "./data";
+import { chartData, tableData, latestNewsData } from "./data";
 // import {getSupplier} from "@/api/test";
 
 defineOptions({
@@ -25,16 +25,7 @@ const optionsBasis: Array<OptionsType> = [
     label: "本周"
   }
 ];
-// getSupplier().then(res => {
-//   if (res.code === 200) {
-//     console.log(res.msg);
-//   } else {
-//     console.error("Error fetching supplier data:", res.msg);
-//   }
-// })
-// .catch(error => {
-//   console.error("Error fetching supplier data:", error);
-// });
+
 </script>
 
 <template>
@@ -91,7 +82,7 @@ const optionsBasis: Array<OptionsType> = [
               <p class="font-medium text-green-500">{{ item.percent }}</p>
             </div>
             <ChartLine
-              v-if="item.data.length > 1"
+              v-if="Array.isArray(item.data) && item.data.length > 1"
               class="w-1/2!"
               :color="item.color"
               :data="item.data"
@@ -101,83 +92,83 @@ const optionsBasis: Array<OptionsType> = [
         </el-card>
       </re-col>
 
-      <re-col
-        v-motion
-        class="mb-[18px]"
-        :value="18"
-        :xs="24"
-        :initial="{
-          opacity: 0,
-          y: 100
-        }"
-        :enter="{
-          opacity: 1,
-          y: 0,
-          transition: {
-            delay: 400
-          }
-        }"
-      >
-        <el-card class="bar-card" shadow="never">
-          <div class="flex justify-between">
-            <span class="text-md font-medium">分析概览</span>
-            <Segmented v-model="curWeek" :options="optionsBasis" />
-          </div>
-          <div class="flex justify-between items-start mt-3">
-            <ChartBar
-              :requireData="barChartData[curWeek].requireData"
-              :questionData="barChartData[curWeek].questionData"
-            />
-          </div>
-        </el-card>
-      </re-col>
+<!--      <re-col-->
+<!--        v-motion-->
+<!--        class="mb-[18px]"-->
+<!--        :value="18"-->
+<!--        :xs="24"-->
+<!--        :initial="{-->
+<!--          opacity: 0,-->
+<!--          y: 100-->
+<!--        }"-->
+<!--        :enter="{-->
+<!--          opacity: 1,-->
+<!--          y: 0,-->
+<!--          transition: {-->
+<!--            delay: 400-->
+<!--          }-->
+<!--        }"-->
+<!--      >-->
+<!--        <el-card class="bar-card" shadow="never">-->
+<!--          <div class="flex justify-between">-->
+<!--            <span class="text-md font-medium">分析概览</span>-->
+<!--            <Segmented v-model="curWeek" :options="optionsBasis" />-->
+<!--          </div>-->
+<!--          <div class="flex justify-between items-start mt-3">-->
+<!--            <ChartBar-->
+<!--              :requireData="barChartData[curWeek].requireData"-->
+<!--              :questionData="barChartData[curWeek].questionData"-->
+<!--            />-->
+<!--          </div>-->
+<!--        </el-card>-->
+<!--      </re-col>-->
 
-      <re-col
-        v-motion
-        class="mb-[18px]"
-        :value="6"
-        :xs="24"
-        :initial="{
-          opacity: 0,
-          y: 100
-        }"
-        :enter="{
-          opacity: 1,
-          y: 0,
-          transition: {
-            delay: 480
-          }
-        }"
-      >
-        <el-card shadow="never">
-          <div class="flex justify-between">
-            <span class="text-md font-medium">解决概率</span>
-          </div>
-          <div
-            v-for="(item, index) in progressData"
-            :key="index"
-            :class="[
-              'flex',
-              'justify-between',
-              'items-start',
-              index === 0 ? 'mt-8' : 'mt-[2.15rem]'
-            ]"
-          >
-            <el-progress
-              :text-inside="true"
-              :percentage="item.percentage"
-              :stroke-width="21"
-              :color="item.color"
-              striped
-              striped-flow
-              :duration="item.duration"
-            />
-            <span class="text-nowrap ml-2 text-text_color_regular text-sm">
-              {{ item.week }}
-            </span>
-          </div>
-        </el-card>
-      </re-col>
+<!--      <re-col-->
+<!--        v-motion-->
+<!--        class="mb-[18px]"-->
+<!--        :value="6"-->
+<!--        :xs="24"-->
+<!--        :initial="{-->
+<!--          opacity: 0,-->
+<!--          y: 100-->
+<!--        }"-->
+<!--        :enter="{-->
+<!--          opacity: 1,-->
+<!--          y: 0,-->
+<!--          transition: {-->
+<!--            delay: 480-->
+<!--          }-->
+<!--        }"-->
+<!--      >-->
+<!--        <el-card shadow="never">-->
+<!--          <div class="flex justify-between">-->
+<!--            <span class="text-md font-medium">解决概率</span>-->
+<!--          </div>-->
+<!--          <div-->
+<!--            v-for="(item, index) in progressData"-->
+<!--            :key="index"-->
+<!--            :class="[-->
+<!--              'flex',-->
+<!--              'justify-between',-->
+<!--              'items-start',-->
+<!--              index === 0 ? 'mt-8' : 'mt-[2.15rem]'-->
+<!--            ]"-->
+<!--          >-->
+<!--            <el-progress-->
+<!--              :text-inside="true"-->
+<!--              :percentage="item.percentage"-->
+<!--              :stroke-width="21"-->
+<!--              :color="item.color"-->
+<!--              striped-->
+<!--              striped-flow-->
+<!--              :duration="item.duration"-->
+<!--            />-->
+<!--            <span class="text-nowrap ml-2 text-text_color_regular text-sm">-->
+<!--              {{ item.week }}-->
+<!--            </span>-->
+<!--          </div>-->
+<!--        </el-card>-->
+<!--      </re-col>-->
 
       <re-col
         v-motion

@@ -265,7 +265,6 @@ function handleSelectionChange(val) {
 }
 
 function fetchData() {
-  console.log('exec fetchDAta')
   getSupplierData(params).then(resp => {
     if (resp.code === 200) {
       tableData.value = resp.data
@@ -297,7 +296,7 @@ async function addCommit(formEl) {
   })
 }
 
-function healthCheckClick(row){
+async function healthCheckClick(row){
   var id = row.id
   // row.status = "检测中..."
   AccountHealthCheck({id: id}).then(resp => {
@@ -311,7 +310,7 @@ function healthCheckClick(row){
     console.log(error)
     ElMessage({type: 'error', message: "请求响应失败，请联系管理员"})
   });
-  fetchData()
+  await fetchData()
 }
 function editItemClick(row){
   // console.log(row)
@@ -345,7 +344,7 @@ async function deleteAccountClick(row){
     }
   ).then(async () => {
     var resp = await deleteSupplierAccount({"id": row.id})
-    console.log(resp)
+
     if (resp.code === 200) {
       ElMessage({type: 'success', message: resp.msg || '删除成功'})
       fetchData()
@@ -359,7 +358,7 @@ async function deleteAccountClick(row){
 }
 </script>
 
-<style itemd>
+<style scoped>
 .main {
   margin-top: 1px;
   width: 100%;

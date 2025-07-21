@@ -21,7 +21,12 @@ buttons:
   pureOpenText: Open
   pureCloseText: Close
   pureAddCount: Add Account
+  pureCreateS3: Create S3
+  pureCreateMsk: Create MSK
+  pureCreateVpc: Create VPC
+  pureSettings: Setting
 search:
+  pureSearch: Search
   pureTotal: Total
   pureHistory: History
   pureCollect: Collect
@@ -75,7 +80,9 @@ menus:
   pureSubnet: Subnet
   pureRouteTable: Route Table
   pureEndpoint: Endpoint
+  pureApproval: Approval Manage
   pureProcess: Approval Process
+  pureApprovalSetting: Approval Setting
   pureLog: Operation Log
   pureAccount: Supplier Account
 
@@ -134,8 +141,21 @@ login:
 title:
   pureAddSupplier: Add Supplier Account
   pureEditSupplier: Edit Account
+  pureCreateBucket: Create Bucket
+  pureCreateMsk: Create MSK
+  pureAddApprovalEvent: Add Approval Event
 label:
   pureSupplier: Supplier
+  pureSupplierAccount: Supplier Account
   pureRemark: Remark
   pureAccount: Account
   pureDefaultRegion: Default Region
+  pureEnv: Environment
+  pureFunc: Function
+  purePermission: Permission
+  pureRegion: Region
+  pureBucketName: Bucket Name
+  pureApplyReason: Apply Reason
+  pureSelNumber: Serial Number[optional]
+  pureOptionType: Option Type
+  pureApprover: Approver

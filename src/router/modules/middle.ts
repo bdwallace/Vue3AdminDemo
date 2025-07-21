@@ -48,6 +48,7 @@ export default {
       meta: {
         icon: 'IF-icon-cunchutong',
         title: $t("menus.pureS3"),
+        keepAlive: true
       }
     }
   ]

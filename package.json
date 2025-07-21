@@ -69,6 +69,7 @@
     "dayjs": "^1.11.13",
     "deep-chat": "^2.1.1",
     "echarts": "^5.6.0",
+    "qs": "^6.13.1",
     "el-table-infinite-scroll": "^3.0.6",
     "element-plus": "^2.9.7",
     "highlight.js": "^11.11.1",
@@ -107,7 +108,6 @@
     "vxe-table": "4.6.25",
     "wavesurfer.js": "^7.9.4",
     "xgplayer": "^3.0.21"
-
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",

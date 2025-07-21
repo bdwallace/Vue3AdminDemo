@@ -133,7 +133,7 @@ export class PureHttp {
         // 优先判断post/get等方法是否传入回调，否则执行初始化设置等回调
         if (response.data.code === 401) {
           console.log("禁止访问", response.data);
-          window.location.href = "https://ab-sso.bssrvc66.com";
+          // window.location.href = "https://ab-sso.bssrvc66.com";
           return response.data;
         }
         if (typeof $config.beforeResponseCallback === "function") {

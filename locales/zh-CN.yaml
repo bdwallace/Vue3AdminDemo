@@ -21,7 +21,12 @@ buttons:
   pureOpenText: 开
   pureCloseText: 关
   pureAddCount: 新增账号
+  pureCreateS3: 创建S3
+  pureCreateMsk: 创建MSK
+  pureCreateVpc: 创建VPC
+  pureSettings: 设置
 search:
+  pureSearch: 搜索
   pureTotal: 共
   pureHistory: 搜索历史
   pureCollect: 收藏
@@ -75,7 +80,9 @@ menus:
   pureSubnet: 子网
   pureRouteTable: 路由表
   pureEndpoint: Endpoint
+  pureApproval: 审批管理
   pureProcess: 审批进度
+  pureApprovalSetting: 审批设置
   pureLog: 操作日志
   pureAccount: 云厂商账号
 status:
@@ -132,8 +139,22 @@ login:
 title:
   pureAddSupplier: 新增云厂商账号
   pureEditSupplier: 编辑账号
+  pureCreateBucket: 创建存储桶
+  pureCreateMsk: 创建MSK
+  pureCreateVpc: 创建VPC
+  pureAddApprovalEvent: 新增审批事件
 label:
   pureSupplier: 供应商
+  pureSupplierAccount: 供应商账号
   pureRemark: 备注
   pureAccount: 账号
   pureDefaultRegion: 默认区域
+  pureEnv: 环境
+  pureFunc: 用途
+  purePermission: 权限
+  pureRegion: 区域
+  pureBucketName: 存储桶名称
+  pureApplyReason: 申请原因
+  pureSelNumber: 序列号[可选]
+  pureOptionType: 操作类型
+  pureApprover: 审批人

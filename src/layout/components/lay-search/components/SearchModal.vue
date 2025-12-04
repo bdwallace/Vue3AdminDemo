@@ -7,7 +7,6 @@ import SearchResult from "./SearchResult.vue";
 import SearchFooter from "./SearchFooter.vue";
 import { useNav } from "@/layout/hooks/useNav";
 import SearchHistory from "./SearchHistory.vue";
-import { transformI18n, $t } from "@/plugins/i18n";
 import type { optionsItem, dragItem } from "../types";
 import { ref, computed, shallowRef, watch } from "vue";
 import { useDebounceFn, onKeyStroke } from "@vueuse/core";
@@ -110,13 +109,13 @@ function search() {
   const flatMenusData = flatTree(menusData.value);
   resultOptions.value = flatMenusData.filter(menu =>
     keyword.value
-      ? transformI18n(menu.meta?.title)
+      ? menu.meta?.title
           .toLocaleLowerCase()
           .includes(keyword.value.toLocaleLowerCase().trim()) ||
         (locale.value === "zh" &&
           !isAllEmpty(
             match(
-              transformI18n(menu.meta?.title).toLocaleLowerCase(),
+              menu.meta?.title.toLocaleLowerCase(),
               keyword.value.toLocaleLowerCase().trim()
             )
           ))

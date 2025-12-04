@@ -36,7 +36,7 @@ Object.keys(directives).forEach(key => {
 import {
   IconifyIconOffline,
   IconifyIconOnline,
-  FontIcon
+  FontIcon,
 } from "./components/ReIcon";
 app.component("IconifyIconOffline", IconifyIconOffline);
 app.component("IconifyIconOnline", IconifyIconOnline);

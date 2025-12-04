@@ -1,5 +1,4 @@
 
-import {$t} from "@/plugins/i18n";
 const Layout = () => import("@/layout/index.vue");
 
 
@@ -10,7 +9,7 @@ export default {
   redirect: "/cache",
   meta: {
     icon: "IF-icon-Middleware",
-    title: $t("menus.pureMiddle"),
+    title: "menus.pureMiddle",
     rank: 1
   },
   children: [
@@ -20,7 +19,7 @@ export default {
       component: () => import("@/views/middle/cache_view.vue"),
       meta: {
         icon: "IF-icon-redis",
-        title: $t("menus.pureCache"),
+        title: "menus.pureCache",
       }
     },
     {
@@ -29,7 +28,7 @@ export default {
       component: () => import("@/views/middle/msk_view.vue"),
       meta: {
         icon: "IF-icon-Kafka",
-        title: $t("menus.pureMsk"),
+        title: "menus.pureMsk",
       }
     },
     {
@@ -38,7 +37,7 @@ export default {
       component: () => import("@/views/middle/opensearch.vue"),
       meta: {
         icon: "IF-icon-opensearch",
-        title: $t("menus.pureOsh"),
+        title: "menus.pureOsh",
       }
     },
     {
@@ -47,7 +46,7 @@ export default {
       component: () => import("@/views/middle/s3_view.vue"),
       meta: {
         icon: 'IF-icon-cunchutong',
-        title: $t("menus.pureS3"),
+        title: "menus.pureS3",
         keepAlive: true
       }
     }

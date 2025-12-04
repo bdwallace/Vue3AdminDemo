@@ -1,4 +1,4 @@
-import { $t } from "@/plugins/i18n";
+
 const Layout = () => import("@/layout/index.vue");
 
 export default [
@@ -7,7 +7,7 @@ export default [
   //   name: "Login",
   //   component: () => import("@/views/login/index_view.vue"),
   //   meta: {
-  //     title: $t("menus.pureLogin"),
+  //     title: "menus.pureLogin",
   //     showLink: false,
   //     rank: 101
   //   }
@@ -16,7 +16,7 @@ export default [
     path: "/redirect",
     component: Layout,
     meta: {
-      title: $t("status.pureLoad"),
+      title: "status.pureLoad",
       showLink: false,
       rank: 102
     },
@@ -34,7 +34,7 @@ export default [
   //   name: "Empty",
   //   component: () => import("@/views/empty/index_view.vue"),
   //   meta: {
-  //     title: $t("menus.pureEmpty"),
+  //     title: "menus.pureEmpty",
   //     showLink: false,
   //     rank: 103
   //   }
@@ -44,7 +44,7 @@ export default [
   //   name: "AccountSettings",
   //   component: () => import("@/views/account-settings/index_view.vue"),
   //   meta: {
-  //     title: $t("buttons.pureAccountSettings"),
+  //     title: "buttons.pureAccountSettings",
   //     showLink: false,
   //     rank: 104
   //   }

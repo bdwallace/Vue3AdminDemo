@@ -9,7 +9,6 @@ import {
 } from "vue";
 import type { tagsViewsType } from "../types";
 import { useRoute, useRouter } from "vue-router";
-import { transformI18n, $t } from "@/plugins/i18n";
 import { responsiveStorageNameSpace } from "@/config";
 import { useSettingStoreHook } from "@/store/modules/settings";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
@@ -64,49 +63,49 @@ export function useTags() {
   const tagsViews = reactive<Array<tagsViewsType>>([
     {
       icon: RefreshRight,
-      text: $t("buttons.pureReload"),
+      text: "buttons.pureReload",
       divided: false,
       disabled: false,
       show: true
     },
     {
       icon: Close,
-      text: $t("buttons.pureCloseCurrentTab"),
+      text: "buttons.pureCloseCurrentTab",
       divided: false,
       disabled: multiTags.value.length > 1 ? false : true,
       show: true
     },
     {
       icon: CloseLeftTags,
-      text: $t("buttons.pureCloseLeftTabs"),
+      text: "buttons.pureCloseLeftTabs",
       divided: true,
       disabled: multiTags.value.length > 1 ? false : true,
       show: true
     },
     {
       icon: CloseRightTags,
-      text: $t("buttons.pureCloseRightTabs"),
+      text: "buttons.pureCloseRightTabs",
       divided: false,
       disabled: multiTags.value.length > 1 ? false : true,
       show: true
     },
     {
       icon: CloseOtherTags,
-      text: $t("buttons.pureCloseOtherTabs"),
+      text: "buttons.pureCloseOtherTabs",
       divided: true,
       disabled: multiTags.value.length > 2 ? false : true,
       show: true
     },
     {
       icon: CloseAllTags,
-      text: $t("buttons.pureCloseAllTabs"),
+      text: "buttons.pureCloseAllTabs",
       divided: false,
       disabled: multiTags.value.length > 1 ? false : true,
       show: true
     },
     {
       icon: Fullscreen,
-      text: $t("buttons.pureContentFullScreen"),
+      text: "buttons.pureContentFullScreen",
       divided: true,
       disabled: false,
       show: true
@@ -237,12 +236,10 @@ export function useTags() {
     currentSelect,
     scheduleIsActive,
     getContextMenuStyle,
-    $t,
     closeMenu,
     onMounted,
     onMouseenter,
     onMouseleave,
-    transformI18n,
     onContentFullScreen
   };
 }

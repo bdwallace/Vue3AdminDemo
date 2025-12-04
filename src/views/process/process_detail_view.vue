@@ -67,7 +67,6 @@
 <script setup lang="ts">
 import {ref, reactive, h} from "vue";
 import {ElMessage, ElMessageBox} from 'element-plus'
-import {$t, transformI18n} from "@/plugins/i18n"
 import { useRoute } from "vue-router";
 import {approvalProcess, cancelApproval, getProcessData} from "@/api/other_routes";
 import {Loading} from "@element-plus/icons-vue";

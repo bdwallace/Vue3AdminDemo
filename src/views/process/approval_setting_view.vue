@@ -7,7 +7,7 @@
               <el-button :icon="Search" @click="fetchData" />
             </template>
         </el-input>
-        <el-button type="primary" @click="setDialogVisable=true" :icon="Plus" style="margin-left: 15px">{{ transformI18n($t('title.pureAddApprovalEvent')) }}</el-button>
+        <el-button type="primary" @click="setDialogVisable=true" :icon="Plus" style="margin-left: 15px">{{ 'title.pureAddApprovalEvent' }}</el-button>
 
       </div>
 
@@ -37,12 +37,12 @@
         </el-table>
       </div>
 
-      <el-dialog :title="transformI18n($t('title.pureAddApprovalEvent'))" v-model="setDialogVisable" width="45%">
+      <el-dialog :title="'title.pureAddApprovalEvent'" v-model="setDialogVisable" width="45%">
         <el-form :model="addData" size="large">
-          <el-form-item :label="transformI18n($t('label.pureOptionType'))" :label-width="formLabelWidth" required>
+          <el-form-item :label="'label.pureOptionType'" :label-width="formLabelWidth" required>
             <el-input v-model="addData.option_type" style="width: 85%" placeholder="请输入操作类型"></el-input>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureApprover'))" :label-width="formLabelWidth" required>
+          <el-form-item :label="'label.pureApprover'" :label-width="formLabelWidth" required>
             <el-select v-model="addData.approvers" multiple filterable placeholder="请选择审批人" style="width: 85%">
                 <el-option v-for="item in approver_list" :key="item.email" :label="item.user_name" :value="item.email">
                   <span style="float: left">{{ item.user_name }}</span>
@@ -53,17 +53,17 @@
 
         </el-form>
         <div slot="footer" class="dialog-footer" style="text-align: center">
-          <el-button @click="setDialogVisable = false">{{transformI18n($t("buttons.pureCancel"))}}</el-button>
-          <el-button type="primary" @click="addCommit">{{transformI18n($t("buttons.pureConfirm"))}}</el-button>
+          <el-button @click="setDialogVisable = false">{{"buttons.pureCancel"}}</el-button>
+          <el-button type="primary" @click="addCommit">{{"buttons.pureConfirm"}}</el-button>
         </div>
       </el-dialog>
 
       <el-dialog title="编辑" v-model="dialogEditVisible" width="45%">
         <el-form :model="editData" size="large">
-          <el-form-item :label="transformI18n($t('label.pureOptionType'))" :label-width="formLabelWidth" required>
+          <el-form-item :label="'label.pureOptionType'" :label-width="formLabelWidth" required>
             <el-input v-model="editData.option_type" style="width: 85%" placeholder="请输入操作类型"></el-input>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureApprover'))" :label-width="formLabelWidth" required>
+          <el-form-item :label="'label.pureApprover'" :label-width="formLabelWidth" required>
             <el-select v-model="editData.approvers" multiple filterable placeholder="请选择审批人" style="width: 85%">
               <el-option v-for="item in approver_list" :key="item.email" :label="item.user_name" :value="item.email">
                 <span style="float: left">{{ item.user_name }}</span>
@@ -74,8 +74,8 @@
 
         </el-form>
         <div slot="footer" class="dialog-footer" style="text-align: center">
-          <el-button @click="dialogEditVisible = false">{{transformI18n($t("buttons.pureCancel"))}}</el-button>
-          <el-button type="primary" @click="editItemCommit">{{transformI18n($t("buttons.pureConfirm"))}}</el-button>
+          <el-button @click="dialogEditVisible = false">{{"buttons.pureCancel"}}</el-button>
+          <el-button type="primary" @click="editItemCommit">{{"buttons.pureConfirm"}}</el-button>
         </div>
       </el-dialog>
 
@@ -110,7 +110,6 @@ import {
 } from "@/api/other_routes";
 import {ElMessage, ElMessageBox} from 'element-plus'
 import Cookie from "js-cookie";
-import {$t, transformI18n} from "@/plugins/i18n";
 
 
 defineOptions({

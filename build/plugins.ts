@@ -14,6 +14,18 @@ import removeConsole from "vite-plugin-remove-console";
 import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite";
 import { codeInspectorPlugin } from "code-inspector-plugin";
 import { vitePluginFakeServer } from "vite-plugin-fake-server";
+import vitePluginsAutoI18n, { GoogleTranslator } from 'vite-auto-i18n-plugin'
+
+const i18nPlugin = vitePluginsAutoI18n({
+    deepScan: true,
+    globalPath: './lang',
+    namespace: 'lang',
+    distPath: './dist/assets',
+    distKey: 'index',
+    targetLangList: ['en'],
+    originLang: 'zh-cn',
+    translator: new GoogleTranslator({})
+})
 
 export function getPluginsList(
   VITE_CDN: boolean,
@@ -31,9 +43,10 @@ export function getPluginsList(
     }),
     // jsx、tsx语法支持
     vueJsx(),
-    VueI18nPlugin({
-      include: [pathResolve("../locales/**")]
-    }),
+    // i18nPlugin,
+    // VueI18nPlugin({
+    //   include: [pathResolve("../locales/**")]
+    // }),
     /**
      * 在页面上按住组合键时，鼠标在页面移动即会在 DOM 上出现遮罩层并显示相关信息，点击一下将自动打开 IDE 并将光标定位到元素对应的代码位置
      * Mac 默认组合键 Option + Shift

@@ -1,4 +1,4 @@
-import { $t } from "@/plugins/i18n";
+
 const Layout = () => import("@/layout/index.vue");
 
 export default {
@@ -8,7 +8,7 @@ export default {
   redirect: "/log",
   meta: {
     icon: "IF-icon-log",
-    title: $t("menus.pureLog"),
+    title: "menus.pureLog",
     rank: 5
   },
   children: [
@@ -18,7 +18,7 @@ export default {
       component: () => import("@/views/log/index_view.vue"),
       meta: {
         icon: "IF-icon-log",
-        title: $t("menus.pureLog")
+        title: "menus.pureLog"
       }
     }
   ]

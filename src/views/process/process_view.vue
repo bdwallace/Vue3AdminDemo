@@ -96,7 +96,6 @@ import {
 import {cancelApproval, getProcessData} from "@/api/other_routes";
 import { ElMessage } from 'element-plus'
 import Cookie from "js-cookie";
-import {$t, transformI18n} from "@/plugins/i18n";
 import {imageMap} from "@/utils/common";
 import { useRouter } from 'vue-router';
 

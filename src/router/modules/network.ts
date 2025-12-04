@@ -1,5 +1,4 @@
 
-import {$t} from "@/plugins/i18n";
 const Layout = () => import("@/layout/index.vue");
 
 
@@ -10,7 +9,7 @@ export default {
   redirect: "/vpc",
   meta: {
     icon: "IF-icon-network",
-    title: $t("menus.pureNetwork"),
+    title: "menus.pureNetwork",
     rank: 2
   },
   children: [
@@ -20,7 +19,7 @@ export default {
       component: () => import("@/views/network/vpc_view.vue"),
       meta: {
         icon: 'IF-icon-VPC',
-        title: $t("menus.pureVpc"),
+        title: "menus.pureVpc",
       }
     },
     {
@@ -29,7 +28,7 @@ export default {
       component: () => import("@/views/network/route_table_view.vue"),
       meta: {
         icon: 'IF-icon-luyoubiao',
-        title: $t("menus.pureRouteTable"),
+        title: "menus.pureRouteTable",
       }
     },
     {
@@ -38,7 +37,7 @@ export default {
       component: () => import("@/views/network/subnet_view.vue"),
       meta: {
         icon: 'IF-icon-subnet',
-        title: $t("menus.pureSubnet"),
+        title: "menus.pureSubnet",
       }
     },
     {
@@ -47,7 +46,7 @@ export default {
       component: () => import("@/views/network/endpoint_view.vue"),
       meta: {
         icon: 'IF-icon-a-347_vpc-endpoint',
-        title: $t("menus.pureEndpoint"),
+        title: "menus.pureEndpoint",
       }
     }
   ]

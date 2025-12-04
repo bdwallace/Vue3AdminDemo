@@ -3,7 +3,7 @@
     <div class="main">
       <div class="search-bock">
         <el-form :inline="true" :model="params" class="demo-form-inline">
-          <el-form-item :label="transformI18n($t('label.pureAccount'))">
+          <el-form-item :label="'label.pureAccount'">
             <el-select v-model="params.account" placeholder="请选择账号" style="width: 400px" >
               <el-option v-for="item in supplier_list" :value="item.supplier_account" :key="item.id">
                 <span style="float: left;font-weight: bold">{{ item.supplier_account }}</span>
@@ -11,7 +11,7 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureRegion'))" >
+          <el-form-item :label="'label.pureRegion'" >
             <el-select v-model="params.region" placeholder="请选择区域" style="width: 400px">
               <el-option v-for="item in region_list" :key="item.value" :label="item.label" :value="item.value">
                 <span style="float: left">{{ item.label }}</span>
@@ -21,11 +21,11 @@
           </el-form-item>
 
           <el-form-item>
-            <el-button type="info" plain @click="fetchData" :icon="Search">{{ transformI18n($t('search.pureSearch'))}}</el-button>
+            <el-button type="info" plain @click="fetchData" :icon="Search">{{ 'search.pureSearch'}}</el-button>
           </el-form-item>
           <el-tooltip class="item" effect="dark" content="此操作需要审批" placement="top">
             <el-form-item>
-              <el-button type="primary" @click="addDialogVisable=true" :icon="Plus">{{ transformI18n($t('buttons.pureCreateS3')) }}</el-button>
+              <el-button type="primary" @click="addDialogVisable=true" :icon="Plus">{{ 'buttons.pureCreateS3' }}</el-button>
             </el-form-item>
           </el-tooltip>
 
@@ -82,14 +82,14 @@
         </el-table>
       </div>
 
-      <el-dialog :title="transformI18n($t('title.pureCreateBucket'))" v-model="addDialogVisable" width="45%">
+      <el-dialog :title="'title.pureCreateBucket'" v-model="addDialogVisable" width="45%">
         <el-form :model="addData" size="large">
-          <el-form-item :label="transformI18n($t('label.pureSupplier'))" :label-width="formLabelWidth" required>
+          <el-form-item :label="'label.pureSupplier'" :label-width="formLabelWidth" required>
             <el-select v-model="addData.supplier_name" placeholder="请选择云厂商" style="width: 85%">
               <el-option v-for="item in suppliers" :label="item.label" :key="item.value" :value="item.value" :disabled="!item.show"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureSupplierAccount'))" :label-width="formLabelWidth" required>
+          <el-form-item :label="'label.pureSupplierAccount'" :label-width="formLabelWidth" required>
             <el-select v-model="addData.supplier_account" placeholder="请选择云厂商账号" style="width: 85%">
               <el-option v-for="item in supplier_list" :key="item.id" :label="item.supplier_account" :value="item.supplier_account">
                 <span style="float: left">{{ item.supplier_account }}</span>
@@ -97,16 +97,16 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureEnv'))" :label-width="formLabelWidth" required prop="env">
+          <el-form-item :label="'label.pureEnv'" :label-width="formLabelWidth" required prop="env">
             <el-select v-model="addData.env" placeholder="请选择环境" style="width: 85%" >
               <el-option v-for="item in env_list" :key="item" :label="item" :value="item">
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureFunc'))" :label-width="formLabelWidth" required prop="func">
+          <el-form-item :label="'label.pureFunc'" :label-width="formLabelWidth" required prop="func">
             <el-input  v-model="addData.func" style="width: 85%" placeholder="请输入用途"></el-input>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.purePermission'))" :label-width="formLabelWidth" required prop="permission">
+          <el-form-item :label="'label.purePermission'" :label-width="formLabelWidth" required prop="permission">
             <el-select v-model="addData.permission" placeholder="请选择环境" style="width: 85%" >
               <el-option label="公共读写" value="pubrw">
                 <span style="float: left">公共读写</span>
@@ -122,7 +122,7 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureRegion'))" :label-width="formLabelWidth" required prop="region">
+          <el-form-item :label="'label.pureRegion'" :label-width="formLabelWidth" required prop="region">
             <el-select v-model="addData.region" placeholder="请选择区域" style="width: 85%" >
               <el-option v-for="item in region_list" :key="item.value" :label="item.label" :value="item.value">
                 <span style="float: left">{{ item.label }}</span>
@@ -130,10 +130,10 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureSelNumber'))" :label-width="formLabelWidth"  >
+          <el-form-item :label="'label.pureSelNumber'" :label-width="formLabelWidth"  >
             <el-input  v-model="addData.sel_number" style="width: 85%" placeholder="可选请输入序列号"></el-input>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureBucketName'))" :label-width="formLabelWidth" required>
+          <el-form-item :label="'label.pureBucketName'" :label-width="formLabelWidth" required>
             <el-input v-model="addData.bucket_name" placeholder="请输入存储桶名称" style="width: 85%" disabled></el-input>
           </el-form-item>
 
@@ -146,25 +146,25 @@
 <!--              </el-option>-->
 <!--            </el-select>-->
 <!--          </el-form-item>-->
-          <el-form-item :label="transformI18n($t('label.pureApplyReason'))" :label-width="formLabelWidth" >
+          <el-form-item :label="'label.pureApplyReason'" :label-width="formLabelWidth" >
             <el-input type="textarea" :rows="3" v-model="addData.reason" style="width: 85%" placeholder="请输入申请原因"></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer" style="text-align: center">
-          <el-button @click="addDialogVisable = false">{{transformI18n($t("buttons.pureCancel"))}}</el-button>
-          <el-button type="primary" @click="addItemCommit">{{transformI18n($t("buttons.pureConfirm"))}}</el-button>
+          <el-button @click="addDialogVisable = false">{{"buttons.pureCancel"}}</el-button>
+          <el-button type="primary" @click="addItemCommit">{{"buttons.pureConfirm"}}</el-button>
         </div>
       </el-dialog>
 
 
       <el-dialog title="修改策略" v-model="editDialogVisable" width="45%">
         <el-form :model="editData" size="large">
-          <el-form-item :label="transformI18n($t('label.pureSupplier'))" :label-width="formLabelWidth" required>
+          <el-form-item :label="'label.pureSupplier'" :label-width="formLabelWidth" required>
             <el-select v-model="editData.supplier_name" placeholder="请选择云厂商" style="width: 85%" disabled>
               <el-option v-for="item in suppliers" :label="item.label" :key="item.value" :value="item.value" :disabled="!item.show"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureSupplierAccount'))" :label-width="formLabelWidth" required>
+          <el-form-item :label="'label.pureSupplierAccount'" :label-width="formLabelWidth" required>
             <el-select v-model="editData.supplier_account" placeholder="请选择云厂商账号" style="width: 85%" disabled>
               <el-option v-for="item in supplier_list" :key="item.id" :label="item.supplier_account" :value="item.supplier_account">
                 <span style="float: left">{{ item.supplier_account }}</span>
@@ -181,19 +181,19 @@
 
         </el-form>
         <div slot="footer" class="dialog-footer" style="text-align: center">
-          <el-button @click="editDialogVisable = false">{{transformI18n($t("buttons.pureCancel"))}}</el-button>
-          <el-button type="primary" @click="updatePolicyCommit">{{transformI18n($t("buttons.pureConfirm"))}}</el-button>
+          <el-button @click="editDialogVisable = false">{{"buttons.pureCancel"}}</el-button>
+          <el-button type="primary" @click="updatePolicyCommit">{{"buttons.pureConfirm"}}</el-button>
         </div>
       </el-dialog>
 
       <el-dialog title="修改CORS" v-model="corsDialogVisable" width="45%">
         <el-form :model="corsData" size="large">
-          <el-form-item :label="transformI18n($t('label.pureSupplier'))" :label-width="formLabelWidth" required>
+          <el-form-item :label="'label.pureSupplier'" :label-width="formLabelWidth" required>
             <el-select v-model="corsData.supplier_name" placeholder="请选择云厂商" style="width: 85%" disabled>
               <el-option v-for="item in suppliers" :label="item.label" :key="item.value" :value="item.value" :disabled="!item.show"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureSupplierAccount'))" :label-width="formLabelWidth" required>
+          <el-form-item :label="'label.pureSupplierAccount'" :label-width="formLabelWidth" required>
             <el-select v-model="corsData.supplier_account" placeholder="请选择云厂商账号" style="width: 85%" disabled>
               <el-option v-for="item in supplier_list" :key="item.id" :label="item.supplier_account" :value="item.supplier_account">
                 <span style="float: left">{{ item.supplier_account }}</span>
@@ -210,8 +210,8 @@
 
         </el-form>
         <div slot="footer" class="dialog-footer" style="text-align: center">
-          <el-button @click="corsDialogVisable = false">{{transformI18n($t("buttons.pureCancel"))}}</el-button>
-          <el-button type="primary" @click="updateCorsCommit">{{transformI18n($t("buttons.pureConfirm"))}}</el-button>
+          <el-button @click="corsDialogVisable = false">{{"buttons.pureCancel"}}</el-button>
+          <el-button type="primary" @click="updateCorsCommit">{{"buttons.pureConfirm"}}</el-button>
         </div>
       </el-dialog>
 
@@ -245,7 +245,6 @@ import {
   get_bucket_policy,
   getS3Data
 } from "@/api/s3_routes";
-import {$t, transformI18n} from "@/plugins/i18n";
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -435,8 +434,8 @@ async function deleteBucketClick(row){
     '是否确认删除 ' + row.bucket_name + " 桶",
     'Warning',
     {
-      confirmButtonText: transformI18n($t('buttons.pureConfirm')),
-      cancelButtonText: transformI18n($t('buttons.pureCancel')),
+      confirmButtonText: 'buttons.pureConfirm',
+      cancelButtonText: 'buttons.pureCancel',
       type: 'warning',
     }
   ).then(async () => {

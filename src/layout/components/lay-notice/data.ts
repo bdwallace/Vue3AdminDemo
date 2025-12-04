@@ -1,4 +1,4 @@
-import { $t } from "@/plugins/i18n";
+
 
 export interface ListItem {
   avatar: string;
@@ -20,13 +20,13 @@ export interface TabItem {
 export const noticesData: TabItem[] = [
   {
     key: "1",
-    name: $t("status.pureNotify"),
+    name: "status.pureNotify",
     list: [],
-    emptyText: $t("status.pureNoNotify")
+    emptyText: "status.pureNoNotify"
   },
   {
     key: "2",
-    name: $t("status.pureMessage"),
+    name: "status.pureMessage",
     list: [
       {
         avatar: "",
@@ -51,11 +51,11 @@ export const noticesData: TabItem[] = [
         type: "2"
       }
     ],
-    emptyText: $t("status.pureNoMessage")
+    emptyText: "status.pureNoMessage"
   },
   {
     key: "3",
-    name: $t("status.pureTodo"),
+    name: "status.pureTodo",
     list: [
       {
         avatar: "",
@@ -94,6 +94,6 @@ export const noticesData: TabItem[] = [
         type: "3"
       }
     ],
-    emptyText: $t("status.pureNoTodo")
+    emptyText: "status.pureNoTodo"
   }
 ];

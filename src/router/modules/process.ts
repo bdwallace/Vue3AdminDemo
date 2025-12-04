@@ -1,5 +1,4 @@
 
-import {$t} from "@/plugins/i18n";
 const Layout = () => import("@/layout/index.vue");
 
 
@@ -10,7 +9,7 @@ export default {
   redirect: "/process",
   meta: {
     icon: "IF-icon-schedule",
-    title: $t("menus.pureApproval"),
+    title: "menus.pureApproval",
     rank: 4
   },
   children: [
@@ -20,7 +19,7 @@ export default {
       component: () => import("@/views/process/process_view.vue"),
       meta: {
         icon: "IF-icon-schedule",
-        title: $t("menus.pureProcess"),
+        title: "menus.pureProcess",
 
       }
     },
@@ -41,7 +40,7 @@ export default {
       component: () => import("@/views/process/approval_setting_view.vue"),
       meta: {
         icon: "IF-icon-setting",
-        title: $t("menus.pureApprovalSetting"),
+        title: "menus.pureApprovalSetting",
 
       }
     },

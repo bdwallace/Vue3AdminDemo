@@ -17,7 +17,7 @@
         </el-input>
         <el-tooltip class="item" effect="dark" content="新增云厂商账号AKSK" placement="top">
           <el-button type="primary" :icon="Plus" style="margin-left: 20px" @click="dialogAddVisible=true">
-            {{ transformI18n($t('buttons.pureAddCount')) }}
+            {{ 'buttons.pureAddCount' }}
           </el-button>
         </el-tooltip>
 
@@ -70,11 +70,11 @@
         </el-table>
       </div>
 
-      <el-dialog v-model="dialogAddVisible" :title="transformI18n($t('title.pureAddSupplier'))" width="45%" draggable >
+      <el-dialog v-model="dialogAddVisible" :title="'title.pureAddSupplier'" width="45%" draggable >
         <el-form ref="ruleFormRef" :model="addData"
           :rules="rules" :label-width="formLabelWidth" size="large"
         >
-           <el-form-item :label="transformI18n($t('label.pureSupplier'))" :label-width="formLabelWidth" prop="supplier_name" required >
+           <el-form-item :label="'label.pureSupplier'" :label-width="formLabelWidth" prop="supplier_name" required >
             <el-select v-model="addData.supplier_name" placeholder="请选择或输入供应商" style="width: 85%" allow-create filterable>
               <el-option
                 v-for="item in supplier_list"
@@ -85,11 +85,11 @@
 
             </el-select>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureAccount'))" :label-width="formLabelWidth" prop="supplier_account" required>
+          <el-form-item :label="'label.pureAccount'" :label-width="formLabelWidth" prop="supplier_account" required>
             <el-input v-model="addData.supplier_account" placeholder='可以随意命名，建议以邮箱命名，便于区分' style="width: 85%"></el-input>
           </el-form-item>
 
-          <el-form-item :label="transformI18n($t('label.pureDefaultRegion'))" :label-width="formLabelWidth" prop="region" required>
+          <el-form-item :label="'label.pureDefaultRegion'" :label-width="formLabelWidth" prop="region" required>
             <el-input v-model="addData.region" placeholder='请选择 或 输入默认区域' style="width: 85%"></el-input>
           </el-form-item>
 
@@ -100,23 +100,23 @@
           <el-form-item label="API SECRET(密码)" :label-width="formLabelWidth" prop="api_key" required>
             <el-input v-model="addData.api_secret" style="width: 85%" type="password" show-password placeholder="请输入SK"></el-input>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureRemark'))" :label-width="formLabelWidth">
+          <el-form-item :label="'label.pureRemark'" :label-width="formLabelWidth">
             <el-input type="textarea" :rows="3" v-model="addData.remark" style="width: 85%"></el-input>
           </el-form-item>
         </el-form>
         <template #footer>
           <div class="dialog-footer" style="text-align: center">
-            <el-button @click="dialogAddVisible = false">{{transformI18n($t("buttons.pureCancel"))}}</el-button>
-            <el-button type="primary" @click="addCommit(ruleFormRef)">{{transformI18n($t("buttons.pureConfirm"))}}</el-button>
+            <el-button @click="dialogAddVisible = false">{{"buttons.pureCancel"}}</el-button>
+            <el-button type="primary" @click="addCommit(ruleFormRef)">{{"buttons.pureConfirm"}}</el-button>
           </div>
         </template>
       </el-dialog>
 
-      <el-dialog v-model="dialogEditVisible" :title="transformI18n($t('title.pureEditSupplier'))" width="45%" draggable >
+      <el-dialog v-model="dialogEditVisible" :title="'title.pureEditSupplier'" width="45%" draggable >
         <el-form ref="ruleFormRef" :model="editData"
           :rules="rules" :label-width="formLabelWidth" size="large"
         >
-           <el-form-item :label="transformI18n($t('label.pureSupplier'))" :label-width="formLabelWidth" prop="supplier_name" required >
+           <el-form-item :label="'label.pureSupplier'" :label-width="formLabelWidth" prop="supplier_name" required >
             <el-select v-model="editData.supplier_name" placeholder="请选择或输入供应商" style="width: 85%" disabled>
               <el-option
                 v-for="item in supplier_list"
@@ -127,11 +127,11 @@
 
             </el-select>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureAccount'))" :label-width="formLabelWidth" prop="supplier_account" required>
+          <el-form-item :label="'label.pureAccount'" :label-width="formLabelWidth" prop="supplier_account" required>
             <el-input v-model="editData.supplier_account" placeholder='可以随意命名，建议以邮箱命名，便于区分' style="width: 85%"></el-input>
           </el-form-item>
 
-          <el-form-item :label="transformI18n($t('label.pureDefaultRegion'))" :label-width="formLabelWidth" prop="region" required>
+          <el-form-item :label="'label.pureDefaultRegion'" :label-width="formLabelWidth" prop="region" required>
             <el-input v-model="editData.region" placeholder='请选择 或 输入默认区域' style="width: 85%"></el-input>
           </el-form-item>
 
@@ -142,14 +142,14 @@
           <el-form-item label="API SECRET(密码)" :label-width="formLabelWidth" prop="api_key" required>
             <el-input v-model="editData.api_secret" style="width: 85%" type="password" show-password placeholder="请输入SK"></el-input>
           </el-form-item>
-          <el-form-item :label="transformI18n($t('label.pureRemark'))" :label-width="formLabelWidth">
+          <el-form-item :label="'label.pureRemark'" :label-width="formLabelWidth">
             <el-input type="textarea" :rows="3" v-model="editData.remark" style="width: 85%"></el-input>
           </el-form-item>
         </el-form>
         <template #footer>
           <div class="dialog-footer" style="text-align: center">
-            <el-button @click="dialogAddVisible = false">{{transformI18n($t("buttons.pureCancel"))}}</el-button>
-            <el-button type="primary" @click="editItemCommit">{{transformI18n($t("buttons.pureConfirm"))}}</el-button>
+            <el-button @click="dialogAddVisible = false">{{"buttons.pureCancel"}}</el-button>
+            <el-button type="primary" @click="editItemCommit">{{"buttons.pureConfirm"}}</el-button>
           </div>
         </template>
       </el-dialog>
@@ -166,7 +166,6 @@
 </template>
 
 <script setup lang='ts'>
-import {$t, transformI18n} from "@/plugins/i18n";
 
 import {ref, reactive, h} from "vue";
 import {
@@ -338,8 +337,8 @@ async function deleteAccountClick(row){
     '是否确认删除供应商为 '+ row.supplier_name+ " 的 " + row.supplier_account + ' 账号?',
     'Warning',
     {
-      confirmButtonText: transformI18n($t('buttons.pureConfirm')),
-      cancelButtonText: transformI18n($t('buttons.pureCancel')),
+      confirmButtonText: 'buttons.pureConfirm',
+      cancelButtonText: 'buttons.pureCancel',
       type: 'warning',
     }
   ).then(async () => {

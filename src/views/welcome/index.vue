@@ -4,12 +4,12 @@
       <!-- Hero -->
       <el-col :span="24" class="mb-16">
         <el-card class="hero" shadow="never">
-          <div class="hero__badge" aria-hidden="true">WELCOME</div>
+          <div class="hero__badge" aria-hidden="true">欢迎使用</div>
           <h1 class="hero__title">
-            {{ greeting }}, 欢迎来到控制台
+            {{ greeting }}，企业控制台
           </h1>
           <p class="hero__subtitle">
-            统一的运维与数据视图，专注企业生产稳定性与效率。
+            统一的运维管理平台，助力企业提升效率与稳定性。
           </p>
           <div class="hero__cta">
             <el-button type="primary" size="large">开始使用</el-button>
@@ -23,12 +23,12 @@
         <el-card class="pill-card" shadow="never">
           <div class="pill-card__title">关键指标</div>
           <ul class="pill-list">
-            <li><span>项目数</span><strong>-</strong></li>
-            <li><span>服务数</span><strong>-</strong></li>
-            <li><span>近 24 小时告警</span><strong>-</strong></li>
+            <li><span>项目数量</span><strong>-</strong></li>
+            <li><span>服务数量</span><strong>-</strong></li>
+            <li><span>24 小时告警</span><strong>-</strong></li>
           </ul>
           <el-divider />
-          <div class="note">接入后将在此展示你最关注的关键指标。</div>
+          <div class="note">这里将展示项目、服务与告警等关键运营指标。</div>
         </el-card>
       </el-col>
 
@@ -36,12 +36,12 @@
         <el-card class="pill-card" shadow="never">
           <div class="pill-card__title">快速指引</div>
           <ol class="guide-list">
-            <li>接入账号与权限，确保安全边界。</li>
-            <li>创建环境与资源，按团队维度管理。</li>
-            <li>配置流水线与监控，形成交付与观测闭环。</li>
+            <li>配置用户与权限，确保团队边界清晰。</li>
+            <li>创建环境与资源，实现清晰的资源管控。</li>
+            <li>接入监控与告警，构建稳定性体系。</li>
           </ol>
           <el-divider />
-          <div class="note">遵循企业合规流程，统一标准、统一审计。</div>
+          <div class="note">建议遵循企业安全与合规要求进行配置。</div>
         </el-card>
       </el-col>
 
@@ -51,12 +51,7 @@
           <div class="status-wrap">
             <div class="status-item">
               <span>可用性</span>
-              <el-progress
-                :percentage="100"
-                :stroke-width="10"
-                :show-text="false"
-                aria-label="可用性"
-              />
+              <el-progress :percentage="100" :stroke-width="10" :show-text="false" />
             </div>
             <div class="status-item">
               <span>延迟</span>
@@ -64,11 +59,11 @@
             </div>
             <div class="status-item">
               <span>告警</span>
-              <el-tag type="info">-</el-tag>
+              <el-tag type="info">无</el-tag>
             </div>
           </div>
           <el-divider />
-          <div class="note">实时数据接入后将自动刷新状态</div>
+          <div class="note">实时数据接入后将自动更新系统状态。</div>
         </el-card>
       </el-col>
 
@@ -76,7 +71,7 @@
       <el-col :xs="24" :lg="16" class="mb-16">
         <el-card shadow="never" class="panel">
           <template #header>
-            <div class="card-header"><span>公告</span></div>
+            <div class="card-header"><span>平台公告</span></div>
           </template>
           <template v-if="timeline.length">
             <el-timeline>
@@ -100,8 +95,7 @@
             <div class="card-header"><span>快速操作</span></div>
           </template>
           <div class="quick-actions">
-            <el-button
-              v-for="(a, i) in quickActions"
+            <el-button v-for="(a, i) in quickActions"
               :key="i"
               :plain="a.plain"
               :disabled="a.disabled"
@@ -118,6 +112,7 @@
     </el-row>
   </div>
 </template>
+
 
 <script setup lang="ts">
 import { computed } from "vue";

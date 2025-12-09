@@ -13,7 +13,7 @@
             </template>
         </el-input>
 <!--        <el-tooltip class="item" effect="dark" content="此操作需要审批" placement="top">-->
-<!--          <el-button type="primary" @click="setDialogVisable=true" :icon="Plus">{{ transformI18n($t('buttons.pureSettings')) }}</el-button>-->
+<!--          <el-button type="primary" @click="setDialogVisable=true" :icon="Plus">账户设置</el-button>-->
 <!--        </el-tooltip>-->
         <el-checkbox-group v-model="approval_status" style="margin-top: 5px">
           <el-checkbox v-for="key in ['审批中', '任务执行中', '已取消', '任务完成']" :value="key" :label="key" @change="fetchData"></el-checkbox>

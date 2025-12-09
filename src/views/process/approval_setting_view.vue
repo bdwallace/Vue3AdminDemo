@@ -53,8 +53,8 @@
 
         </el-form>
         <div slot="footer" class="dialog-footer" style="text-align: center">
-          <el-button @click="setDialogVisable = false">{{"buttons.pureCancel"}}</el-button>
-          <el-button type="primary" @click="addCommit">{{"buttons.pureConfirm"}}</el-button>
+          <el-button @click="setDialogVisable = false">{{"取消"}}</el-button>
+          <el-button type="primary" @click="addCommit">{{"确认"}}</el-button>
         </div>
       </el-dialog>
 
@@ -74,8 +74,8 @@
 
         </el-form>
         <div slot="footer" class="dialog-footer" style="text-align: center">
-          <el-button @click="dialogEditVisible = false">{{"buttons.pureCancel"}}</el-button>
-          <el-button type="primary" @click="editItemCommit">{{"buttons.pureConfirm"}}</el-button>
+          <el-button @click="dialogEditVisible = false">{{"取消"}}</el-button>
+          <el-button type="primary" @click="editItemCommit">{{"确认"}}</el-button>
         </div>
       </el-dialog>
 

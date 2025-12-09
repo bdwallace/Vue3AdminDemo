@@ -14,7 +14,7 @@ withDefaults(defineProps<Props>(), {
   isActive: false
 });
 
-const { t } = useI18n();
+
 const { tooltipEffect } = useNav();
 
 const iconClass = computed(() => {
@@ -47,8 +47,8 @@ const toggleClick = () => {
     <IconifyIconOffline
       v-tippy="{
         content: isActive
-          ? t('buttons.pureClickCollapse')
-          : t('buttons.pureClickExpand'),
+          ? '点击折叠'
+          : '点击展开',
         theme: tooltipEffect,
         hideOnClick: 'toggle',
         placement: 'right'

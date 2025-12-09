@@ -14,7 +14,7 @@ const props = defineProps<{
   };
 }>();
 
-const { t } = useI18n();
+
 const loading = ref(true);
 const currentRoute = useRoute();
 const frameSrc = ref<string>("");
@@ -71,7 +71,7 @@ onMounted(() => {
   <div
     v-loading="loading"
     class="frame"
-    :element-loading-text="t('status.pureLoad')"
+    element-loading-text="加载中..."
   >
     <iframe ref="frameRef" :src="frameSrc" class="frame-iframe" />
   </div>

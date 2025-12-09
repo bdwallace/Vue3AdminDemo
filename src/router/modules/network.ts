@@ -9,7 +9,7 @@ export default {
   redirect: "/vpc",
   meta: {
     icon: "IF-icon-network",
-    title: "menus.pureNetwork",
+    title: "网络",
     rank: 2
   },
   children: [
@@ -19,7 +19,7 @@ export default {
       component: () => import("@/views/network/vpc_view.vue"),
       meta: {
         icon: 'IF-icon-VPC',
-        title: "menus.pureVpc",
+        title: "VPC",
       }
     },
     {
@@ -28,7 +28,7 @@ export default {
       component: () => import("@/views/network/route_table_view.vue"),
       meta: {
         icon: 'IF-icon-luyoubiao',
-        title: "menus.pureRouteTable",
+        title: "路由表",
       }
     },
     {
@@ -37,7 +37,7 @@ export default {
       component: () => import("@/views/network/subnet_view.vue"),
       meta: {
         icon: 'IF-icon-subnet',
-        title: "menus.pureSubnet",
+        title: '子网',
       }
     },
     {
@@ -46,7 +46,7 @@ export default {
       component: () => import("@/views/network/endpoint_view.vue"),
       meta: {
         icon: 'IF-icon-a-347_vpc-endpoint',
-        title: "menus.pureEndpoint",
+        title: "Endpoint",
       }
     }
   ]

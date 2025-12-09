@@ -14,7 +14,6 @@ withDefaults(defineProps<Props>(), {
   isActive: false
 });
 
-const { t } = useI18n();
 const { tooltipEffect } = useNav();
 
 const iconClass = computed(() => {
@@ -37,8 +36,8 @@ const toggleClick = () => {
   <div
     v-tippy="{
       content: isActive
-        ? t('buttons.pureClickCollapse')
-        : t('buttons.pureClickExpand'),
+        ? '折叠'
+        : '展开',
       theme: tooltipEffect,
       hideOnClick: 'toggle',
       placement: 'right'

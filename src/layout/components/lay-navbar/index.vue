@@ -3,7 +3,6 @@ import { useNav } from "@/layout/hooks/useNav";
 import LaySearch from "../lay-search/index.vue";
 import LayNotice from "../lay-notice/index.vue";
 import LayNavMix from "../lay-sidebar/NavMix.vue";
-import { useTranslationLang } from "@/layout/hooks/useTranslationLang";
 import LaySidebarFullScreen from "../lay-sidebar/components/SidebarFullScreen.vue";
 import LaySidebarBreadCrumb from "../lay-sidebar/components/SidebarBreadCrumb.vue";
 import LaySidebarTopCollapse from "../lay-sidebar/components/SidebarTopCollapse.vue";
@@ -29,7 +28,12 @@ const {
   getDropdownItemClass
 } = useNav();
 
-const { t, locale, translationCh, translationEn } = useTranslationLang();
+const changeLang = function (value: any) {
+    window.localStorage.setItem('lang', value)
+    window.location.reload()
+}
+const locale = localStorage.getItem('lang') || 'zh-cn'
+
 </script>
 
 <template>
@@ -59,12 +63,12 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
         <template #dropdown>
           <el-dropdown-menu class="translation">
             <el-dropdown-item
-              :style="getDropdownItemStyle(locale, 'zh')"
-              :class="['dark:text-white!', getDropdownItemClass(locale, 'zh')]"
-              @click="translationCh"
+              :style="getDropdownItemStyle(locale, 'zh-cn')"
+              :class="['dark:text-white!', getDropdownItemClass(locale, 'zh-cn')]"
+              @click="changeLang('zh-cn')"
             >
               <IconifyIconOffline
-                v-show="locale === 'zh'"
+                v-show="locale === 'zh-cn'"
                 class="check-zh"
                 :icon="Check"
               />
@@ -73,7 +77,7 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
             <el-dropdown-item
               :style="getDropdownItemStyle(locale, 'en')"
               :class="['dark:text-white!', getDropdownItemClass(locale, 'en')]"
-              @click="translationEn"
+              @click="changeLang('en')"
             >
               <span v-show="locale === 'en'" class="check-en">
                 <IconifyIconOffline :icon="Check" />
@@ -114,7 +118,7 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
       </el-dropdown>
       <span
         class="set-icon navbar-bg-hover"
-        :title="t('buttons.pureOpenSystemSet')"
+        title="打开系统配置"
         @click="onPanel"
       >
         <IconifyIconOffline :icon="Setting" />

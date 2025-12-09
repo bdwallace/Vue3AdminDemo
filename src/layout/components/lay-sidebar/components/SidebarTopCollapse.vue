@@ -11,7 +11,6 @@ withDefaults(defineProps<Props>(), {
   isActive: false
 });
 
-const { t } = useI18n();
 
 const emit = defineEmits<{
   (e: "toggleClick"): void;
@@ -26,7 +25,7 @@ const toggleClick = () => {
   <div
     class="px-3 mr-1 navbar-bg-hover"
     :title="
-      isActive ? t('buttons.pureClickCollapse') : t('buttons.pureClickExpand')
+      isActive ? '点击折叠' : '点击展开'
     "
     @click="toggleClick"
   >

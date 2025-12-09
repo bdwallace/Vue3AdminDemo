@@ -17,7 +17,7 @@
         </el-input>
         <el-tooltip class="item" effect="dark" content="新增云厂商账号AKSK" placement="top">
           <el-button type="primary" :icon="Plus" style="margin-left: 20px" @click="dialogAddVisible=true">
-            {{ 'buttons.pureAddCount' }}
+            新增账号
           </el-button>
         </el-tooltip>
 
@@ -85,7 +85,7 @@
 
             </el-select>
           </el-form-item>
-          <el-form-item :label="'label.pureAccount'" :label-width="formLabelWidth" prop="supplier_account" required>
+          <el-form-item label="云厂商账号" :label-width="formLabelWidth" prop="supplier_account" required>
             <el-input v-model="addData.supplier_account" placeholder='可以随意命名，建议以邮箱命名，便于区分' style="width: 85%"></el-input>
           </el-form-item>
 
@@ -106,8 +106,8 @@
         </el-form>
         <template #footer>
           <div class="dialog-footer" style="text-align: center">
-            <el-button @click="dialogAddVisible = false">{{"buttons.pureCancel"}}</el-button>
-            <el-button type="primary" @click="addCommit(ruleFormRef)">{{"buttons.pureConfirm"}}</el-button>
+            <el-button @click="dialogAddVisible = false">{{"取消"}}</el-button>
+            <el-button type="primary" @click="addCommit(ruleFormRef)">{{"确认"}}</el-button>
           </div>
         </template>
       </el-dialog>
@@ -127,7 +127,7 @@
 
             </el-select>
           </el-form-item>
-          <el-form-item :label="'label.pureAccount'" :label-width="formLabelWidth" prop="supplier_account" required>
+          <el-form-item label="云厂商账号" :label-width="formLabelWidth" prop="supplier_account" required>
             <el-input v-model="editData.supplier_account" placeholder='可以随意命名，建议以邮箱命名，便于区分' style="width: 85%"></el-input>
           </el-form-item>
 
@@ -148,8 +148,8 @@
         </el-form>
         <template #footer>
           <div class="dialog-footer" style="text-align: center">
-            <el-button @click="dialogAddVisible = false">{{"buttons.pureCancel"}}</el-button>
-            <el-button type="primary" @click="editItemCommit">{{"buttons.pureConfirm"}}</el-button>
+            <el-button @click="dialogAddVisible = false">{{"取消"}}</el-button>
+            <el-button type="primary" @click="editItemCommit">{{"确认"}}</el-button>
           </div>
         </template>
       </el-dialog>
@@ -337,8 +337,8 @@ async function deleteAccountClick(row){
     '是否确认删除供应商为 '+ row.supplier_name+ " 的 " + row.supplier_account + ' 账号?',
     'Warning',
     {
-      confirmButtonText: 'buttons.pureConfirm',
-      cancelButtonText: 'buttons.pureCancel',
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
       type: 'warning',
     }
   ).then(async () => {

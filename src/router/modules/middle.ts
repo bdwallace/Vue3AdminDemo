@@ -9,7 +9,7 @@ export default {
   redirect: "/cache",
   meta: {
     icon: "IF-icon-Middleware",
-    title: "menus.pureMiddle",
+    title: "中间件",
     rank: 1
   },
   children: [
@@ -19,7 +19,7 @@ export default {
       component: () => import("@/views/middle/cache_view.vue"),
       meta: {
         icon: "IF-icon-redis",
-        title: "menus.pureCache",
+        title: "Redis",
       }
     },
     {
@@ -28,7 +28,7 @@ export default {
       component: () => import("@/views/middle/msk_view.vue"),
       meta: {
         icon: "IF-icon-Kafka",
-        title: "menus.pureMsk",
+        title: "MSK",
       }
     },
     {
@@ -37,7 +37,7 @@ export default {
       component: () => import("@/views/middle/opensearch.vue"),
       meta: {
         icon: "IF-icon-opensearch",
-        title: "menus.pureOsh",
+        title: "OpenSearch",
       }
     },
     {
@@ -46,7 +46,7 @@ export default {
       component: () => import("@/views/middle/s3_view.vue"),
       meta: {
         icon: 'IF-icon-cunchutong',
-        title: "menus.pureS3",
+        title: "S3桶",
         keepAlive: true
       }
     }

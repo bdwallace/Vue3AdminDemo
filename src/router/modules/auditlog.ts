@@ -8,7 +8,7 @@ export default {
   redirect: "/log",
   meta: {
     icon: "IF-icon-log",
-    title: "menus.pureLog",
+    title: "操作日志",
     rank: 5
   },
   children: [
@@ -18,7 +18,7 @@ export default {
       component: () => import("@/views/log/index_view.vue"),
       meta: {
         icon: "IF-icon-log",
-        title: "menus.pureLog"
+        title: "操作日志"
       }
     }
   ]

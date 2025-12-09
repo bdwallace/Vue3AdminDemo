@@ -10,7 +10,7 @@ export default {
   redirect: "/account",
   meta: {
     icon: "IF-icon-zhanghao",
-    title: "menus.pureAccount",
+    title: "云厂商账号",
     rank: 5
   },
   children: [
@@ -20,7 +20,7 @@ export default {
       component: () => import("@/views/accounts/index_view.vue"),
       meta: {
         icon: "IF-icon-zhanghao",
-        title: "menus.pureAccount",
+        title: "云厂商账号",
       }
     },
 

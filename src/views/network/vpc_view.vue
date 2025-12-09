@@ -3,7 +3,7 @@
     <div class="main">
       <div class="search-bock">
         <el-form :inline="true" :model="params" class="demo-form-inline">
-          <el-form-item :label="'label.pureAccount'">
+          <el-form-item label="云厂商账号">
             <el-select v-model="params.account" placeholder="请选择账号" style="width: 400px" >
               <el-option v-for="item in supplier_list" :value="item.supplier_account" :key="item.id">
                 <span style="float: left;font-weight: bold">{{ item.supplier_account }}</span>
@@ -11,7 +11,7 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :label="'label.pureRegion'" >
+          <el-form-item label="区域" >
             <el-select v-model="params.region" placeholder="请选择区域" style="width: 400px">
               <el-option v-for="item in region_list" :key="item.value" :label="item.label" :value="item.value">
                 <span style="float: left">{{ item.label }}</span>
@@ -21,11 +21,11 @@
           </el-form-item>
 
           <el-form-item>
-            <el-button type="info" plain @click="fetchData" :icon="Search">{{ 'search.pureSearch'}}</el-button>
+            <el-button type="info" plain @click="fetchData" :icon="Search">搜索</el-button>
           </el-form-item>
           <el-tooltip class="item" effect="dark" content="此操作需要审批" placement="top">
             <el-form-item>
-              <el-button type="primary" @click="addDialogVisable=true" :icon="Plus">{{ 'buttons.pureCreateVpc' }}</el-button>
+              <el-button type="primary" @click="addDialogVisable=true" :icon="Plus">创建VPC</el-button>
             </el-form-item>
           </el-tooltip>
 
@@ -269,8 +269,8 @@ async function deleteBucketClick(row){
     '是否确认删除 ' + row.bucket_name + " 桶",
     'Warning',
     {
-      confirmButtonText: 'buttons.pureConfirm',
-      cancelButtonText: 'buttons.pureCancel',
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
       type: 'warning',
     }
   ).then(async () => {

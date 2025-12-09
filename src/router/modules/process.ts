@@ -9,7 +9,7 @@ export default {
   redirect: "/process",
   meta: {
     icon: "IF-icon-schedule",
-    title: "menus.pureApproval",
+    title: "审批管理",
     rank: 4
   },
   children: [
@@ -19,7 +19,7 @@ export default {
       component: () => import("@/views/process/process_view.vue"),
       meta: {
         icon: "IF-icon-schedule",
-        title: "menus.pureProcess",
+        title: "审批进度",
 
       }
     },
@@ -40,7 +40,7 @@ export default {
       component: () => import("@/views/process/approval_setting_view.vue"),
       meta: {
         icon: "IF-icon-setting",
-        title: "menus.pureApprovalSetting",
+        title: "审批设置",
 
       }
     },

@@ -12,7 +12,7 @@ const props = defineProps({
   fixedHeader: Boolean
 });
 
-const { t } = useI18n();
+
 const { showModel } = useTags();
 const { $storage, $config } = useGlobal<GlobalPropertiesApi>();
 
@@ -133,7 +133,7 @@ const transitionMain = defineComponent({
               }"
             >
               <el-backtop
-                :title="t('buttons.pureBackTop')"
+                title="回到顶部"
                 target=".app-main .el-scrollbar__wrap"
               >
                 <BackTopIcon />

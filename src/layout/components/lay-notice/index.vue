@@ -5,7 +5,6 @@ import { noticesData } from "./data";
 import NoticeList from "./components/NoticeList.vue";
 import BellIcon from "~icons/ep/bell";
 
-const { t } = useI18n();
 const noticesNum = ref(0);
 const notices = ref(noticesData);
 const activeKey = ref(noticesData[0]?.key);
@@ -14,7 +13,7 @@ notices.value.map(v => (noticesNum.value += v.list.length));
 
 const getLabel = computed(
   () => item =>
-    t(item.name) + (item.list.length > 0 ? `(${item.list.length})` : "")
+    item.name + (item.list.length > 0 ? `(${item.list.length})` : "")
 );
 </script>
 
@@ -44,7 +43,7 @@ const getLabel = computed(
         >
           <el-empty
             v-if="notices.length === 0"
-            :description="t('status.pureNoMessage')"
+            description="暂无消息"
             :image-size="60"
           />
           <span v-else>

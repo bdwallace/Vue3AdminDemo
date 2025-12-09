@@ -1,4 +1,5 @@
 import App from "./App.vue";
+import '../lang/index'
 import router from "./router";
 import { setupStore } from "@/store";
 import { useI18n } from "@/plugins/i18n";
@@ -61,7 +62,7 @@ getPlatformConfig(app).then(async config => {
   injectResponsiveStorage(app, config);
   app
     .use(MotionPlugin)
-    .use(useI18n)
+    // .use(useI18n)
     .use(useElementPlus)
     .use(Table)
     .use(useVxeTable)

@@ -20,7 +20,6 @@ const innerHeight = ref();
 /** 判断是否停止鼠标移入事件处理 */
 const stopMouseEvent = ref(false);
 
-const { t } = useI18n();
 const emit = defineEmits<Emits>();
 const instance = getCurrentInstance()!;
 const props = withDefaults(defineProps<Props>(), {});
@@ -144,7 +143,7 @@ defineExpose({ handleScroll });
   <div ref="historyRef" class="history">
     <template v-if="historyList.length">
       <div :style="titleStyle">
-        {{ t("search.pureHistory") }}
+        搜索历史
       </div>
       <div
         v-for="(item, index) in historyList"
@@ -165,7 +164,7 @@ defineExpose({ handleScroll });
     <template v-if="collectList.length">
       <div :style="titleStyle">
         {{
-          `${t("search.pureCollect")}${collectList.length > 1 ? t("search.pureDragSort") : ""}`
+          `收藏${collectList.length > 1 ? '（可拖拽排序）' : ""}`
         }}
       </div>
       <div class="collect-container">

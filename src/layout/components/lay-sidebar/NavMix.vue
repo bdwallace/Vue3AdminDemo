@@ -6,7 +6,7 @@ import LayNotice from "../lay-notice/index.vue";
 import { ref, toRaw, watch, onMounted, nextTick } from "vue";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
 import { getParentPaths, findRouteByPath } from "@/router/utils";
-import { useTranslationLang } from "../../hooks/useTranslationLang";
+import { useRoute } from "vue-router";
 import { usePermissionStoreHook } from "@/store/modules/permission";
 import LaySidebarExtraIcon from "../lay-sidebar/components/SidebarExtraIcon.vue";
 import LaySidebarFullScreen from "../lay-sidebar/components/SidebarFullScreen.vue";
@@ -20,8 +20,12 @@ import Check from "~icons/ep/check";
 const menuRef = ref();
 const defaultActive = ref(null);
 
-const { t, route, locale, translationCh, translationEn } =
-  useTranslationLang(menuRef);
+const changeLang = function (value: any) {
+    window.localStorage.setItem('lang', value)
+    window.location.reload()
+}
+const locale = localStorage.getItem('lang') || 'zh-cn'
+const route = useRoute();
 const {
   device,
   logout,
@@ -109,9 +113,9 @@ watch(
         <template #dropdown>
           <el-dropdown-menu class="translation">
             <el-dropdown-item
-              :style="getDropdownItemStyle(locale, 'zh')"
-              :class="['dark:text-white!', getDropdownItemClass(locale, 'zh')]"
-              @click="translationCh"
+              :style="getDropdownItemStyle(locale, 'zh-cn')"
+              :class="['dark:text-white!', getDropdownItemClass(locale, 'zh-cn')]"
+              @click="changeLang('zh-cn')"
             >
               <span v-show="locale === 'zh'" class="check-zh">
                 <IconifyIconOffline :icon="Check" />
@@ -121,7 +125,7 @@ watch(
             <el-dropdown-item
               :style="getDropdownItemStyle(locale, 'en')"
               :class="['dark:text-white!', getDropdownItemClass(locale, 'en')]"
-              @click="translationEn"
+              @click="changeLang('en')"
             >
               <span v-show="locale === 'en'" class="check-en">
                 <IconifyIconOffline :icon="Check" />

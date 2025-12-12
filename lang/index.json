@@ -1,0 +1,586 @@
+{
+	"bt0ovq12": {
+		"zh-cn": "请在public文件夹下添加platform-config.json配置文件",
+		"en": ""
+	},
+	"5wyj696": {
+		"zh-cn": "检测到新版本",
+		"en": "New version detected"
+	},
+	"fua43o4": {
+		"zh-cn": "立即更新",
+		"en": "Update now"
+	},
+	"bkv2mw4": {
+		"zh-cn": "复制成功",
+		"en": "Copied successfully"
+	},
+	"bktvvh4": {
+		"zh-cn": "复制失败",
+		"en": "Copy failed"
+	},
+	"d5baof4": {
+		"zh-cn": "搜索图标",
+		"en": "search icon"
+	},
+	"dl1xck6": {
+		"zh-cn": " 图标不存在",
+		"en": "Icon does not exist"
+	},
+	"h9ea34": {
+		"zh-cn": " 清空 ",
+		"en": "Clear"
+	},
+	"obrz2": {
+		"zh-cn": "详情",
+		"en": "Details"
+	},
+	"ev022": {
+		"zh-cn": "取消",
+		"en": "Cancel"
+	},
+	"kzjg2": {
+		"zh-cn": "确定",
+		"en": "Sure"
+	},
+	"dqji2": {
+		"zh-cn": "上周",
+		"en": "last week"
+	},
+	"i0fw2": {
+		"zh-cn": "本周",
+		"en": "this week"
+	},
+	"d7ruao4": {
+		"zh-cn": "数据统计",
+		"en": "Statistics"
+	},
+	"dezea14": {
+		"zh-cn": "最新动态",
+		"en": "Latest news"
+	},
+	"fb9pu3": {
+		"zh-cn": "新增 ",
+		"en": "New"
+	},
+	"e5pwch5": {
+		"zh-cn": " 条问题，",
+		"en": "question,"
+	},
+	"dxf8ox5": {
+		"zh-cn": " 条已解决",
+		"en": "Article has been resolved"
+	},
+	"b5iutv6": {
+		"zh-cn": " 简体中文 ",
+		"en": "Simplified Chinese"
+	},
+	"dcv57g4": {
+		"zh-cn": "暂无数据",
+		"en": "No data yet"
+	},
+	"ewzh2": {
+		"zh-cn": "周日",
+		"en": "Sunday"
+	},
+	"es9k2": {
+		"zh-cn": "周一",
+		"en": "Monday"
+	},
+	"esdg2": {
+		"zh-cn": "周二",
+		"en": "Tuesday"
+	},
+	"es9t2": {
+		"zh-cn": "周三",
+		"en": "wednesday"
+	},
+	"eu0j2": {
+		"zh-cn": "周四",
+		"en": "Thursday"
+	},
+	"esdo2": {
+		"zh-cn": "周五",
+		"en": "Friday"
+	},
+	"esxx2": {
+		"zh-cn": "周六",
+		"en": "Saturday"
+	},
+	"cz69c5d": {
+		"zh-cn": "请求响应失败，请联系管理员",
+		"en": "Request response failed, please contact the administrator"
+	},
+	"kkuc0u6": {
+		"zh-cn": "AB运维平台",
+		"en": "AB operation and maintenance platform"
+	},
+	"gjm02": {
+		"zh-cn": "序号",
+		"en": "serial number"
+	},
+	"jhvlbs4": {
+		"zh-cn": "需求人数",
+		"en": "Number of people required"
+	},
+	"d7o7i54": {
+		"zh-cn": "提问数量",
+		"en": "Number of questions"
+	},
+	"hqk4nj4": {
+		"zh-cn": "解决数量",
+		"en": "solve quantity"
+	},
+	"bz2s1p4": {
+		"zh-cn": "审批管理",
+		"en": "Approval management"
+	},
+	"bz63oj4": {
+		"zh-cn": "审批进度",
+		"en": "Approval progress"
+	},
+	"bz5kyw4": {
+		"zh-cn": "审批设置",
+		"en": "Approval settings"
+	},
+	"qylb2": {
+		"zh-cn": "首页",
+		"en": "Home page"
+	},
+	"d1tfy94": {
+		"zh-cn": "操作日志",
+		"en": "Operation log"
+	},
+	"mcob2": {
+		"zh-cn": "网络",
+		"en": "network"
+	},
+	"ld3eu3": {
+		"zh-cn": "路由表",
+		"en": "routing table"
+	},
+	"g8ap2": {
+		"zh-cn": "子网",
+		"en": "subnet"
+	},
+	"xyu84m5": {
+		"zh-cn": "云厂商账号",
+		"en": "Cloud vendor account"
+	},
+	"c65pr3": {
+		"zh-cn": "中间件",
+		"en": "middleware"
+	},
+	"2bee3": {
+		"zh-cn": "S3桶",
+		"en": "S3 bucket"
+	},
+	"bb7lxg4": {
+		"zh-cn": "回到顶部",
+		"en": "back to top"
+	},
+	"h7jvde6": {
+		"zh-cn": "打开系统配置",
+		"en": "Open system configuration"
+	},
+	"faow2": {
+		"zh-cn": "固定",
+		"en": "Fixed"
+	},
+	"j385uwd": {
+		"zh-cn": "紧凑页面，轻松找到所需信息",
+		"en": "Compact pages make it easy to find the information you need"
+	},
+	"jh1ll3": {
+		"zh-cn": "自定义",
+		"en": "Customize"
+	},
+	"ckvfqdd": {
+		"zh-cn": "最小1280、最大1600",
+		"en": "Minimum 1280, maximum 1600"
+	},
+	"javh2": {
+		"zh-cn": "浅色",
+		"en": "light color"
+	},
+	"qv18gqe": {
+		"zh-cn": "清新启航，点亮舒适的工作界面",
+		"en": "Set sail freshly and light up the comfortable work interface"
+	},
+	"jezl2": {
+		"zh-cn": "深色",
+		"en": "Dark"
+	},
+	"xcr4y3e": {
+		"zh-cn": "月光序曲，沉醉于夜的静谧雅致",
+		"en": "Moonlight Overture, indulge in the tranquility and elegance of the night"
+	},
+	"mjum2": {
+		"zh-cn": "自动",
+		"en": "automatic"
+	},
+	"4lld9ge": {
+		"zh-cn": "同步时光，界面随晨昏自然呼应",
+		"en": "Synchronize time, the interface naturally responds to morning and dusk"
+	},
+	"jkyb2": {
+		"zh-cn": "灵动",
+		"en": "Smart"
+	},
+	"3fff7w9": {
+		"zh-cn": "灵动标签，添趣生辉",
+		"en": "Smart labels add fun and brilliance"
+	},
+	"et522": {
+		"zh-cn": "卡片",
+		"en": "card"
+	},
+	"y2pcew9": {
+		"zh-cn": "卡片标签，高效浏览",
+		"en": "Card tags for efficient browsing"
+	},
+	"ofsl2": {
+		"zh-cn": "谷歌",
+		"en": "Google"
+	},
+	"pkri629": {
+		"zh-cn": "谷歌风格，经典美观",
+		"en": "Google style, classic and beautiful"
+	},
+	"d50lhp4": {
+		"zh-cn": "整体风格",
+		"en": "overall style"
+	},
+	"c76fp3": {
+		"zh-cn": "主题色",
+		"en": "theme color"
+	},
+	"c58wfw4": {
+		"zh-cn": "导航模式",
+		"en": "Navigation mode"
+	},
+	"1cvjkf9": {
+		"zh-cn": "左侧菜单，亲切熟悉",
+		"en": "The menu on the left is familiar and friendly"
+	},
+	"ydubqw9": {
+		"zh-cn": "顶部菜单，简洁概览",
+		"en": "Top menu, concise overview"
+	},
+	"35biiu9": {
+		"zh-cn": "混合菜单，灵活多变",
+		"en": "Mixed menu, flexible"
+	},
+	"qfoo2": {
+		"zh-cn": "页宽",
+		"en": "page width"
+	},
+	"jr2phz4": {
+		"zh-cn": "页签风格",
+		"en": "Tab style"
+	},
+	"3wtbbm6": {
+		"zh-cn": " 界面显示 ",
+		"en": "Interface display"
+	},
+	"eq5p5c4": {
+		"zh-cn": "灰色模式",
+		"en": "gray mode"
+	},
+	"irk1": {
+		"zh-cn": "开",
+		"en": "open"
+	},
+	"eod62": {
+		"zh-cn": "关闭",
+		"en": "Close"
+	},
+	"gurej14": {
+		"zh-cn": "色弱模式",
+		"en": "Color Weakness Mode"
+	},
+	"x9jhy95": {
+		"zh-cn": "隐藏标签页",
+		"en": "Hide tab"
+	},
+	"jjzhz84": {
+		"zh-cn": "隐藏页脚",
+		"en": "Hide footer"
+	},
+	"hwkfpl7": {
+		"zh-cn": " 页签持久化 ",
+		"en": "Tab persistence"
+	},
+	"m1fws97": {
+		"zh-cn": "内容区退出全屏",
+		"en": "Content area exits full screen"
+	},
+	"ohvgkz5": {
+		"zh-cn": "内容区全屏",
+		"en": "Content area full screen"
+	},
+	"ekbewa4": {
+		"zh-cn": "点击折叠",
+		"en": "Click to collapse"
+	},
+	"ekaer14": {
+		"zh-cn": "点击展开",
+		"en": "Click to expand"
+	},
+	"qaatlj5": {
+		"zh-cn": "用户满意度",
+		"en": "User satisfaction"
+	},
+	"h8aw2": {
+		"zh-cn": "折叠",
+		"en": "fold"
+	},
+	"g85n2": {
+		"zh-cn": "展开",
+		"en": "Expand"
+	},
+	"e4jola6": {
+		"zh-cn": " 偏好设置 ",
+		"en": "Preferences"
+	},
+	"awhue34": {
+		"zh-cn": "关闭配置",
+		"en": "Close configuration"
+	},
+	"z46t3a6": {
+		"zh-cn": " 清空缓存 ",
+		"en": "Clear cache"
+	},
+	"m44ir9a": {
+		"zh-cn": "清空缓存并返回登录页",
+		"en": "Clear cache and return to login page"
+	},
+	"itbyqo4": {
+		"zh-cn": "重新加载",
+		"en": "reload"
+	},
+	"atwg8m7": {
+		"zh-cn": "关闭当前标签页",
+		"en": "Close current tab"
+	},
+	"gqm9x97": {
+		"zh-cn": "关闭左侧标签页",
+		"en": "Close left tab"
+	},
+	"fe1sr47": {
+		"zh-cn": "关闭右侧标签页",
+		"en": "Close the tab on the right"
+	},
+	"5k3eis7": {
+		"zh-cn": "关闭其他标签页",
+		"en": "Close other tabs"
+	},
+	"doeack7": {
+		"zh-cn": "关闭全部标签页",
+		"en": "Close all tabs"
+	},
+	"q077jlc": {
+		"zh-cn": "搜索菜单（支持拼音搜索）",
+		"en": "Search menu (supports Pinyin search)"
+	},
+	"k7nd4j6": {
+		"zh-cn": "暂无搜索结果",
+		"en": "No search results yet"
+	},
+	"l9122": {
+		"zh-cn": "确认",
+		"en": "Confirm"
+	},
+	"ehx72": {
+		"zh-cn": "切换",
+		"en": "switch"
+	},
+	"duq72": {
+		"zh-cn": "共 ",
+		"en": "total"
+	},
+	"3h3xma6": {
+		"zh-cn": " 搜索历史 ",
+		"en": "Search history"
+	},
+	"hy6x2": {
+		"zh-cn": "收藏",
+		"en": "Collection"
+	},
+	"brtftu7": {
+		"zh-cn": "（可拖拽排序）",
+		"en": "(can be sorted by dragging)"
+	},
+	"ch80x3": {
+		"zh-cn": "凌晨好",
+		"en": "good morning"
+	},
+	"fb4v03": {
+		"zh-cn": "早上好",
+		"en": "good morning"
+	},
+	"bu5kv3": {
+		"zh-cn": "上午好",
+		"en": "good morning"
+	},
+	"buvj63": {
+		"zh-cn": "中午好",
+		"en": "good noon"
+	},
+	"bu6bk3": {
+		"zh-cn": "下午好",
+		"en": "good afternoon"
+	},
+	"can5c3": {
+		"zh-cn": "傍晚好",
+		"en": "good evening"
+	},
+	"fdgnh3": {
+		"zh-cn": "晚上好",
+		"en": "good evening"
+	},
+	"d8dgtb4": {
+		"zh-cn": "新建项目",
+		"en": "New project"
+	},
+	"93de9a8": {
+		"zh-cn": "创建一个新的项目",
+		"en": "Create a new project"
+	},
+	"by9mks4": {
+		"zh-cn": "导入资产",
+		"en": "Import assets"
+	},
+	"vgufr49": {
+		"zh-cn": "导入已有云资源资产",
+		"en": "Import existing cloud resource assets"
+	},
+	"94yl8w5": {
+		"zh-cn": "可观测视图",
+		"en": "observable view"
+	},
+	"kyu1hp9": {
+		"zh-cn": "查看平台可观测能力",
+		"en": "View platform observability capabilities"
+	},
+	"gar1ro4": {
+		"zh-cn": "系统设置",
+		"en": "System settings"
+	},
+	"tte5ti6": {
+		"zh-cn": "管理系统配置",
+		"en": "Manage system configuration"
+	},
+	"yqx1vuq": {
+		"zh-cn": "平台升级至 v2.5.0，提升可观测与告警联动能力。",
+		"en": "The platform was upgraded to v2.5.0 to improve observability and alarm linkage capabilities."
+	},
+	"v4hnpim": {
+		"zh-cn": "新增多云账号接入向导，支持更精细的权限模型。",
+		"en": "A new multi-cloud account access wizard is added to support a more refined permission model."
+	},
+	"96b42fe": {
+		"zh-cn": "欢迎使用本平台，祝工作顺利。",
+		"en": "Welcome to use this platform and wish you good luck in your work."
+	},
+	"e3wm7p4": {
+		"zh-cn": "欢迎使用",
+		"en": "Welcome"
+	},
+	"7mr0ro7": {
+		"zh-cn": "，企业控制台 ",
+		"en": ", Enterprise Console"
+	},
+	"4lbz64p": {
+		"zh-cn": " 统一的运维管理平台，助力企业提升效率与稳定性。 ",
+		"en": "A unified operation and maintenance management platform helps enterprises improve efficiency and stability."
+	},
+	"ccwk2c4": {
+		"zh-cn": "开始使用",
+		"en": "Get started"
+	},
+	"dloe0y4": {
+		"zh-cn": "查看文档",
+		"en": "View documentation"
+	},
+	"aw5wsb4": {
+		"zh-cn": "关键指标",
+		"en": "key indicators"
+	},
+	"jq8p104": {
+		"zh-cn": "项目数量",
+		"en": "Number of items"
+	},
+	"dcio434": {
+		"zh-cn": "服务数量",
+		"en": "Service quantity"
+	},
+	"ab3slb7": {
+		"zh-cn": "24 小时告警",
+		"en": "24 hours alarm"
+	},
+	"xierzpl": {
+		"zh-cn": "这里将展示项目、服务与告警等关键运营指标。",
+		"en": "Key operational indicators such as projects, services and alarms will be displayed here."
+	},
+	"cp4a6a4": {
+		"zh-cn": "快速指引",
+		"en": "quick guide"
+	},
+	"s81dvbh": {
+		"zh-cn": "配置用户与权限，确保团队边界清晰。",
+		"en": "Configure users and permissions to ensure clear team boundaries."
+	},
+	"4an13ii": {
+		"zh-cn": "创建环境与资源，实现清晰的资源管控。",
+		"en": "Create environments and resources to achieve clear resource management and control."
+	},
+	"r5xd08g": {
+		"zh-cn": "接入监控与告警，构建稳定性体系。",
+		"en": "Access monitoring and alarms to build a stable system."
+	},
+	"2v1jc6i": {
+		"zh-cn": "建议遵循企业安全与合规要求进行配置。",
+		"en": "It is recommended to configure according to enterprise security and compliance requirements."
+	},
+	"gamma74": {
+		"zh-cn": "系统状态",
+		"en": "System status"
+	},
+	"cv19q3": {
+		"zh-cn": "可用性",
+		"en": "Availability"
+	},
+	"gxwp2": {
+		"zh-cn": "延迟",
+		"en": "delay"
+	},
+	"is6t2": {
+		"zh-cn": "正常",
+		"en": "normal"
+	},
+	"f3oc2": {
+		"zh-cn": "告警",
+		"en": "Alarm"
+	},
+	"k4g1": {
+		"zh-cn": "无",
+		"en": "None"
+	},
+	"f5pp63h": {
+		"zh-cn": "实时数据接入后将自动更新系统状态。",
+		"en": "After real-time data is accessed, the system status will be automatically updated."
+	},
+	"c9jsor4": {
+		"zh-cn": "平台公告",
+		"en": "Platform announcement"
+	},
+	"dcrnng4": {
+		"zh-cn": "暂无公告",
+		"en": "No announcement yet"
+	},
+	"cp4hxf4": {
+		"zh-cn": "快速操作",
+		"en": "Quick operation"
+	}
+}

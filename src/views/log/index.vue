@@ -63,19 +63,13 @@ import {
   Plus,
   Search,
 } from '@element-plus/icons-vue'
-import {getLogData} from "@/api/other_routes";
-import {ElMessage} from "element-plus";
-import {createPaginationHandlers} from "@/utils/common";
+import {getAuditLogList} from "@/api/auditlog";
+import { ElMessage } from "element-plus";
+import { createPaginationHandlers } from "@/utils/common";
 
-
-defineOptions({
-  name: "Log"
-});
-
-const dialogVisible = ref(false)
-const params = reactive({page: 1, pagesize: 20, total: 0, search: ""})
-const multipleSelection = ref([])
-const tableData = ref([])
+const params = reactive({ page: 1, pagesize: 20, total: 0, search: "" });
+const multipleSelection = ref([]);
+const tableData = ref([]);
 const {
   currentChange,
   handleSizeChange,
@@ -84,17 +78,17 @@ const {
 
 fetchData()
 function fetchData() {
-  getLogData(params).then(resp => {
+  getAuditLogList(params).then(resp => {
     if (resp.code === 200) {
-      tableData.value = resp.data
-      params.total = resp.total
+      tableData.value = resp.data;
+      params.total = resp.total;
     } else {
-      ElMessage({type: 'error', message: resp.msg})
+      ElMessage({ type: "error", message: resp.msg });
     }
   })
-  .catch(error => {
-    console.error("Error fetching supplier data:", error);
-  });
+    .catch((error) => {
+      console.error("Error fetching audit log data:", error);
+    });
 }
 
 function formattedJSON(raw: any): string {

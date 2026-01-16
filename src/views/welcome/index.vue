@@ -98,7 +98,6 @@
             <el-button v-for="(a, i) in quickActions"
               :key="i"
               :plain="a.plain"
-              :disabled="a.disabled"
               size="large"
               round
               class="qa-btn"
@@ -131,10 +130,10 @@ const greeting = computed(() => {
 
 /** Quick actions - Chinese only */
 const quickActions = [
-  { text: "新建项目", plain: true, title: "创建一个新的项目" },
-  { text: "导入资产", plain: true, title: "导入已有云资源资产" },
-  { text: "可观测视图", plain: true, title: "查看平台可观测能力" },
-  { text: "系统设置", plain: true, title: "管理系统配置" }
+  { text: "新建域名", plain: true, title: "创建一个新的域名" },
+  { text: "域名审核", plain: true, title: "域名审核" },
+  { text: "域名续费", plain: true, title: "域名续费" },
+  { text: "域名删除", plain: true, title: "域名删除" }
 ];
 
 /** Timeline - Already Chinese */

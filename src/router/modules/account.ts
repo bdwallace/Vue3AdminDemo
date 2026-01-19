@@ -21,11 +21,11 @@ export default {
       }
     },
     {
-      path: "/account/hosting",
-      name: "HostingAccount",
-      component: () => import("@/views/account/hosting.vue"),
+      path: "/account/custodian",
+      name: "CustodianAccount",
+      component: () => import("@/views/account/custodian.vue"),
       meta: {
-        icon: "IF-icon-hosting",
+        icon: "IF-icon-custodian",
         title: "托管商账号"
       }
     }

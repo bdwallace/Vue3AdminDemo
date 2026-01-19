@@ -2,23 +2,22 @@
   <el-container>
     <div class="main">
       <div class="toolbar">
-        <el-input
-          v-model="params.search"
-          placeholder="请输入搜索内容（域名、产品、供应商等）"
-          style="width: 400px"
-          class="input-with-select"
-          size="large"
-          clearable
-        >
+        <el-input placeholder="请输入搜索内容, 支持所有内容模糊搜索, 回车或点击按钮搜索" v-model="params.search"
+                  style="width: 70%" class="input-with-select" size="large" @keyup.enter="fetchData">
           <template #append>
             <el-button :icon="Search" @click="fetchData" />
           </template>
+<!--          <template #prepend>-->
+<!--            <el-select v-model="select" placeholder="Select" style="width: 80px" >-->
+<!--              <el-option label="Restaurant" value="1" />-->
+<!--              <el-option label="Order No." value="2" />-->
+<!--              <el-option label="Tel" value="3" />-->
+<!--            </el-select>-->
+<!--          </template>-->
         </el-input>
-        <div class="toolbar-actions">
-          <el-button type="primary" :icon="Refresh" @click="handleSync">
-            同步
-          </el-button>
-        </div>
+        <el-button type="primary" :icon="Refresh" @click="handleSync" style="margin-left: 10px">
+          同步
+        </el-button>
       </div>
 
       <div class="domainTable">
@@ -33,28 +32,31 @@
           v-loading="loading"
         >
           <el-table-column type="selection" width="60"></el-table-column>
-          <el-table-column prop="product" label="域名所属产品" width="150" align="center" sortable></el-table-column>
-          <el-table-column prop="supplier" label="供应商(注册商)" width="150" align="center" sortable></el-table-column>
-          <el-table-column prop="hosting" label="托管商(解析所在)" width="150" align="center" sortable></el-table-column>
-          <el-table-column prop="domain" label="域名" width="200" align="center" sortable></el-table-column>
-          <el-table-column prop="ns_records" label="NS记录" width="200" align="center" show-overflow-tooltip></el-table-column>
-          <el-table-column prop="status" label="域名状态" width="120" align="center" sortable>
+          <el-table-column prop="product" label="产品" fit align="center" sortable></el-table-column>
+          <el-table-column prop="domain" label="域名" fit align="center" sortable></el-table-column>
+          <el-table-column prop="supplier" label="供应商" fit align="center" sortable></el-table-column>
+          <el-table-column prop="supplier_account" label="供应商账号" fit align="center" sortable></el-table-column>
+          <el-table-column prop="hosting" label="托管商" fit align="center" sortable></el-table-column>
+          <el-table-column prop="hosting_account" label="托管商账号" fit align="center" sortable></el-table-column>
+          
+          <el-table-column prop="ns_records" label="NS记录" fit align="center" show-overflow-tooltip></el-table-column>
+          <el-table-column prop="status" label="域名状态" fit align="center" sortable>
             <template #default="{ row }">
               <el-tag :type="getStatusType(row.status)">
                 {{ row.status }}
               </el-tag>
             </template>
           </el-table-column>
-          <el-table-column prop="expire_time" label="过期时间" width="180" align="center" sortable></el-table-column>
-          <el-table-column prop="is_alert" label="是否告警" width="100" align="center">
+          <el-table-column prop="expire_time" label="过期时间" fit align="center" sortable></el-table-column>
+          <!-- <el-table-column prop="is_alert" label="是否告警" fit align="center">
             <template #default="{ row }">
               <el-tag :type="row.is_alert ? 'danger' : 'success'">
                 {{ row.is_alert ? '是' : '否' }}
               </el-tag>
             </template>
-          </el-table-column>
-          <el-table-column prop="remark" label="备注" min-width="150" align="center" show-overflow-tooltip></el-table-column>
-          <el-table-column label="操作" width="200" fixed="right" align="center">
+          </el-table-column> -->
+          <el-table-column prop="remark" label="备注" fit align="center" show-overflow-tooltip></el-table-column>
+          <el-table-column label="操作" fit fixed="right" align="center">
             <template #default="{ row }">
               <el-button type="primary" text :icon="Edit" @click="handleEdit(row)">
                 编辑
@@ -268,15 +270,12 @@ function getStatusType(status: string): "success" | "danger" | "warning" | "info
 
 .toolbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 16px;
 }
 
-.toolbar-actions {
-  display: flex;
-  gap: 8px;
-}
+
 
 .domainTable {
   margin-top: 10px;

@@ -9,6 +9,6 @@ type Result = {
 
 /** 获取操作日志列表 */
 export const getAuditLogList = (data?: object) => {
-  return http.request<Result>("get", "/auditlog/list", data);
+  return http.request<Result>("get", "/domain/logs", data);
 };
 

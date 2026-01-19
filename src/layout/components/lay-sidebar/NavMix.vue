@@ -117,7 +117,7 @@ watch(
               :class="['dark:text-white!', getDropdownItemClass(locale, 'zh-cn')]"
               @click="changeLang('zh-cn')"
             >
-              <span v-show="locale === 'zh'" class="check-zh">
+              <span v-show="locale === 'zh-cn'" class="check-zh">
                 <IconifyIconOffline :icon="Check" />
               </span>
               简体中文
@@ -166,7 +166,7 @@ watch(
       </el-dropdown>
       <span
         class="set-icon navbar-bg-hover"
-        :title="t('buttons.pureOpenSystemSet')"
+        title="打开系统配置"
         @click="onPanel"
       >
         <IconifyIconOffline :icon="Setting" />

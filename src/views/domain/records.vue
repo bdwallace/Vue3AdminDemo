@@ -9,6 +9,7 @@
           class="input-with-select"
           size="large"
           clearable
+          @keyup.enter="fetchData"
         >
           <template #append>
             <el-button :icon="Search" @click="fetchData" />

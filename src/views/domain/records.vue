@@ -1,137 +1,219 @@
 <template>
-  <el-container>
-    <div class="main">
-      <div class="toolbar">
+  <el-container class="records-page">
+    <!-- 域名基本信息 -->
+    <div class="create-server-block" style="margin-top: 15px" v-if="domain_info.domain">
+      <el-descriptions class="margin-top" title="域名基本信息" :column="4" >
+        <el-descriptions-item label="主域名：" align="left">
+          <el-tag size="default">{{ domain_info.domain }}</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item label="产品：" align="left">
+          {{ domain_info.product }}
+        </el-descriptions-item>
+        <el-descriptions-item label="托管商：" align="left">
+          {{ domain_info.custodian.custodian_account }}
+        </el-descriptions-item>
+        <el-descriptions-item label="供应商：" align="left">
+          {{ domain_info.supplier.supplier_account }}
+        </el-descriptions-item>
+        <el-descriptions-item label="使用状态：" align="left">
+          <el-tag size="default" v-if="domain_info.use_status === '使用中'" type="success">使用中</el-tag>
+          <el-tag size="default" v-else-if="domain_info.use_status === '闲置中'" type="info">闲置中</el-tag>
+          <el-tag size="default" v-else type="warning">未知</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item label="备注：" align="left">
+          {{ domain_info.remark }}
+        </el-descriptions-item>
+      </el-descriptions>
+    </div>
+
+    <div class="create-server-block">
+      <div class="search-bar">
         <el-input
+          placeholder="请输入搜索内容, 支持所有内容模糊搜索, 回车或点击按钮搜索"
           v-model="params.search"
-          placeholder="请输入搜索内容（业务线、主机记录、主域名等）"
-          style="width: 400px"
-          class="input-with-select"
+          class="search-input"
           size="large"
-          clearable
+          @change="fetchData"
           @keyup.enter="fetchData"
         >
           <template #append>
-            <el-button :icon="Search" @click="fetchData" />
+            <el-button type="primary" :icon="Search" @click="fetchData">搜索</el-button>
           </template>
         </el-input>
-        <div class="toolbar-actions">
-          <el-button type="primary" :icon="Plus" @click="handleAdd">
-            添加记录
-          </el-button>
-        </div>
-      </div>
-
-      <div class="recordTable">
-        <el-table
-          ref="multipleTable"
-          :data="tableData"
-          tooltip-effect="dark"
-          stripe
-          border
-          :header-cell-style="{ background: '#eef1f6', color: '#606266' }"
-          v-loading="loading"
+        <el-button
+          @click="handleAdd"
+          :icon="Plus"
+          type="primary"
         >
-          <el-table-column prop="business_line" label="业务线" width="120" align="center" sortable></el-table-column>
-          <el-table-column prop="host_record" label="主机记录" width="150" align="center" sortable></el-table-column>
-          <el-table-column prop="main_domain" label="主域名" width="200" align="center" sortable></el-table-column>
-          <el-table-column prop="record_type" label="记录类型" width="120" align="center" sortable>
-            <template #default="{ row }">
-              <el-tag>{{ row.record_type }}</el-tag>
-            </template>
-          </el-table-column>
-          <el-table-column prop="record_value" label="记录值" width="250" align="center" show-overflow-tooltip></el-table-column>
-          <el-table-column prop="ttl" label="TTL" width="100" align="center" sortable></el-table-column>
-          <el-table-column prop="priority" label="优先级" width="100" align="center" sortable></el-table-column>
-          <el-table-column prop="update_time" label="更新时间" width="180" align="center" sortable></el-table-column>
-          <el-table-column prop="remark" label="备注" min-width="150" align="center" show-overflow-tooltip></el-table-column>
-          <el-table-column label="操作" width="150" fixed="right" align="center">
-            <template #default="{ row }">
-              <el-button type="primary" text :icon="Edit" @click="handleEdit(row)">
-                修改
-              </el-button>
-              <el-button type="danger" text :icon="Delete" @click="handleDelete(row)">
-                删除
-              </el-button>
-            </template>
-          </el-table-column>
-        </el-table>
+          新增记录
+        </el-button>
+        <el-button
+          @click="handleBatchDelete"
+          :icon="Delete"
+          type="danger"
+          size="default"
+        >
+          批量删除
+        </el-button>
+        <el-tooltip content="从托管商同步最新的解析记录到数据库" placement="top">
+          <el-button
+            @click="fetchData"
+            :icon="Refresh"
+            type="success"
+            size="default"
+          >
+            数据同步
+          </el-button>
+        </el-tooltip>
+        
       </div>
 
-      <div style="padding: 10px 16px; text-align: right">
-        <el-pagination
-          background
-          layout="total, sizes, prev, pager, next, jumper"
-          :page-size="params.pagesize"
-          :page-sizes="[20, 30, 50, 100]"
-          :total="params.total"
-          @current-change="currentChange"
-          @size-change="handleSizeChange"
-        ></el-pagination>
-      </div>
+      <el-table
+        ref="multipleTable"
+        :data="tableData"
+        tooltip-effect="dark"
+        border
+        :header-cell-style="{ background: '#eef1f6', color: '#606266' }"
+        v-loading="loading"
+        @selection-change="handleSelectionChange"
+      >
+        <el-table-column type="selection" width="60" align="center" ></el-table-column>
+        <el-table-column prop="business_line" label="业务线" fit align="center" sortable></el-table-column>
+        <el-table-column prop="rr" label="主机记录" fit align="center" sortable></el-table-column>
+        <el-table-column prop="domain" label="主域名" fit align="center" sortable>
+          <template #default="{ row }">
+            {{ params.domain }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="type" label="记录类型" fit align="center" sortable>
+          <template #default="{ row }">
+            <el-tag>{{ row.type }}</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column prop="value" label="记录值" fit align="center" sortable show-overflow-tooltip></el-table-column>
+        <el-table-column prop="ttl" label="TTL" fit align="center" sortable></el-table-column>
+        <el-table-column prop="priority" label="优先级" fit align="center" sortable></el-table-column>
+        <el-table-column label="操作" width="180" align="center" fixed="right">
+          <template #default="{ row }">
+            <div class="action-buttons">
+                <el-button
+                  class="action-btn"
+                  size="default"
+                  type="primary"
+                  text
+                  :icon="Edit"
+                  @click="handleEdit(row)"
+                >
+                  编辑
+                </el-button>
+                <el-button
+                  class="action-btn"
+                  size="default"
+                  type="danger"
+                  text
+                  :icon="Delete"
+                  @click="handleDelete(row)"
+                >
+                  删除
+                </el-button>
+              </div>
+          </template>
+        </el-table-column>
+      </el-table>
     </div>
 
-    <!-- 添加/编辑对话框 -->
-    <el-dialog
+    <!-- 添加/编辑抽屉 -->
+    <el-drawer
+      :title="isEdit ? '编辑记录' : '新增记录'"
       v-model="recordDialogVisible"
-      :title="isEdit ? '修改记录' : '添加记录'"
-      width="700px"
+      size="35%"
+      direction="rtl"
+      ref="drawer"
     >
-      <el-form :model="recordForm" :rules="recordRules" ref="recordFormRef" label-width="120px">
-        <el-form-item label="业务线" prop="business_line">
-          <el-input v-model="recordForm.business_line"></el-input>
-        </el-form-item>
-        <el-form-item label="主机记录" prop="host_record">
-          <el-input v-model="recordForm.host_record" placeholder="例如：www、@、*"></el-input>
-        </el-form-item>
-        <el-form-item label="主域名" prop="main_domain">
-          <el-input v-model="recordForm.main_domain" :disabled="isEdit"></el-input>
-        </el-form-item>
-        <el-form-item label="记录类型" prop="record_type">
-          <el-select v-model="recordForm.record_type" placeholder="请选择记录类型" style="width: 100%">
-            <el-option label="A" value="A"></el-option>
-            <el-option label="AAAA" value="AAAA"></el-option>
-            <el-option label="CNAME" value="CNAME"></el-option>
-            <el-option label="MX" value="MX"></el-option>
-            <el-option label="TXT" value="TXT"></el-option>
-            <el-option label="NS" value="NS"></el-option>
-            <el-option label="SRV" value="SRV"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="记录值" prop="record_value">
-          <el-input v-model="recordForm.record_value" type="textarea" :rows="2"></el-input>
-        </el-form-item>
-        <el-form-item label="TTL" prop="ttl">
-          <el-input-number v-model="recordForm.ttl" :min="60" :max="86400" style="width: 100%"></el-input-number>
-        </el-form-item>
-        <el-form-item label="优先级" prop="priority">
-          <el-input-number
-            v-model="recordForm.priority"
-            :min="1"
-            :max="100"
-            :disabled="recordForm.record_type !== 'MX'"
-            style="width: 100%"
-          ></el-input-number>
-          <span style="font-size: 12px; color: #999; margin-left: 8px">
-            (仅MX记录需要设置)
-          </span>
-        </el-form-item>
-        <el-form-item label="备注">
-          <el-input v-model="recordForm.remark" type="textarea" :rows="3"></el-input>
-        </el-form-item>
-      </el-form>
-      <template #footer>
-        <el-button @click="recordDialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="handleSaveRecord">保存</el-button>
-      </template>
-    </el-dialog>
+      <div class="demo-drawer__content">
+        <el-form :model="recordForm" :rules="recordRules" ref="recordFormRef" >
+          
+          <el-form-item label="主机记录:" :label-width="formLabelWidth" prop="rr">
+            <el-input
+              v-model="recordForm.rr"
+              placeholder="例如：www、@、*"
+              style="width: 95%"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="主域名:" :label-width="formLabelWidth" prop="domain">
+            <el-input v-model="recordForm.domain" :disabled="isEdit" style="width: 95%"></el-input>
+          </el-form-item>
+          <el-form-item label="记录类型:" :label-width="formLabelWidth" prop="type">
+            <el-select v-model="recordForm.type" placeholder="请选择记录类型" style="width: 95%">
+              <el-option label="A" value="A"></el-option>
+              <el-option label="AAAA" value="AAAA"></el-option>
+              <el-option label="CNAME" value="CNAME"></el-option>
+              <el-option label="MX" value="MX"></el-option>
+              <el-option label="TXT" value="TXT"></el-option>
+              <el-option label="NS" value="NS"></el-option>
+              <el-option label="SRV" value="SRV"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="记录值:" :label-width="formLabelWidth" prop="value">
+            <el-input v-model="recordForm.value" type="textarea" :rows="3" style="width: 95%"></el-input>
+          </el-form-item>
+          <el-form-item label="TTL:" :label-width="formLabelWidth" prop="ttl">
+            <el-input-number
+              v-model="recordForm.ttl"
+              :min="60"
+              :max="86400"
+              style="width: 95%"
+            ></el-input-number>
+          </el-form-item>
+          <el-form-item label="优先级:" :label-width="formLabelWidth" prop="priority">
+            <el-input-number
+              v-model="recordForm.priority"
+              :min="1"
+              :max="100"
+              :disabled="recordForm.type !== 'MX'"
+              style="width: 95%"
+            ></el-input-number>
+            <span style="font-size: 12px; color: #999; margin-left: 8px">
+              (仅MX记录需要设置)
+            </span>
+          </el-form-item>
+          <el-form-item label="业务线:" :label-width="formLabelWidth" prop="business_line">
+            <el-select v-model="recordForm.business_line" style="width: 95%">
+              <el-option label="业务线1" value="业务线1"></el-option>
+              <el-option label="业务线2" value="业务线2"></el-option>
+              <el-option label="业务线3" value="业务线3"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="备注:" :label-width="formLabelWidth" prop="remark">
+            <el-input v-model="recordForm.remark" type="textarea" :rows="3" style="width: 95%"></el-input>
+          </el-form-item>
+        </el-form>
+        <div class="demo-drawer__footer" style="margin-top: 60%">
+          <el-button @click="cancelForm" style="width: 50%">取 消</el-button>
+          <el-button type="primary" @click="handleSaveRecord" style="width: 50%">提 交</el-button>
+        </div>
+      </div>
+    </el-drawer>
+
+    <div style="padding: 10px 16px; text-align: right">
+      <el-pagination
+        background
+        layout="total, sizes, prev, pager, next, jumper"
+        :page-size="params.pagesize"
+        :page-sizes="[10, 20, 50, 100, 500, 1000]"
+        :total="params.total"
+        @current-change="currentChange"
+        @size-change="handleSizeChange"
+      ></el-pagination>
+    </div>
   </el-container>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive, onMounted, nextTick } from "vue";
-import { Search, Plus, Edit, Delete } from "@element-plus/icons-vue";
+import { Search, Plus, Edit, Delete, Refresh } from "@element-plus/icons-vue";
 import {
+  getDomainList,
   getDomainRecords,
   addDomainRecord,
   updateDomainRecord,
@@ -151,6 +233,9 @@ const loading = ref(false);
 const recordDialogVisible = ref(false);
 const isEdit = ref(false);
 const recordFormRef = ref<FormInstance>();
+const multipleSelection = ref<any[]>([]);
+const formLabelWidth = "120px";
+
 const params = reactive<{
   page: number;
   pagesize: number;
@@ -169,35 +254,51 @@ const params = reactive<{
 const tableData = ref([]);
 const recordForm = ref({
   id: null,
-  business_line: "",
-  host_record: "",
-  main_domain: "",
-  record_type: "A",
-  record_value: "",
-  ttl: 600,
+  domain: "",
+  rr: "",
+  type: "A",
+  value: "",
+  ttl: 300,
   priority: 10,
+  business_line: "",
   remark: ""
 });
 
+const domain_info = ref({
+  domain: "",
+  product: "",
+  remark: "",
+  use_status: "",
+  custodian: {
+    custodian_account: ""
+  },
+  supplier: {
+    supplier_account: ""
+  },
+});
+
 const recordRules: FormRules = {
-  business_line: [{ required: true, message: "请输入业务线", trigger: "blur" }],
-  host_record: [{ required: true, message: "请输入主机记录", trigger: "blur" }],
-  main_domain: [{ required: true, message: "请输入主域名", trigger: "blur" }],
-  record_type: [{ required: true, message: "请选择记录类型", trigger: "change" }],
-  record_value: [{ required: true, message: "请输入记录值", trigger: "blur" }],
+  rr: [{ required: true, message: "请输入主机记录", trigger: "blur" }],
+  domain: [{ required: true, message: "请输入主域名", trigger: "blur" }],
+  type: [{ required: true, message: "请选择记录类型", trigger: "change" }],
+  value: [{ required: true, message: "请输入记录值", trigger: "blur" }],
   ttl: [{ required: true, message: "请输入TTL", trigger: "blur" }]
 };
 
-const { currentChange, handleSizeChange } = createPaginationHandlers(params, fetchData);
+const {
+  currentChange,
+  handleSizeChange,
+  handleSelectionChange
+} = createPaginationHandlers(params, fetchData, multipleSelection);
 
 onMounted(() => {
   if (route.query.domain) {
     params.domain = route.query.domain as string;
-    params.main_domain = route.query.domain as string;
   }
   if (route.query.domainId) {
     params.domainId = route.query.domainId as any;
   }
+  fetchDomainData();
   fetchData();
 });
 
@@ -225,13 +326,13 @@ function handleAdd() {
   isEdit.value = false;
   recordForm.value = {
     id: null,
-    business_line: "",
-    host_record: "",
-    main_domain: params.domain || "",
-    record_type: "A",
-    record_value: "",
-    ttl: 600,
+    domain: params.domain || "",
+    rr: "",
+    type: "A",
+    value: "",
+    ttl: 300,
     priority: 10,
+    business_line: "",
     remark: ""
   };
   recordDialogVisible.value = true;
@@ -243,10 +344,39 @@ function handleAdd() {
 function handleEdit(row: any) {
   isEdit.value = true;
   recordForm.value = { ...row };
+  recordForm.value.domain = params.domain;
   recordDialogVisible.value = true;
   nextTick(() => {
     recordFormRef.value?.clearValidate();
   });
+}
+
+function cancelForm() {
+  recordDialogVisible.value = false;
+  recordFormRef.value?.clearValidate();
+}
+
+function fetchDomainData() {
+  loading.value = true;
+  const domainParams = {
+    id: params.domainId,
+  };
+  getDomainList(domainParams)
+  .then((resp: any) => {
+      if (resp.code === 200) {
+        domain_info.value = resp.data[0];
+        console.log(domain_info.value);
+      } else {
+        ElMessage({ type: "error", message: resp.msg || "获取域名信息失败" });
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching domain data:", error);
+      ElMessage({ type: "error", message: "获取域名信息失败" });
+    })
+    .finally(() => {
+      loading.value = false;
+    });
 }
 
 function handleSaveRecord() {
@@ -302,32 +432,111 @@ function handleDelete(row: any) {
     })
     .catch(() => {});
 }
+
+function handleBatchDelete() {
+  if (multipleSelection.value.length === 0) {
+    ElMessage({ type: "warning", message: "请选择要删除的记录" });
+    return;
+  }
+
+  ElMessageBox.confirm(
+    `确认要删除选中的 ${multipleSelection.value.length} 条解析记录吗？`,
+    "提示",
+    {
+      confirmButtonText: "确定",
+      cancelButtonText: "取消",
+      type: "warning"
+    }
+  )
+    .then(() => {
+      loading.value = true;
+      const deletePromises = multipleSelection.value.map((row: any) =>
+        deleteDomainRecord({ id: row.id })
+      );
+
+      Promise.all(deletePromises)
+        .then((results: any[]) => {
+          const successCount = results.filter((resp) => resp.code === 200).length;
+          const failCount = results.length - successCount;
+
+          if (failCount === 0) {
+            ElMessage({ type: "success", message: `成功删除 ${successCount} 条记录` });
+            fetchData();
+          } else {
+            ElMessage({
+              type: "warning",
+              message: `成功删除 ${successCount} 条记录，${failCount} 条删除失败`
+            });
+            fetchData();
+          }
+        })
+        .catch((error) => {
+          console.error("Error batch deleting records:", error);
+          ElMessage({ type: "error", message: "批量删除失败" });
+        })
+        .finally(() => {
+          loading.value = false;
+          multipleSelection.value = [];
+        });
+    })
+    .catch(() => {});
+}
 </script>
 
 <style scoped>
-.main {
-  margin-top: 1px;
-  width: 100%;
-  height: 90%;
+
+
+.records-page {
+    height: 100%;
+    width: 98%;
+    display: block;
 }
 
-.toolbar {
-  display: flex;
-  justify-content: space-between;
+.create-server-block {
+    background-color: white;
+    padding: 20px 20px 16px;
+    margin-top: 12px;
+    width: 100%;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.search-input {
+    width: 70%;
+}
+
+.create-server-block :deep(.el-table .cell) {
+    white-space: pre-line;
+}
+
+.create-server-block :deep(.el-descriptions-item__label) {
+    margin-right: 8px !important;
+}
+
+.demo-drawer__footer {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+}
+
+.action-buttons {
+  display: inline-flex;
   align-items: center;
-  margin-bottom: 16px;
+  gap: 0;
 }
 
-.toolbar-actions {
-  display: flex;
-  gap: 8px;
+.action-buttons :deep(.el-button + .el-button) {
+  margin-left: 0;
 }
 
-.recordTable {
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.action-buttons :deep(.action-btn.el-button) {
+  padding: 0 6px;
+  height: 24px;
 }
 </style>
 

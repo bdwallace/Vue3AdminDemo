@@ -181,6 +181,10 @@ function dynamicRouteTag(value: string): void {
   const hasValue = multiTags.value.some(item => {
     return item.path === value;
   });
+  const currentRoute = router.currentRoute.value;
+  const hasQuery = currentRoute.path === value && Object.keys(currentRoute.query || {}).length > 0;
+  const hasParams =
+    currentRoute.path === value && Object.keys(currentRoute.params || {}).length > 0;
 
   function concatPath(arr: object[], value: string) {
     if (!hasValue) {
@@ -189,7 +193,9 @@ function dynamicRouteTag(value: string): void {
           useMultiTagsStoreHook().handleTags("push", {
             path: value,
             meta: arrItem.meta,
-            name: arrItem.name
+            name: arrItem.name,
+            query: hasQuery ? currentRoute.query : undefined,
+            params: hasParams ? currentRoute.params : undefined
           });
         } else {
           if (arrItem.children && arrItem.children.length > 0) {

@@ -26,8 +26,9 @@ export default {
       component: () => import("@/views/domain/records.vue"),
       meta: {
         icon: "IF-icon-setting",
-        title: "解析设置",
-        showLink: false
+        title: "解析记录",
+        showLink: false,
+        hiddenTag: false
       }
     }
   ]

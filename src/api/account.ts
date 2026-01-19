@@ -34,7 +34,7 @@ export const syncSupplierAccount = (data?: object) => {
 
 /** 检测供应商账号 */
 export const checkSupplierAccount = (data?: object) => {
-  return http.request<Result>("post", "/domain/supplier/option", data);
+  return http.request<Result>("get", "/domain/supplier/option", data);
 };
 
 /** 获取托管商账号列表 */

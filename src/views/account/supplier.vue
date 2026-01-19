@@ -35,7 +35,12 @@
           :header-cell-style="{ background: '#eef1f6', color: '#606266' }"
           v-loading="loading"
         >
-          <el-table-column prop="supplier_name" label="供应商名称" fit align="center" sortable></el-table-column>
+          <el-table-column prop="supplier_name" label="供应商名称" fit align="center" sortable>
+            <template #default="{ row }">
+              <el-image v-if="row.supplier_name==='GoDaddy'" :src="godaddyImage" style="height: 50px;width: 110px"></el-image>
+              <span v-else>{{ row.supplier_name }}</span>
+            </template>
+          </el-table-column>
           <el-table-column prop="supplier_account" label="供应商账号" fit align="center" sortable></el-table-column>
           <el-table-column prop="account_balance" label="账号余额" fit align="center" sortable>
             <template #default="{ row }">
@@ -53,14 +58,14 @@
           <el-table-column prop="remark" label="备注" fit align="center" show-overflow-tooltip></el-table-column>
           <el-table-column label="操作" width="280" fixed="right" align="center">
             <template #default="{ row }">
-                <div class="action-buttons">
-                    <el-button type="success" text :icon="Check" @click="handleCheck(row)">
+              <div class="action-buttons">
+                    <el-button class="action-btn" type="success" text :icon="Check" @click="handleCheck(row)">
                         检测
                     </el-button>
-                    <el-button type="primary" text :icon="Edit" @click="handleEdit(row)">
+                    <el-button class="action-btn" type="primary" text :icon="Edit" @click="handleEdit(row)">
                         编辑
                     </el-button>
-                    <el-button type="danger" text :icon="Delete" @click="handleDelete(row)">
+                    <el-button class="action-btn" type="danger" text :icon="Delete" @click="handleDelete(row)">
                         删除
                     </el-button>
                   
@@ -134,6 +139,7 @@ import {
 import { ElMessage, ElMessageBox } from "element-plus";
 import { createPaginationHandlers } from "@/utils/common";
 import type { FormInstance, FormRules } from "element-plus";
+import godaddyImage from "@/assets/godaddy.png";
 
 defineOptions({
   name: "SupplierAccount"
@@ -308,6 +314,7 @@ function handleCheck(row: any) {
       } else {
         ElMessage({ type: "error", message: resp.msg || "检测失败" });
       }
+      fetchData();
     })
     .catch((error) => {
       console.error("Error checking account:", error);
@@ -361,6 +368,15 @@ function getStatusType(status: string): "success" | "danger" | "warning" | "info
   justify-content: center;
   align-items: center;
   gap: 0px;
+}
+
+.action-buttons :deep(.el-button + .el-button) {
+  margin-left: 0;
+}
+
+.action-buttons :deep(.action-btn.el-button) {
+  padding: 0 6px;
+  height: 24px;
 }
 </style>
 

@@ -168,14 +168,18 @@ router.beforeEach((to: ToRouteType, _from, next) => {
                 useMultiTagsStoreHook().handleTags("push", {
                   path,
                   name,
-                  meta
+                  meta,
+                  query: Object.keys(to.query || {}).length ? to.query : undefined,
+                  params: Object.keys(to.params || {}).length ? to.params : undefined
                 });
               } else {
                 const { path, name, meta } = route;
                 useMultiTagsStoreHook().handleTags("push", {
                   path,
                   name,
-                  meta
+                  meta,
+                  query: Object.keys(to.query || {}).length ? to.query : undefined,
+                  params: Object.keys(to.params || {}).length ? to.params : undefined
                 });
               }
             }

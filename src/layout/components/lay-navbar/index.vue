@@ -37,7 +37,11 @@ const locale = localStorage.getItem('lang') || 'zh-cn'
 </script>
 
 <template>
-  <div class="navbar bg-[#fff] shadow-xs shadow-[rgba(0,21,41,0.08)]" style="background-color: #ecf5ff">
+  <div
+    class="navbar bg-[#fff] shadow-xs shadow-[rgba(0,21,41,0.08)]"
+    :class="{ 'navbar-vertical': layout === 'vertical' }"
+    style="background-color: #ecf5ff"
+  >
     <LaySidebarTopCollapse
       v-if="device === 'mobile'"
       class="hamburger-container"
@@ -46,11 +50,15 @@ const locale = localStorage.getItem('lang') || 'zh-cn'
     />
 
     <LaySidebarBreadCrumb
-      v-if="layout !== 'mix' && device !== 'mobile'"
+      v-if="layout !== 'mix' && layout !== 'vertical' && device !== 'mobile'"
       class="breadcrumb-container"
     />
 
     <LayNavMix v-if="layout === 'mix'" />
+
+    <div v-if="layout === 'vertical' && device !== 'mobile'" class="vertical-header-left">
+      <LaySidebarBreadCrumb class="breadcrumb-container" />
+    </div>
 
     <div v-if="layout === 'vertical'" class="vertical-header-right">
       <!-- 菜单搜索 -->
@@ -133,6 +141,12 @@ const locale = localStorage.getItem('lang') || 'zh-cn'
   height: 48px;
   overflow: hidden;
 
+  &.navbar-vertical {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .hamburger-container {
     float: left;
     height: 100%;
@@ -172,6 +186,17 @@ const locale = localStorage.getItem('lang') || 'zh-cn'
   .breadcrumb-container {
     float: left;
     margin-left: 16px;
+  }
+
+  .vertical-header-left {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+
+    .breadcrumb-container {
+      float: none;
+      margin-left: 16px;
+    }
   }
 }
 

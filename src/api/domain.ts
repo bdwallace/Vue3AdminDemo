@@ -9,7 +9,7 @@ type Result = {
 
 /** 获取域名列表 */
 export const getDomainList = (data?: object) => {
-  return http.request<Result>("get", "/domain/list", data);
+  return http.request<Result>("get", "/domain/domains/list", data);
 };
 
 /** 同步域名信息 */
@@ -19,7 +19,7 @@ export const syncDomain = (data?: object) => {
 
 /** 编辑域名信息 */
 export const updateDomain = (data?: object) => {
-  return http.request<Result>("put", "/domain/update", data);
+  return http.request<Result>("put", "/domain/domains/list", data);
 };
 
 /** 获取域名解析记录列表 */

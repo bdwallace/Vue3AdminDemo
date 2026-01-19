@@ -114,11 +114,32 @@ export function useTags() {
 
   function conditionHandle(item, previous, next) {
     if (isBoolean(route?.meta?.showLink) && route?.meta?.showLink === false) {
-      if (Object.keys(route.query).length > 0) {
-        return isEqual(route.query, item.query) ? previous : next;
-      } else {
-        return isEqual(route.params, item.params) ? previous : next;
+      const routeHasQuery = Object.keys(route.query).length > 0;
+      const routeHasParams = Object.keys(route.params).length > 0;
+      const itemHasQuery = item?.query && Object.keys(item.query).length > 0;
+      const itemHasParams = item?.params && Object.keys(item.params).length > 0;
+
+      if (routeHasQuery) {
+        return itemHasQuery
+          ? isEqual(route.query, item.query)
+            ? previous
+            : next
+          : route.path === item.path
+            ? previous
+            : next;
       }
+
+      if (routeHasParams) {
+        return itemHasParams
+          ? isEqual(route.params, item.params)
+            ? previous
+            : next
+          : route.path === item.path
+            ? previous
+            : next;
+      }
+
+      return route.path === item.path ? previous : next;
     } else {
       return route.path === item.path ? previous : next;
     }

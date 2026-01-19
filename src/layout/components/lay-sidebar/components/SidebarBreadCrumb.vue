@@ -30,6 +30,10 @@ const getBreadcrumb = (): void => {
   } else {
     currentRoute = findRouteByPath(router.currentRoute.value.path, routes);
   }
+  // 当 query/params 匹配不到标签页时，回退到路由表查找
+  if (!currentRoute) {
+    currentRoute = findRouteByPath(router.currentRoute.value.path, routes);
+  }
 
   // 当前路由的父级路径组成的数组
   const parentRoutes = getParentPaths(

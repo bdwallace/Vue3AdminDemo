@@ -34,7 +34,13 @@
           @selection-change="handleSelectionChange"
         >
           <el-table-column type="selection" width="55" align="center"></el-table-column>
-          <el-table-column prop="custodian_name" label="托管商名称" fit align="center" sortable></el-table-column>
+          <el-table-column prop="custodian_name" label="托管商名称" fit align="center" sortable>
+            <template #default="{ row }">
+              <el-image v-if="row.custodian_name==='Aliyun'" :src="aliyunImage" style="height: 50px;width: 110px"></el-image>
+              <el-image v-else-if="row.custodian_name==='Cloudflare'" :src="cloudflareImage" style="height: 50px;width: 110px"></el-image>
+              <span v-else>{{ row.custodian_name }}</span>
+            </template>
+          </el-table-column>
           <el-table-column prop="custodian_account" label="托管商账号" fit align="center" sortable></el-table-column>
           <el-table-column prop="custodian_status" label="账号状态" fit align="center" sortable>
             <template #default="{ row }">
@@ -48,13 +54,13 @@
           <el-table-column label="操作" width="280" align="center">
             <template #default="{ row }">
               <div class="action-buttons">
-                <el-button type="success" text  :icon="Check" @click="handleCheck(row)">
+                <el-button class="action-btn" type="success" text  :icon="Check" @click="handleCheck(row)">
                   检测
                 </el-button>
-                <el-button type="primary" text :icon="Edit" @click="handleEdit(row)">
+                <el-button class="action-btn" type="primary" text :icon="Edit" @click="handleEdit(row)">
                   编辑
                 </el-button>
-                <el-button type="danger" text :icon="Delete" @click="handleDelete(row)">
+                <el-button class="action-btn" type="danger" text :icon="Delete" @click="handleDelete(row)">
                   删除
                 </el-button>
               </div>
@@ -124,6 +130,8 @@ import {
 import { ElMessage, ElMessageBox } from "element-plus";
 import { createPaginationHandlers } from "@/utils/common";
 import type { FormInstance, FormRules } from "element-plus";
+import aliyunImage from "@/assets/aliyun.png";
+import cloudflareImage from "@/assets/cloudflare.png";
 
 defineOptions({
   name: "CustodianAccount"
@@ -332,6 +340,15 @@ function getStatusType(status: string): "success" | "danger" | "warning" | "info
   justify-content: center;
   align-items: center;
   gap: 0px;
+}
+
+.action-buttons :deep(.el-button + .el-button) {
+  margin-left: 0;
+}
+
+.action-buttons :deep(.action-btn.el-button) {
+  padding: 0 6px;
+  height: 24px;
 }
 </style>
 

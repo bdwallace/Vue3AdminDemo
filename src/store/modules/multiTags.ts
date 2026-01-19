@@ -76,9 +76,13 @@ export const useMultiTagsStore = defineStore("pure-multiTags", {
             if (isUrl(tagVal?.name)) return;
             // 如果title为空拒绝添加空信息到标签页
             if (tagVal?.meta?.title.length === 0) return;
-            // showLink:false 不添加到标签页
-            if (isBoolean(tagVal?.meta?.showLink) && !tagVal?.meta?.showLink)
-              return;
+            // showLink:false 不添加到标签页（但如果 hiddenTag 明确设置为 false，则允许显示）
+            if (isBoolean(tagVal?.meta?.showLink) && !tagVal?.meta?.showLink) {
+              // 如果明确设置了 hiddenTag: false，则允许显示在标签页（即使 showLink 为 false）
+              if (tagVal?.meta?.hiddenTag !== false) {
+                return;
+              }
+            }
             const tagPath = tagVal.path;
             // 判断tag是否已存在
             const tagHasExits = this.multiTags.some(tag => {

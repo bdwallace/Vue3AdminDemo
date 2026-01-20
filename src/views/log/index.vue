@@ -3,7 +3,7 @@
     <div class="main">
       <div>
         <el-input placeholder="请输入搜索内容, 支持所有内容模糊搜索, 回车或点击按钮搜索" v-model="params.search"
-                  style="width: 70%" class="input-with-select" size="large">
+                  style="width: 70%" class="input-with-select" size="large" @keyup.enter="fetchData" clearable>
           <template #append>
             <el-button :icon="Search" @click="fetchData" />
           </template>

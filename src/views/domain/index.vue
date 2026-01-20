@@ -3,7 +3,7 @@
     <div class="main">
       <div class="toolbar">
         <el-select v-model="params.supplier__supplier_account" placeholder="供应商账号" 
-        style="margin-right: 10px;width: 150px" @change="fetchData" clearable>
+          style="margin-right: 10px;width: 150px" @change="fetchData" clearable size="large">
           <el-option v-for="item in supplier_list" :label="item.supplier_account" :value="item.supplier_account">
           </el-option>
         </el-select>

@@ -93,6 +93,8 @@
         <el-table-column prop="value" label="记录值" fit align="center" sortable show-overflow-tooltip></el-table-column>
         <el-table-column prop="ttl" label="TTL" fit align="center" sortable></el-table-column>
         <el-table-column prop="priority" label="优先级" fit align="center" sortable></el-table-column>
+        <el-table-column prop="remark" label="备注" fit align="center" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="update_time" label="更新时间" fit align="center" sortable></el-table-column>
         <el-table-column label="操作" width="180" align="center" fixed="right">
           <template #default="{ row }">
             <div class="action-buttons">
@@ -119,6 +121,7 @@
               </div>
           </template>
         </el-table-column>
+        
       </el-table>
     </div>
 
@@ -178,11 +181,25 @@
             </span>
           </el-form-item>
           <el-form-item label="业务线:" :label-width="formLabelWidth" prop="business_line">
-            <el-select v-model="recordForm.business_line" style="width: 95%">
-              <el-option label="业务线1" value="业务线1"></el-option>
-              <el-option label="业务线2" value="业务线2"></el-option>
-              <el-option label="业务线3" value="业务线3"></el-option>
+            <el-select
+              v-model="recordForm.business_line"
+              style="width: 90%"
+              filterable remote clearable
+              :remote-method="fetchBusinessLineList"
+              :loading="businessLineLoading"
+              placeholder="请输入关键词搜索业务线"
+            >
+              <el-option
+                v-for="item in business_line_list"
+                :key="item.id"
+                :label="item.app_name"
+                :value="item.app_name"
+              >
+                <span style="float: left">{{ item.app_name }}</span>
+                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.owner.join(' / ') }}</span>
+              </el-option>
             </el-select>
+            <el-button @click="refreshBusinessLineList" type="primary" text >刷新</el-button>
           </el-form-item>
           <el-form-item label="备注:" :label-width="formLabelWidth" prop="remark">
             <el-input v-model="recordForm.remark" type="textarea" :rows="3" style="width: 95%"></el-input>
@@ -219,6 +236,7 @@ import {
   updateDomainRecord,
   deleteDomainRecord
 } from "@/api/domain";
+import { getBusinessLineList, syncBusinessLine } from "@/api/appcenter";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { createPaginationHandlers } from "@/utils/common";
 import { useRoute } from "vue-router";
@@ -230,6 +248,7 @@ defineOptions({
 
 const route = useRoute();
 const loading = ref(false);
+const businessLineLoading = ref(false);
 const recordDialogVisible = ref(false);
 const isEdit = ref(false);
 const recordFormRef = ref<FormInstance>();
@@ -252,6 +271,7 @@ const params = reactive<{
   domainId: null
 });
 const tableData = ref([]);
+const business_line_list = ref([]);
 const recordForm = ref({
   id: null,
   domain: "",
@@ -300,6 +320,7 @@ onMounted(() => {
   }
   fetchDomainData();
   fetchData();
+  fetchBusinessLineList();
 });
 
 function fetchData() {
@@ -322,6 +343,38 @@ function fetchData() {
     });
 }
 
+function fetchBusinessLineList(search: string=null) {
+  businessLineLoading.value = true;
+  getBusinessLineList({page: 1, pagesize: 20, search: search})
+    .then((resp: any) => {
+        if (resp.code === 200) {
+          business_line_list.value = resp.data || [];
+      } else {
+        ElMessage({ type: "error", message: resp.msg || "获取业务线列表失败" });
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching business line list:", error);
+    })
+    .finally(() => {
+      businessLineLoading.value = false;
+    });
+}
+
+function refreshBusinessLineList() {
+  syncBusinessLine()
+    .then((resp: any) => {
+      if (resp.code === 200) {
+        ElMessage({ type: "success", message: resp.msg || "刷新成功" });
+      } else {
+        ElMessage({ type: "error", message: resp.msg || "刷新失败" });
+      }
+    })
+    .catch((error) => {
+      console.error("Error refreshing business line:", error);
+      ElMessage({ type: "error", message: "刷新失败" });
+    });
+}
 function handleAdd() {
   isEdit.value = false;
   recordForm.value = {

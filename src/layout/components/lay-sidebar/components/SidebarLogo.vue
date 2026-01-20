@@ -20,7 +20,7 @@ const { title} = useNav();
         :to="getTopMenu()?.path ?? '/'"
       >
         <img :src="'/src/assets/domain.png'" alt="logo" />
-        <span class="sidebar-title">{{ title }}</span>
+        <span class="sidebar-title" style="font-size: 24px; font-weight: 600;">{{ title }}</span>
       </router-link>
       <router-link
         v-else
@@ -30,7 +30,7 @@ const { title} = useNav();
         :to="getTopMenu()?.path ?? '/'"
       >
         <img :src="'/src/assets/domain.png'" alt="logo" />
-        <span class="sidebar-title">{{ title }}</span>
+        <span class="sidebar-title" style="font-size: 24px; font-weight: 600;">{{ title }}</span>
       </router-link>
     </transition>
   </div>

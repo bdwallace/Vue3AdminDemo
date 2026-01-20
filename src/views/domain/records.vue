@@ -1,7 +1,7 @@
 <template>
   <el-container class="records-page">
     <!-- 域名基本信息 -->
-    <div class="create-server-block" style="margin-top: 15px" v-if="domain_info.domain">
+    <div class="create-server-block" v-if="domain_info.domain">
       <el-descriptions class="margin-top" title="域名基本信息" :column="4" >
         <el-descriptions-item label="主域名：" align="left">
           <el-tag size="default">{{ domain_info.domain }}</el-tag>
@@ -541,14 +541,17 @@ function handleBatchDelete() {
 
 .records-page {
     height: 100%;
-    width: 98%;
-    display: block;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    box-sizing: border-box;
 }
 
 .create-server-block {
     background-color: white;
     padding: 20px 20px 16px;
-    margin-top: 12px;
     width: 100%;
 }
 

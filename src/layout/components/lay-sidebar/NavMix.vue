@@ -94,7 +94,7 @@ watch(
             />
           </div>
           <div :style="getDivStyle">
-            <span class="select-none">
+            <span class="select-none" style="font-size: 24px; font-weight: 600;">
               {{ route.meta.title }}
             </span>
             <LaySidebarExtraIcon :extraIcon="route.meta.extraIcon" />

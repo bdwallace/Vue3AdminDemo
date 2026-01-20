@@ -93,17 +93,29 @@ function fetchData() {
 
 function formattedJSON(raw: any): string {
   try {
-    let obj =
-      typeof raw === 'string'
-        ? JSON.parse(raw.replace(/'/g, '"'))
-        : raw;
-    return JSON.stringify(obj, null, 2)
-      .replace(/</g, '&lt;') // 防止 HTML 注入
-      .replace(/>/g, '&gt;')
-      .replace(/\n/g, '<br>')
-      .replace(/ /g, '&nbsp;');
+    if (raw === null || raw === undefined) {
+      return "";
+    }
+    if (typeof raw !== "string") {
+      return JSON.stringify(raw, null, 4);
+    }
+    const trimmed = raw.trim();
+    if (!trimmed) {
+      return "";
+    }
+    try {
+      return JSON.stringify(JSON.parse(trimmed), null, 4);
+    } catch (e) {
+      const normalized = trimmed
+        .replace(/\bNone\b/g, "null")
+        .replace(/\bTrue\b/g, "true")
+        .replace(/\bFalse\b/g, "false")
+        .replace(/'/g, '"');
+      return JSON.stringify(JSON.parse(normalized), null, 4);
+    }
   } catch (e) {
-    return String(raw);
+    console.error("Error formatting JSON:", e);
+    return String(raw); // 解析失败，返回原始字符串，防止报错
   }
 }
 

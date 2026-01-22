@@ -22,6 +22,20 @@ export const updateDomain = (data?: object) => {
   return http.request<Result>("put", "/domain/domains/list", data);
 };
 
+/** 新增域名 */
+export const addDomain = (data?: object) => {
+  return http.request<Result>("post", "/domain/domains/list", data);
+};
+
+export const deleteDomain = (data?: object) => {
+  return http.request<Result>("delete", "/domain/domains/list", data);
+};
+
+/** 同步域名解析记录 */
+export const syncDomainRecord = (data?: object) => {
+  return http.request<Result>("get", "/domain/records/sync", data);
+};
+
 /** 获取域名解析记录列表 */
 export const getDomainRecords = (data?: object) => {
   return http.request<Result>("get", "/domain/records", data);

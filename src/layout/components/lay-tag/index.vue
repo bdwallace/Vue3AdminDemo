@@ -65,6 +65,13 @@ const fixedTags = [
   ...usePermissionStoreHook().flatteningRoutes.filter(v => v?.meta?.fixedTag)
 ];
 
+const getTagKey = (item: any) => {
+  const query = item?.query ? JSON.stringify(item.query) : "";
+  const params = item?.params ? JSON.stringify(item.params) : "";
+  const base = item?.path || item?.name || "";
+  return `${base}?q=${query}&p=${params}`;
+};
+
 const dynamicTagView = async () => {
   await nextTick();
   const index = multiTags.value.findIndex(item => {
@@ -579,7 +586,7 @@ onBeforeUnmount(() => {
         <div
           v-for="(item, index) in multiTags"
           :ref="'dynamic' + index"
-          :key="index"
+          :key="getTagKey(item)"
           :class="[
             'scroll-item is-closable',
             linkIsActive(item),
@@ -642,7 +649,6 @@ onBeforeUnmount(() => {
       <ul
         v-show="visible"
         ref="contextmenuRef"
-        :key="Math.random()"
         :style="getContextMenuStyle"
         class="contextmenu"
       >

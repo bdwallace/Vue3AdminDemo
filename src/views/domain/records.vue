@@ -57,7 +57,7 @@
         </el-button>
         <el-tooltip content="从托管商同步最新的解析记录到数据库" placement="top">
           <el-button
-            @click="fetchData"
+            @click="handleSyncRecord"
             :icon="Refresh"
             type="success"
             size="default"
@@ -78,7 +78,11 @@
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="selection" width="60" align="center" ></el-table-column>
-        <el-table-column prop="business_line" label="业务线" fit align="center" sortable></el-table-column>
+        <el-table-column prop="business_line" label="业务线" fit align="center" sortable>
+          <template #default="{ row }">
+            {{ row.business_line || "-" }}
+          </template>
+        </el-table-column>
         <el-table-column prop="rr" label="主机记录" fit align="center" sortable></el-table-column>
         <el-table-column prop="domain" label="主域名" fit align="center" sortable>
           <template #default="{ row }">
@@ -93,7 +97,8 @@
         <el-table-column prop="value" label="记录值" fit align="center" sortable show-overflow-tooltip></el-table-column>
         <el-table-column prop="ttl" label="TTL" fit align="center" sortable></el-table-column>
         <el-table-column prop="priority" label="优先级" fit align="center" sortable></el-table-column>
-        <el-table-column prop="remark" label="备注" fit align="center" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="remark" label="备注" fit align="center" show-overflow-tooltip>
+        </el-table-column>
         <el-table-column prop="update_time" label="更新时间" fit align="center" sortable></el-table-column>
         <el-table-column label="操作" width="180" align="center" fixed="right">
           <template #default="{ row }">
@@ -207,7 +212,7 @@
         </el-form>
         <div class="demo-drawer__footer" style="margin-top: 60%">
           <el-button @click="cancelForm" style="width: 50%">取 消</el-button>
-          <el-button type="primary" @click="handleSaveRecord" style="width: 50%">提 交</el-button>
+          <el-button type="primary" @click="handleSaveRecord" style="width: 50%" :loading="commitLoading">{{ commitLoading ? "提交中..." : "提 交" }}</el-button>
         </div>
       </div>
     </el-drawer>
@@ -234,7 +239,8 @@ import {
   getDomainRecords,
   addDomainRecord,
   updateDomainRecord,
-  deleteDomainRecord
+  deleteDomainRecord,
+  syncDomainRecord
 } from "@/api/domain";
 import { getBusinessLineList, syncBusinessLine } from "@/api/appcenter";
 import { ElMessage, ElMessageBox } from "element-plus";
@@ -248,6 +254,7 @@ defineOptions({
 
 const route = useRoute();
 const loading = ref(false);
+const commitLoading = ref(false);
 const businessLineLoading = ref(false);
 const recordDialogVisible = ref(false);
 const isEdit = ref(false);
@@ -261,14 +268,14 @@ const params = reactive<{
   total: number;
   search: string;
   domain: string;
-  domainId: string | number | null;
+  domain_id: string | number | null;
 }>({
   page: 1,
   pagesize: 20,
   total: 0,
   search: "",
   domain: "",
-  domainId: null
+  domain_id: null
 });
 const tableData = ref([]);
 const business_line_list = ref([]);
@@ -278,7 +285,7 @@ const recordForm = ref({
   rr: "",
   type: "A",
   value: "",
-  ttl: 300,
+  ttl: 600,
   priority: 10,
   business_line: "",
   remark: ""
@@ -316,7 +323,7 @@ onMounted(() => {
     params.domain = route.query.domain as string;
   }
   if (route.query.domainId) {
-    params.domainId = route.query.domainId as any;
+    params.domain_id = route.query.domainId as any;
   }
   fetchDomainData();
   fetchData();
@@ -377,17 +384,18 @@ function refreshBusinessLineList() {
 }
 function handleAdd() {
   isEdit.value = false;
-  recordForm.value = {
-    id: null,
-    domain: params.domain || "",
-    rr: "",
-    type: "A",
-    value: "",
-    ttl: 300,
-    priority: 10,
-    business_line: "",
-    remark: ""
-  };
+  recordForm.value.domain = params.domain;
+  // recordForm.value = {
+  //   id: null,
+  //   domain: params.domain || "",
+  //   rr: "",
+  //   type: "A",
+  //   value: "",
+  //   ttl: 600,
+  //   priority: 10,
+  //   business_line: "",
+  //   remark: ""
+  // };
   recordDialogVisible.value = true;
   nextTick(() => {
     recordFormRef.value?.clearValidate();
@@ -412,7 +420,7 @@ function cancelForm() {
 function fetchDomainData() {
   loading.value = true;
   const domainParams = {
-    id: params.domainId,
+    id: params.domain_id,
   };
   getDomainList(domainParams)
   .then((resp: any) => {
@@ -435,7 +443,7 @@ function fetchDomainData() {
 function handleSaveRecord() {
   recordFormRef.value?.validate((valid) => {
     if (valid) {
-      loading.value = true;
+      commitLoading.value = true;
       const api = isEdit.value ? updateDomainRecord : addDomainRecord;
       api(recordForm.value)
         .then((resp: any) => {
@@ -452,7 +460,7 @@ function handleSaveRecord() {
           ElMessage({ type: "error", message: "操作失败" });
         })
         .finally(() => {
-          loading.value = false;
+          commitLoading.value = false;
         });
     }
   });
@@ -466,7 +474,7 @@ function handleDelete(row: any) {
   })
     .then(() => {
       loading.value = true;
-      deleteDomainRecord({ id: row.id })
+      deleteDomainRecord({ id: row.id, domain: params.domain })
         .then((resp: any) => {
           if (resp.code === 200) {
             ElMessage({ type: "success", message: "删除成功" });
@@ -503,24 +511,15 @@ function handleBatchDelete() {
   )
     .then(() => {
       loading.value = true;
-      const deletePromises = multipleSelection.value.map((row: any) =>
-        deleteDomainRecord({ id: row.id })
-      );
+      const id_list = multipleSelection.value.map((row: any) => row.id);
 
-      Promise.all(deletePromises)
-        .then((results: any[]) => {
-          const successCount = results.filter((resp) => resp.code === 200).length;
-          const failCount = results.length - successCount;
-
-          if (failCount === 0) {
-            ElMessage({ type: "success", message: `成功删除 ${successCount} 条记录` });
+      deleteDomainRecord({ id: id_list, domain: params.domain })
+        .then((resp: any) => {
+          if (resp.code === 200) {
+            ElMessage({ type: "success", message: "删除成功" });
             fetchData();
           } else {
-            ElMessage({
-              type: "warning",
-              message: `成功删除 ${successCount} 条记录，${failCount} 条删除失败`
-            });
-            fetchData();
+            ElMessage({ type: "error", message: resp.msg || "删除失败" });
           }
         })
         .catch((error) => {
@@ -533,6 +532,22 @@ function handleBatchDelete() {
         });
     })
     .catch(() => {});
+}
+
+function handleSyncRecord() {
+  syncDomainRecord({ domain: params.domain })
+    .then((resp: any) => {
+      if (resp.code === 200) {
+        ElMessage({ type: "success", message: "同步成功" });
+        fetchData();
+      } else {
+        ElMessage({ type: "error", message: resp.msg || "同步失败" });
+      }
+    })
+    .catch((error) => {
+      console.error("Error syncing record:", error);
+      ElMessage({ type: "error", message: "同步失败" });
+    })
 }
 </script>
 

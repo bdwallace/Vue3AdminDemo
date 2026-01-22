@@ -19,9 +19,11 @@
           <el-button type="primary" :icon="Plus" @click="handleAdd">
             新增账号
           </el-button>
-          <el-button type="success" :icon="Refresh" @click="handleSyncAll">
-            数据同步
-          </el-button>
+          <el-tooltip content="由于安全原因，暂无法提供数据同步功能" placement="top">
+            <el-button type="success" :icon="Refresh" @click="handleSyncAll" disabled>
+              数据同步
+            </el-button>
+          </el-tooltip>
         </div>
       </div>
 
@@ -35,6 +37,7 @@
           :header-cell-style="{ background: '#eef1f6', color: '#606266' }"
           v-loading="loading"
         >
+        <el-table-column type="selection" width="55" align="center"></el-table-column>
           <el-table-column prop="supplier_name" label="供应商名称" fit align="center" sortable>
             <template #default="{ row }">
               <el-image v-if="row.supplier_name==='GoDaddy'" :src="godaddyImage" style="height: 50px;width: 110px"></el-image>
@@ -59,15 +62,17 @@
           <el-table-column label="操作" width="280" fixed="right" align="center">
             <template #default="{ row }">
               <div class="action-buttons">
-                    <el-button class="action-btn" type="success" text :icon="Check" @click="handleCheck(row)">
+                <el-tooltip content="由于安全原因，暂无法提供检测功能" placement="top">
+                    <el-button class="action-btn" type="success" text :icon="Check" @click="handleCheck(row)" disabled>
                         检测
                     </el-button>
-                    <el-button class="action-btn" type="primary" text :icon="Edit" @click="handleEdit(row)">
-                        编辑
-                    </el-button>
-                    <el-button class="action-btn" type="danger" text :icon="Delete" @click="handleDelete(row)">
-                        删除
-                    </el-button>
+                </el-tooltip>
+                <el-button class="action-btn" type="primary" text :icon="Edit" @click="handleEdit(row)">
+                    编辑
+                </el-button>
+                <el-button class="action-btn" type="danger" text :icon="Delete" @click="handleDelete(row)">
+                    删除
+                </el-button>
                   
                   
                 </div>
@@ -108,10 +113,10 @@
           <el-input v-model="accountForm.supplier_account" placeholder="请输入账号" style="width: 85%"></el-input>
         </el-form-item>
         <el-form-item label="Access Key" >
-          <el-input v-model="accountForm.access_key" placeholder="请输入Access Key" style="width: 85%"></el-input>
+          <el-input v-model="accountForm.access_key" placeholder="请输入Access Key" style="width: 85%" disabled></el-input>
           </el-form-item>
           <el-form-item label="Access Secret" >
-            <el-input v-model="accountForm.access_secret" placeholder="请输入Access Secret" style="width: 85%"></el-input>
+            <el-input v-model="accountForm.access_secret" placeholder="请输入Access Secret" style="width: 85%" disabled></el-input>
           </el-form-item>
         <el-form-item label="备注">
           <el-input v-model="accountForm.remark" type="textarea" :rows="3" style="width: 85%"></el-input>

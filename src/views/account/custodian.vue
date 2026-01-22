@@ -92,7 +92,7 @@
         <el-form-item label="托管商名称" prop="custodian_name">
           <el-select v-model="accountForm.custodian_name" placeholder="请选择托管商" style="width: 85%">
             <el-option label="阿里云" value="Aliyun"></el-option>
-            <el-option label="Cloudflare" value="Cloudflare"></el-option>
+            <el-option label="Cloudflare" value="Cloudflare" disabled></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="托管商账号" prop="account">

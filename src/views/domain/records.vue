@@ -83,7 +83,11 @@
             {{ row.business_line || "-" }}
           </template>
         </el-table-column>
-        <el-table-column prop="rr" label="主机记录" fit align="center" sortable></el-table-column>
+        <el-table-column prop="rr" label="主机记录" fit align="center" sortable>
+            <template #default="{ row }">
+              <b style="color: #00a1c9">{{ row.rr || "-" }}</b>
+          </template>
+        </el-table-column>
         <el-table-column prop="domain" label="主域名" fit align="center" sortable>
           <template #default="{ row }">
             {{ params.domain }}
@@ -94,7 +98,11 @@
             <el-tag>{{ row.type }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="value" label="记录值" fit align="center" sortable show-overflow-tooltip></el-table-column>
+        <el-table-column prop="value" label="记录值" fit align="center" sortable show-overflow-tooltip>
+          <template #default="{ row }">
+            <b>{{ row.value || "-" }}</b>
+          </template>
+        </el-table-column>
         <el-table-column prop="ttl" label="TTL" fit align="center" sortable></el-table-column>
         <el-table-column prop="priority" label="优先级" fit align="center" sortable></el-table-column>
         <el-table-column prop="remark" label="备注" fit align="center" show-overflow-tooltip>
@@ -154,11 +162,10 @@
           <el-form-item label="记录类型:" :label-width="formLabelWidth" prop="type">
             <el-select v-model="recordForm.type" placeholder="请选择记录类型" style="width: 95%">
               <el-option label="A" value="A"></el-option>
-              <el-option label="AAAA" value="AAAA"></el-option>
               <el-option label="CNAME" value="CNAME"></el-option>
-              <el-option label="MX" value="MX"></el-option>
               <el-option label="TXT" value="TXT"></el-option>
-              <el-option label="NS" value="NS"></el-option>
+              <el-option label="SOA" value="SOA"></el-option>
+              <el-option label="MX" value="MX"></el-option>
               <el-option label="SRV" value="SRV"></el-option>
             </el-select>
           </el-form-item>

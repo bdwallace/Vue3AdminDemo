@@ -7,13 +7,13 @@
           <el-tag size="default">{{ domain_info.domain }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item label="产品：" align="left">
-          {{ domain_info.product }}
+          {{ domain_info.product}}
         </el-descriptions-item>
         <el-descriptions-item label="托管商：" align="left">
-          {{ domain_info.custodian.custodian_account }}
+          {{ domain_info.custodian?.custodian_account || "-" }}
         </el-descriptions-item>
         <el-descriptions-item label="供应商：" align="left">
-          {{ domain_info.supplier.supplier_account }}
+          {{ domain_info.supplier?.supplier_account || "-" }}
         </el-descriptions-item>
         <el-descriptions-item label="使用状态：" align="left">
           <el-tag size="default" v-if="domain_info.use_status === '使用中'" type="success">使用中</el-tag>
@@ -170,7 +170,7 @@
             </el-select>
           </el-form-item>
           <el-form-item label="记录值:" :label-width="formLabelWidth" prop="value">
-            <el-input v-model="recordForm.value" type="textarea" :rows="3" style="width: 95%"></el-input>
+            <el-input v-model="recordForm.value" type="textarea" :rows="4" style="width: 95%" placeholder="请输入记录值, 支持输入多个记录值, 每行一个记录值"></el-input>
           </el-form-item>
           <el-form-item label="TTL:" :label-width="formLabelWidth" prop="ttl">
             <el-input-number

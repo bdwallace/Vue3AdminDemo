@@ -40,7 +40,9 @@
           <el-table-column prop="product" label="产品" width="100" align="center" sortable></el-table-column>
           <el-table-column prop="domain" label="域名" fit align="center" sortable>
             <template #default="{ row }">
-              <b style="color: #00a1c9;cursor: pointer;" @click="handleRecordSetting(row)">{{ row.domain || "-" }}</b>
+              <b v-if="row.custodian" style="color: #00a1c9;cursor: pointer;" @click="handleRecordSetting(row)" >{{ row.domain || "-" }}</b>
+              <b v-else >{{ row.domain || "-" }}</b>
+              
             </template>
           </el-table-column>
           <el-table-column prop="supplier" label="供应商" fit align="center" sortable>
@@ -120,6 +122,7 @@
                   text
                   :icon="Setting"
                   @click="handleRecordSetting(row)"
+                  :disabled="!row.custodian"
                 >
                   解析
                 </el-button>

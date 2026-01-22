@@ -184,7 +184,7 @@
             <el-input-number
               v-model="recordForm.priority"
               :min="1"
-              :max="100"
+              :max="50"
               :disabled="recordForm.type !== 'MX'"
               style="width: 95%"
             ></el-input-number>

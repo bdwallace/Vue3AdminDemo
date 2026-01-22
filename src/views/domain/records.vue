@@ -105,6 +105,7 @@
         </el-table-column>
         <el-table-column prop="ttl" label="TTL" fit align="center" sortable></el-table-column>
         <el-table-column prop="priority" label="优先级" fit align="center" sortable></el-table-column>
+        <el-table-column prop="weight" label="权重" fit align="center" sortable></el-table-column>
         <el-table-column prop="remark" label="备注" fit align="center" show-overflow-tooltip>
         </el-table-column>
         <el-table-column prop="update_time" label="更新时间" fit align="center" sortable></el-table-column>
@@ -180,17 +181,23 @@
               style="width: 95%"
             ></el-input-number>
           </el-form-item>
-          <el-form-item label="优先级:" :label-width="formLabelWidth" prop="priority">
+          <el-form-item label="优先级:" :label-width="formLabelWidth" prop="priority" v-if="recordForm.type==='MX'">
             <el-input-number
               v-model="recordForm.priority"
               :min="1"
               :max="50"
-              :disabled="recordForm.type !== 'MX'"
               style="width: 95%"
             ></el-input-number>
-            <span style="font-size: 12px; color: #999; margin-left: 8px">
-              (仅MX记录需要设置)
-            </span>
+
+          </el-form-item>
+          <el-form-item label="权重:" :label-width="formLabelWidth" prop="weight" v-if="recordForm.type==='CNAME'">
+            <el-input-number
+              v-model="recordForm.weight"
+              :min="1"
+              :max="100"
+              style="width: 95%"
+            ></el-input-number>
+
           </el-form-item>
           <el-form-item label="业务线:" :label-width="formLabelWidth" prop="business_line">
             <el-select
@@ -294,6 +301,7 @@ const recordForm = ref({
   value: "",
   ttl: 600,
   priority: 10,
+  weight: 1,
   business_line: "",
   remark: ""
 });

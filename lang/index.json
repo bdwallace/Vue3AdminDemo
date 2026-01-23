@@ -63,10 +63,7 @@
 		"zh-cn": "新增 ",
 		"en": "New"
 	},
-	"e5pwch5": {
-		"zh-cn": " 条问题，",
-		"en": "question,"
-	},
+
 	"dxf8ox5": {
 		"zh-cn": " 条已解决",
 		"en": "Article has been resolved"
@@ -115,22 +112,7 @@
 		"zh-cn": "AB运维平台",
 		"en": "AB operation and maintenance platform"
 	},
-	"gjm02": {
-		"zh-cn": "序号",
-		"en": "serial number"
-	},
-	"jhvlbs4": {
-		"zh-cn": "需求人数",
-		"en": "Number of people required"
-	},
-	"d7o7i54": {
-		"zh-cn": "提问数量",
-		"en": "Number of questions"
-	},
-	"hqk4nj4": {
-		"zh-cn": "解决数量",
-		"en": "solve quantity"
-	},
+
 	"bz2s1p4": {
 		"zh-cn": "审批管理",
 		"en": "Approval management"
@@ -151,30 +133,7 @@
 		"zh-cn": "操作日志",
 		"en": "Operation log"
 	},
-	"mcob2": {
-		"zh-cn": "网络",
-		"en": "network"
-	},
-	"ld3eu3": {
-		"zh-cn": "路由表",
-		"en": "routing table"
-	},
-	"g8ap2": {
-		"zh-cn": "子网",
-		"en": "subnet"
-	},
-	"xyu84m5": {
-		"zh-cn": "云厂商账号",
-		"en": "Cloud vendor account"
-	},
-	"c65pr3": {
-		"zh-cn": "中间件",
-		"en": "middleware"
-	},
-	"2bee3": {
-		"zh-cn": "S3桶",
-		"en": "S3 bucket"
-	},
+
 	"bb7lxg4": {
 		"zh-cn": "回到顶部",
 		"en": "back to top"
@@ -439,46 +398,12 @@
 		"zh-cn": "晚上好",
 		"en": "good evening"
 	},
-	"d8dgtb4": {
-		"zh-cn": "新建项目",
-		"en": "New project"
-	},
-	"93de9a8": {
-		"zh-cn": "创建一个新的项目",
-		"en": "Create a new project"
-	},
-	"by9mks4": {
-		"zh-cn": "导入资产",
-		"en": "Import assets"
-	},
-	"vgufr49": {
-		"zh-cn": "导入已有云资源资产",
-		"en": "Import existing cloud resource assets"
-	},
-	"94yl8w5": {
-		"zh-cn": "可观测视图",
-		"en": "observable view"
-	},
-	"kyu1hp9": {
-		"zh-cn": "查看平台可观测能力",
-		"en": "View platform observability capabilities"
-	},
+
 	"gar1ro4": {
 		"zh-cn": "系统设置",
 		"en": "System settings"
 	},
-	"tte5ti6": {
-		"zh-cn": "管理系统配置",
-		"en": "Manage system configuration"
-	},
-	"yqx1vuq": {
-		"zh-cn": "平台升级至 v2.5.0，提升可观测与告警联动能力。",
-		"en": "The platform was upgraded to v2.5.0 to improve observability and alarm linkage capabilities."
-	},
-	"v4hnpim": {
-		"zh-cn": "新增多云账号接入向导，支持更精细的权限模型。",
-		"en": "A new multi-cloud account access wizard is added to support a more refined permission model."
-	},
+
 	"96b42fe": {
 		"zh-cn": "欢迎使用本平台，祝工作顺利。",
 		"en": "Welcome to use this platform and wish you good luck in your work."
@@ -491,10 +416,7 @@
 		"zh-cn": "，企业控制台 ",
 		"en": ", Enterprise Console"
 	},
-	"4lbz64p": {
-		"zh-cn": " 统一的运维管理平台，助力企业提升效率与稳定性。 ",
-		"en": "A unified operation and maintenance management platform helps enterprises improve efficiency and stability."
-	},
+
 	"ccwk2c4": {
 		"zh-cn": "开始使用",
 		"en": "Get started"
@@ -503,82 +425,17 @@
 		"zh-cn": "查看文档",
 		"en": "View documentation"
 	},
-	"aw5wsb4": {
-		"zh-cn": "关键指标",
-		"en": "key indicators"
-	},
-	"jq8p104": {
-		"zh-cn": "项目数量",
-		"en": "Number of items"
-	},
-	"dcio434": {
-		"zh-cn": "服务数量",
-		"en": "Service quantity"
-	},
-	"ab3slb7": {
-		"zh-cn": "24 小时告警",
-		"en": "24 hours alarm"
-	},
-	"xierzpl": {
-		"zh-cn": "这里将展示项目、服务与告警等关键运营指标。",
-		"en": "Key operational indicators such as projects, services and alarms will be displayed here."
-	},
+
 	"cp4a6a4": {
 		"zh-cn": "快速指引",
 		"en": "quick guide"
 	},
-	"s81dvbh": {
-		"zh-cn": "配置用户与权限，确保团队边界清晰。",
-		"en": "Configure users and permissions to ensure clear team boundaries."
-	},
-	"4an13ii": {
-		"zh-cn": "创建环境与资源，实现清晰的资源管控。",
-		"en": "Create environments and resources to achieve clear resource management and control."
-	},
-	"r5xd08g": {
-		"zh-cn": "接入监控与告警，构建稳定性体系。",
-		"en": "Access monitoring and alarms to build a stable system."
-	},
-	"2v1jc6i": {
-		"zh-cn": "建议遵循企业安全与合规要求进行配置。",
-		"en": "It is recommended to configure according to enterprise security and compliance requirements."
-	},
-	"gamma74": {
-		"zh-cn": "系统状态",
-		"en": "System status"
-	},
-	"cv19q3": {
-		"zh-cn": "可用性",
-		"en": "Availability"
-	},
-	"gxwp2": {
-		"zh-cn": "延迟",
-		"en": "delay"
-	},
-	"is6t2": {
-		"zh-cn": "正常",
-		"en": "normal"
-	},
-	"f3oc2": {
-		"zh-cn": "告警",
-		"en": "Alarm"
-	},
+
 	"k4g1": {
 		"zh-cn": "无",
 		"en": "None"
 	},
-	"f5pp63h": {
-		"zh-cn": "实时数据接入后将自动更新系统状态。",
-		"en": "After real-time data is accessed, the system status will be automatically updated."
-	},
-	"c9jsor4": {
-		"zh-cn": "平台公告",
-		"en": "Platform announcement"
-	},
-	"dcrnng4": {
-		"zh-cn": "暂无公告",
-		"en": "No announcement yet"
-	},
+
 	"cp4hxf4": {
 		"zh-cn": "快速操作",
 		"en": "Quick operation"

@@ -9,7 +9,7 @@
             {{ greeting }}，企业控制台
           </h1>
           <p class="hero__subtitle">
-            统一的运维管理平台，助力企业提升效率与稳定性。
+            覆盖域名管理、解析记录、账号体系与操作审计的一体化平台。
           </p>
           <div class="hero__cta">
             <el-button type="primary" size="large">开始使用</el-button>
@@ -21,14 +21,14 @@
       <!-- Overview / Guide / Status -->
       <el-col :xs="24" :md="8" class="mb-16">
         <el-card class="pill-card" shadow="never">
-          <div class="pill-card__title">关键指标</div>
+          <div class="pill-card__title">关键概览</div>
           <ul class="pill-list">
-            <li><span>项目数量</span><strong>-</strong></li>
-            <li><span>服务数量</span><strong>-</strong></li>
-            <li><span>24 小时告警</span><strong>-</strong></li>
+            <li><span>域名总数</span><strong>-</strong></li>
+            <li><span>解析记录</span><strong>-</strong></li>
+            <li><span>账号数量</span><strong>-</strong></li>
           </ul>
           <el-divider />
-          <div class="note">这里将展示项目、服务与告警等关键运营指标。</div>
+          <div class="note">后续将接入实时数据，展示域名、解析与账号的核心指标。</div>
         </el-card>
       </el-col>
 
@@ -36,12 +36,12 @@
         <el-card class="pill-card" shadow="never">
           <div class="pill-card__title">快速指引</div>
           <ol class="guide-list">
-            <li>配置用户与权限，确保团队边界清晰。</li>
-            <li>创建环境与资源，实现清晰的资源管控。</li>
-            <li>接入监控与告警，构建稳定性体系。</li>
+            <li>维护供应商与托管商账号，打通管理入口。</li>
+            <li>新增域名并配置解析记录，保障业务可用。</li>
+            <li>通过操作日志进行审计与追溯，确保合规。</li>
           </ol>
           <el-divider />
-          <div class="note">建议遵循企业安全与合规要求进行配置。</div>
+          <div class="note">建议结合权限与流程进行分工管理。</div>
         </el-card>
       </el-col>
 
@@ -130,10 +130,10 @@ const greeting = computed(() => {
 
 /** Quick actions - Chinese only */
 const quickActions = [
-  { text: "新建域名", plain: true, title: "创建一个新的域名" },
-  { text: "域名审核", plain: true, title: "域名审核" },
-  { text: "域名续费", plain: true, title: "域名续费" },
-  { text: "域名删除", plain: true, title: "域名删除" }
+  { text: "域名管理", plain: true, title: "域名管理" },
+  { text: "解析记录", plain: true, title: "解析记录" },
+  { text: "供应商账号", plain: true, title: "供应商账号" },
+  { text: "托管商账号", plain: true, title: "托管商账号" }
 ];
 
 /** Timeline - Already Chinese */
@@ -278,7 +278,7 @@ const timeline = [
 
 .quick-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  // grid-template-columns: 1fr 1fr;
   gap: 12px;
 
   .qa-btn {

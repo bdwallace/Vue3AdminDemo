@@ -104,7 +104,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="ttl" label="TTL" fit align="center" sortable></el-table-column>
-        <el-table-column prop="priority" label="优先级" fit align="center" sortable></el-table-column>
+        <el-table-column prop="priority" label="优先级" fit align="center" sortable v-if="recordForm.type==='MX'"></el-table-column>
         <el-table-column prop="weight" label="权重" fit align="center" sortable></el-table-column>
         <el-table-column prop="remark" label="备注" fit align="center" show-overflow-tooltip>
         </el-table-column>

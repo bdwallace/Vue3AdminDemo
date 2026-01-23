@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { match } from "pinyin-pro";
-import { useI18n } from "vue-i18n";
 import { getConfig } from "@/config";
 import { useRouter } from "vue-router";
 import SearchResult from "./SearchResult.vue";
@@ -35,6 +34,7 @@ const LOCALEHISTORYKEY = "menu-search-history";
 const LOCALECOLLECTKEY = "menu-search-collect";
 
 const keyword = ref("");
+const locale = computed(() => window.localStorage.getItem("lang") || "zh-cn");
 const resultRef = ref();
 const historyRef = ref();
 const scrollbarRef = ref();
@@ -111,7 +111,7 @@ function search() {
       ? menu.meta?.title
           .toLocaleLowerCase()
           .includes(keyword.value.toLocaleLowerCase().trim()) ||
-        (locale.value === "zh" &&
+        (locale.value.startsWith("zh") &&
           !isAllEmpty(
             match(
               menu.meta?.title.toLocaleLowerCase(),

@@ -6,7 +6,7 @@ export default {
   component: Layout,
   redirect: "/domain/list",
   meta: {
-    icon: "IF-icon-domain",
+    icon: "IF-icon-yumingguanli",
     title: "域名管理",
     rank: 1
   },
@@ -16,7 +16,7 @@ export default {
       name: "DomainList",
       component: () => import("@/views/domain/index.vue"),
       meta: {
-        icon: "IF-icon-domain",
+        icon: "IF-icon-yumingguanli",
         title: "域名管理"
       }
     },

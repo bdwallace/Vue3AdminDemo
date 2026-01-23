@@ -64,7 +64,7 @@ const { title} = useNav();
       font-size: 18px;
       font-weight: 600;
       line-height: 32px;
-      color: var(--pure-theme-sub-menu-active-text);
+      color: var(--pure-theme-sidebar-logo-text, var(--pure-theme-menu-text));
       white-space: nowrap;
     }
   }

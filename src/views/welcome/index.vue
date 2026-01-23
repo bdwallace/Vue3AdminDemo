@@ -4,95 +4,54 @@
       <!-- Hero -->
       <el-col :span="24" class="mb-16">
         <el-card class="hero" shadow="never">
-          <div class="hero__badge" aria-hidden="true">欢迎使用</div>
+          <div class="hero__badge" aria-hidden="true">{{ greeting }}</div>
           <h1 class="hero__title">
-            {{ greeting }}，企业控制台
+           欢迎使用新域名系统
           </h1>
           <p class="hero__subtitle">
-            覆盖域名管理、解析记录、账号体系与操作审计的一体化平台。
+            企业级域名与 DNS 统一治理平台
           </p>
-          <div class="hero__cta">
-            <el-button type="primary" size="large">开始使用</el-button>
-            <el-button size="large">查看文档</el-button>
+        </el-card>
+      </el-col>
+
+      <!-- Charts -->
+      <el-col :xs="24" :md="12" class="mb-16">
+        <el-card shadow="never" class="panel panel-hero chart-card">
+          <div class="chart-wrap chart-wrap--single">
+            <div ref="domainChartRef" class="chart-canvas" aria-label="域名资产分布统计图"></div>
           </div>
         </el-card>
       </el-col>
 
-      <!-- Overview / Guide / Status -->
-      <el-col :xs="24" :md="8" class="mb-16">
-        <el-card class="pill-card" shadow="never">
-          <div class="pill-card__title">关键概览</div>
-          <ul class="pill-list">
-            <li><span>域名总数</span><strong>-</strong></li>
-            <li><span>解析记录</span><strong>-</strong></li>
-            <li><span>账号数量</span><strong>-</strong></li>
-          </ul>
-          <el-divider />
-          <div class="note">后续将接入实时数据，展示域名、解析与账号的核心指标。</div>
-        </el-card>
-      </el-col>
-
-      <el-col :xs="24" :md="8" class="mb-16">
-        <el-card class="pill-card" shadow="never">
-          <div class="pill-card__title">快速指引</div>
-          <ol class="guide-list">
-            <li>维护供应商与托管商账号，打通管理入口。</li>
-            <li>新增域名并配置解析记录，保障业务可用。</li>
-            <li>通过操作日志进行审计与追溯，确保合规。</li>
-          </ol>
-          <el-divider />
-          <div class="note">建议结合权限与流程进行分工管理。</div>
-        </el-card>
-      </el-col>
-
-      <el-col :xs="24" :md="8" class="mb-16">
-        <el-card class="pill-card" shadow="never">
-          <div class="pill-card__title">系统状态</div>
-          <div class="status-wrap">
-            <div class="status-item">
-              <span>可用性</span>
-              <el-progress :percentage="100" :stroke-width="10" :show-text="false" />
-            </div>
-            <div class="status-item">
-              <span>延迟</span>
-              <el-tag type="success">正常</el-tag>
-            </div>
-            <div class="status-item">
-              <span>告警</span>
-              <el-tag type="info">无</el-tag>
-            </div>
+      <el-col :xs="24" :md="12" class="mb-16">
+        <el-card shadow="never" class="panel panel-hero chart-card">
+          <div class="chart-wrap chart-wrap--single">
+            <div ref="dnsChartRef" class="chart-canvas" aria-label="DNS托管商分布统计图"></div>
           </div>
-          <el-divider />
-          <div class="note">实时数据接入后将自动更新系统状态。</div>
         </el-card>
       </el-col>
 
-      <!-- Announcements + Quick Actions -->
+      <!-- Todos + Quick Actions -->
       <el-col :xs="24" :lg="16" class="mb-16">
-        <el-card shadow="never" class="panel">
-          <template #header>
-            <div class="card-header"><span>平台公告</span></div>
-          </template>
-          <template v-if="timeline.length">
-            <el-timeline>
-              <el-timeline-item
-                v-for="(tItem, i) in timeline"
-                :key="i"
-                :timestamp="tItem.time"
-                placement="top"
-              >
-                <p class="timeline-text">{{ tItem.text }}</p>
-              </el-timeline-item>
-            </el-timeline>
-          </template>
-          <el-empty v-else description="暂无公告" />
+        <el-card shadow="never" class="panel panel-hero todo-panel">
+          <div class="card-header"><span>待处理事项</span></div>
+          <el-divider />
+          <el-table :data="pendingTasks" size="small" class="todo-table" :show-header="false" >
+            <el-table-column prop="text" label="事项" />
+            <el-table-column label="操作" width="120" align="center">
+              <template #default="{ row }">
+                  <el-icon @click="goTo(row.path)"><ArrowRight /></el-icon>
+
+              </template>
+            </el-table-column>
+          </el-table>
         </el-card>
       </el-col>
 
       <el-col :xs="24" :lg="8" class="mb-16">
-        <el-card shadow="never" class="panel">
+        <el-card shadow="never" class="panel panel-hero">
           <template #header>
-            <div class="card-header"><span>快速操作</span></div>
+            <div class="card-header"><span>快捷操作</span></div>
           </template>
           <div class="quick-actions">
             <el-button v-for="(a, i) in quickActions"
@@ -102,6 +61,7 @@
               round
               class="qa-btn"
               :title="a.title"
+              @click="goTo(a.path)"
             >
               {{ a.text }}
             </el-button>
@@ -114,7 +74,11 @@
 
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import echarts from "@/plugins/echarts";
+import type { EChartsType } from "echarts/core";
+import { useRouter } from "vue-router";
+import { ArrowRight } from "@element-plus/icons-vue";
 
 /** Greeting based on time */
 const greeting = computed(() => {
@@ -130,18 +94,141 @@ const greeting = computed(() => {
 
 /** Quick actions - Chinese only */
 const quickActions = [
-  { text: "域名管理", plain: true, title: "域名管理" },
-  { text: "解析记录", plain: true, title: "解析记录" },
-  { text: "供应商账号", plain: true, title: "供应商账号" },
-  { text: "托管商账号", plain: true, title: "托管商账号" }
+  { text: "添加账号", plain: true, title: "添加账号", path: "/account/supplier" },
+  { text: "域名管理", plain: true, title: "域名管理", path: "/domain" },
+  { text: "操作日志", plain: true, title: "操作日志", path: "/auditlog/list" },
 ];
 
-/** Timeline - Already Chinese */
-const timeline = [
-  { time: "2025-09-20", text: "平台升级至 v2.5.0，提升可观测与告警联动能力。" },
-  { time: "2025-09-15", text: "新增多云账号接入向导，支持更精细的权限模型。" },
-  { time: "2025-09-01", text: "欢迎使用本平台，祝工作顺利。" }
+const router = useRouter();
+
+const domainChartRef = ref<HTMLDivElement | null>(null);
+const dnsChartRef = ref<HTMLDivElement | null>(null);
+let domainChart: EChartsType | null = null;
+let dnsChart: EChartsType | null = null;
+
+const goTo = (path: string) => {
+  if (!path) return;
+  router.push(path);
+};
+
+const domainAssets = [
+  { name: "godaddy账号", count: 1},
+  { name: "Name账号", count: 11},
 ];
+
+const dnsProviders = [
+  { name: "阿里云", count: 1, },
+  { name: "Cloudflare", count: 1 },
+  { name: "dns.com", count: 1},
+];
+
+const pendingTasks = [
+  { text: "example.com 将与14天过期", path: "/domain" },
+  { text: "spencer.com 将与30天过期", path: "/domain" },
+  { text: "test.com 将与30天过期", path: "/domain" },
+];
+
+const getHeroBackground = () => {
+  const styles = getComputedStyle(document.documentElement);
+  const primaryLight = styles.getPropertyValue("--el-color-primary-light-9").trim() || "#edf4ff";
+  const bgColor = styles.getPropertyValue("--el-bg-color").trim() || "#ffffff";
+  return new echarts.graphic.LinearGradient(0, 0, 1, 1, [
+    { offset: 0, color: primaryLight },
+    { offset: 0.6, color: bgColor },
+    { offset: 1, color: bgColor }
+  ]);
+};
+
+const resolveColor = (value: string) => {
+  if (!value) return value;
+  const match = value.match(/var\((--[^)]+)\)/);
+  if (!match) return value;
+  return getComputedStyle(document.documentElement).getPropertyValue(match[1]).trim() || value;
+};
+
+const getTextColor = () => {
+  const styles = getComputedStyle(document.documentElement);
+  return styles.getPropertyValue("--el-text-color-regular").trim() || "#606266";
+};
+
+const getPieOption = (title: string, items: { name: string; count: number}[]) => ({
+  tooltip: { trigger: "item" },
+  backgroundColor: "rgba(0, 0, 0, 0)",
+  legend: { left: 'left',orient: 'vertical', top: 20,textStyle: { color: getTextColor() }},
+  toolbox: {
+    show: true,
+    feature: {
+      mark: {show:true},
+      dataView: {show: true, readOnly: false},
+      restore: {show: true},
+      saveAsImage: {show: true}
+    }
+  },
+  title: {
+    text: title,
+    left: 'center',
+    top: 20,
+    textStyle: { color: getTextColor() }
+  },
+  series: [
+    {
+      name: title,
+      type: 'pie',
+      radius: '55%',
+      center: ['60%', '60%'],
+      data: items.map(item => ({ value: item.count, name: item.name })),
+      roseType: 'radius',
+      label: {
+        show: true,
+        formatter: '{b}: {c}',
+        color: getTextColor(),
+        textStyle: { color: getTextColor() }
+      },
+      labelLine: {
+        lineStyle: {
+          color: getTextColor()
+        },
+        smooth: 0.2,
+        length: 10,
+        length2: 20
+      },
+      animationType: 'scale',
+      animationEasing: 'elasticOut',
+      animationDelay: function (idx) {
+        return Math.random() * 200;
+      }
+    }
+  ]
+});
+
+const initCharts = () => {
+  if (domainChartRef.value) {
+    domainChart = echarts.init(domainChartRef.value);
+    domainChart.setOption(getPieOption("域名资产分布", domainAssets));
+  }
+  if (dnsChartRef.value) {
+    dnsChart = echarts.init(dnsChartRef.value);
+    dnsChart.setOption(getPieOption("DNS托管商分布", dnsProviders));
+  }
+};
+
+const resizeCharts = () => {
+  domainChart?.resize();
+  dnsChart?.resize();
+};
+
+onMounted(() => {
+  initCharts();
+  window.addEventListener("resize", resizeCharts);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", resizeCharts);
+  domainChart?.dispose();
+  dnsChart?.dispose();
+  domainChart = null;
+  dnsChart = null;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -162,7 +249,7 @@ const timeline = [
   background:
     linear-gradient(135deg, var(--el-color-primary-light-9), transparent 60%),
     var(--el-bg-color);
-  padding: 28px 24px;
+
 
   &__badge {
     display: inline-block;
@@ -214,6 +301,7 @@ const timeline = [
 
   &__title {
     font-weight: 600;
+    font-size: 20px;
     margin-bottom: 10px;
   }
 }
@@ -239,11 +327,20 @@ const timeline = [
 }
 
 .guide-list {
-  padding-left: 18px;
+  list-style: none;
+  padding: 0;
   margin: 0;
 
   li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     padding: 6px 0;
+  }
+
+  strong {
+    margin-left: auto;
+    font-weight: 600;
   }
 }
 
@@ -271,20 +368,114 @@ const timeline = [
   border: 1px solid var(--el-border-color);
 }
 
-.timeline-text {
-  font-size: 13px;
-  color: var(--el-text-color-regular);
+.panel-hero {
+  background:
+    linear-gradient(135deg, var(--el-color-primary-light-9), transparent 60%),
+    var(--el-bg-color);
 }
 
 .quick-actions {
   display: grid;
-  // grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 12px;
 
   .qa-btn {
     width: 100%;
     justify-content: center;
   }
+
+  .qa-btn + .qa-btn {
+    margin-left: 0;
+  }
+}
+
+/* ---------- Charts ---------- */
+.card-header--center {
+  justify-content: center;
+}
+
+.chart-card {
+  min-height: 300px;
+}
+
+.chart-wrap {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 20px;
+  min-height: 280px;
+}
+
+.chart-wrap--single {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.chart-legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+
+  li {
+    display: grid;
+    grid-template-columns: 12px 1fr auto;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid var(--el-border-color);
+    background: var(--el-bg-color);
+  }
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-text {
+  font-size: 13px;
+  color: var(--el-text-color-regular);
+}
+
+.legend-count {
+  font-weight: 600;
+}
+
+.chart-canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* ---------- Todo ---------- */
+.todo-table {
+  width: 100%;
+  --el-table-bg-color: transparent;
+  --el-table-tr-bg-color: transparent;
+  --el-table-header-bg-color: transparent;
+}
+
+.todo-btn {
+  border-radius: 8px;
+}
+
+:deep(.todo-table .el-table__inner-wrapper),
+:deep(.todo-table .el-table__body-wrapper),
+:deep(.todo-table .el-table__header-wrapper),
+:deep(.todo-table .el-table__body),
+:deep(.todo-table .el-table__header) {
+  background: transparent;
+}
+
+:deep(.todo-table .el-table__row),
+:deep(.todo-table .el-table__cell) {
+  background: transparent;
 }
 
 /* ---------- Global tweak ---------- */

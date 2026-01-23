@@ -33,14 +33,14 @@
 
       <!-- Todos + Quick Actions -->
       <el-col :xs="24" :lg="16" class="mb-16">
-        <el-card shadow="never" class="panel panel-hero todo-panel">
+        <el-card shadow="never" class="panel panel-hero " style="min-height: 245px;">
           <div class="card-header"><span>待处理事项</span></div>
-          <el-divider />
+          <el-divider style="margin: 10px 0;" />
           <el-table :data="pendingTasks" size="small" class="todo-table" :show-header="false" >
             <el-table-column prop="text" label="事项" />
             <el-table-column label="操作" width="120" align="center">
               <template #default="{ row }">
-                  <el-icon @click="goTo(row.path)"><ArrowRight /></el-icon>
+                  <el-icon style="cursor: pointer;" @click="goTo(row.path)"><ArrowRight /></el-icon>
 
               </template>
             </el-table-column>
@@ -112,8 +112,12 @@ const goTo = (path: string) => {
 };
 
 const domainAssets = [
-  { name: "godaddy账号", count: 1},
-  { name: "Name账号", count: 11},
+  { name: "godaddy账号1", count: 1},
+  { name: "godaddy账号2", count: 2},
+  { name: "godaddy账号3", count: 3},
+  { name: "Name账号1", count: 1},
+  { name: "Name账号2", count: 1},
+  { name: "Name账号3", count: 3},
 ];
 
 const dnsProviders = [

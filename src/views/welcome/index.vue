@@ -9,7 +9,7 @@
            欢迎使用新域名系统
           </h1>
           <p class="hero__subtitle">
-            企业级域名与 DNS 统一治理平台
+            海量域名与 DNS 统一治理平台
           </p>
         </el-card>
       </el-col>
@@ -79,6 +79,8 @@ import echarts from "@/plugins/echarts";
 import type { EChartsType } from "echarts/core";
 import { useRouter } from "vue-router";
 import { ArrowRight } from "@element-plus/icons-vue";
+import { getIndexData } from "@/api/index";
+import { ElMessage } from "element-plus";
 
 /** Greeting based on time */
 const greeting = computed(() => {
@@ -111,26 +113,35 @@ const goTo = (path: string) => {
   router.push(path);
 };
 
-const domainAssets = [
+const domainAssets = ref([
   { name: "godaddy账号1", count: 1},
   { name: "godaddy账号2", count: 2},
   { name: "godaddy账号3", count: 3},
   { name: "Name账号1", count: 1},
   { name: "Name账号2", count: 1},
   { name: "Name账号3", count: 3},
-];
+]);
 
-const dnsProviders = [
+const dnsProviders = ref([
   { name: "阿里云", count: 1, },
   { name: "Cloudflare", count: 1 },
   { name: "dns.com", count: 1},
-];
+]);
 
-const pendingTasks = [
-  { text: "example.com 将与14天过期", path: "/domain" },
-  { text: "spencer.com 将与30天过期", path: "/domain" },
-  { text: "test.com 将与30天过期", path: "/domain" },
-];
+const pendingTasks = ref([
+  { text: "example.com 将于14天过期", path: "/domain" },
+  { text: "spencer.com 将于30天过期", path: "/domain" },
+  { text: "test.com 将于30天过期", path: "/domain" },
+  { text: "test.com 将于30天过期", path: "/domain" },
+  { text: "test.com 将于30天过期", path: "/domain" },
+  { text: "test.com 将于30天过期", path: "/domain" },
+  { text: "test.com 将于30天过期", path: "/domain" },
+  { text: "test.com 将于30天过期", path: "/domain" },
+  { text: "test.com 将于30天过期", path: "/domain" },
+  { text: "test.com 将于30天过期", path: "/domain" },
+  { text: "test.com 将于30天过期", path: "/domain" },
+  { text: "test.com 将于30天过期", path: "/domain" },
+]);
 
 const getHeroBackground = () => {
   const styles = getComputedStyle(document.documentElement);
@@ -205,16 +216,7 @@ const getPieOption = (title: string, items: { name: string; count: number}[]) =>
   ]
 });
 
-const initCharts = () => {
-  if (domainChartRef.value) {
-    domainChart = echarts.init(domainChartRef.value);
-    domainChart.setOption(getPieOption("域名资产分布", domainAssets));
-  }
-  if (dnsChartRef.value) {
-    dnsChart = echarts.init(dnsChartRef.value);
-    dnsChart.setOption(getPieOption("DNS托管商分布", dnsProviders));
-  }
-};
+
 
 const resizeCharts = () => {
   domainChart?.resize();
@@ -222,7 +224,8 @@ const resizeCharts = () => {
 };
 
 onMounted(() => {
-  initCharts();
+  fetchData();
+  
   window.addEventListener("resize", resizeCharts);
 });
 
@@ -233,6 +236,54 @@ onBeforeUnmount(() => {
   domainChart = null;
   dnsChart = null;
 });
+
+const initCharts = () => {
+  if (domainChartRef.value) {
+    domainChart = echarts.init(domainChartRef.value);
+    domainChart.setOption(getPieOption("域名资产分布", domainAssets.value));
+  }
+  if (dnsChartRef.value) {
+    dnsChart = echarts.init(dnsChartRef.value);
+    dnsChart.setOption(getPieOption("DNS托管商分布", dnsProviders.value));
+  }
+};
+
+function fetchData() {
+  getIndexData()
+    .then((resp: any) => {
+      if (resp.code === 200) {
+        pendingTasks.value = [];
+        resp.padding_task_data.forEach(item => {
+          pendingTasks.value.push({
+            text: item.domain + " 将于 " + item.available_days + " 天后过期",
+            path: "/domain"
+          });
+        });
+        domainAssets.value = [];
+        resp.supplier_data.forEach(item => {
+          domainAssets.value.push({
+            name: item.supplier_account,
+            count: item.count
+          });
+        });
+        dnsProviders.value = [];
+        resp.custodian_data.forEach(item => {
+          dnsProviders.value.push({
+            name: item.custodian_account,
+            count: item.count
+          });
+        });
+        initCharts();
+      } else {
+        ElMessage({ type: "error", message: resp.msg || "获取首页数据失败" });
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching domain data:", error);
+      ElMessage({ type: "error", message: "获取首页数据失败" });
+    })
+}
+
 </script>
 
 <style lang="scss" scoped>

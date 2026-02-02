@@ -459,6 +459,7 @@ function handleSaveRecord() {
   recordFormRef.value?.validate((valid) => {
     if (valid) {
       commitLoading.value = true;
+      loading.value = true;
       const api = isEdit.value ? updateDomainRecord : addDomainRecord;
       api(recordForm.value)
         .then((resp: any) => {
@@ -476,6 +477,7 @@ function handleSaveRecord() {
         })
         .finally(() => {
           commitLoading.value = false;
+          loading.value = false;
         });
     }
   });
@@ -550,6 +552,7 @@ function handleBatchDelete() {
 }
 
 function handleSyncRecord() {
+  loading.value = true;
   syncDomainRecord({ domain: params.domain })
     .then((resp: any) => {
       if (resp.code === 200) {
@@ -563,6 +566,9 @@ function handleSyncRecord() {
       console.error("Error syncing record:", error);
       ElMessage({ type: "error", message: "同步失败" });
     })
+    .finally(() => {
+      loading.value = false;
+    });
 }
 </script>
 

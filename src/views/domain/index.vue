@@ -162,7 +162,7 @@
           :rows="3" placeholder="请输入域名,支持多个域名，每行一个" ></el-input>
         </el-form-item>
         <el-form-item label="供应商账号">
-          <el-select v-model="editForm.supplier_account" placeholder="请选择供应商" style="width: 85%">
+          <el-select v-model="editForm.supplier_account" placeholder="请选择供应商" style="width: 85%" :disabled="isEdit && !!editForm.supplier_account">
             <el-option v-for="item in supplier_list" :label="item.supplier_account" :value="item.supplier_account">
               <span style="float: left;font-weight: bold;">{{ item.supplier_account }}</span>
               <span style="float: right; color: #8492a6; font-size: 13px">{{ item.supplier_name }}</span>
@@ -170,7 +170,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="托管商账号">
-          <el-select v-model="editForm.custodian_account" placeholder="请选择托管商" style="width: 85%">
+          <el-select v-model="editForm.custodian_account" placeholder="请选择托管商" style="width: 85%" :disabled="isEdit && !!editForm.custodian_account">
             <el-option v-for="item in custodian_list" :label="item.custodian_account" :value="item.custodian_account">
               <span style="float: left;font-weight: bold;">{{ item.custodian_account }}</span>
               <span style="float: right; color: #8492a6; font-size: 13px">{{ item.custodian_name }}</span>

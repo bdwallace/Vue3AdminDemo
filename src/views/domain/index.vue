@@ -184,7 +184,7 @@
             <el-option label="闲置中" value="闲置中"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="过期时间" :disabled="isEdit">
+        <el-form-item label="过期时间" v-show="isEdit">
           <el-date-picker 
             v-model="editForm.expire_time"
             type="datetime"

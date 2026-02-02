@@ -184,16 +184,17 @@
             <el-option label="闲置中" value="闲置中"></el-option>
           </el-select>
         </el-form-item>
-        <!-- <el-form-item label="过期时间">
-          <el-date-picker
+        <el-form-item label="过期时间" :disabled="isEdit">
+          <el-date-picker 
             v-model="editForm.expire_time"
             type="datetime"
             format="YYYY-MM-DD HH:mm:ss"
             value-format="YYYY-MM-DD HH:mm:ss"
             placeholder="选择过期时间"
             style="width: 85%"
+            :disabled="!!editForm.expire_time"
           ></el-date-picker>
-        </el-form-item> -->
+        </el-form-item>
         <el-form-item label="备注">
           <el-input v-model="editForm.remark" type="textarea" :rows="3" style="width: 85%"></el-input>
         </el-form-item>
@@ -239,7 +240,7 @@ const editForm = ref({
   custodian_account: "",
   domain: "",
   use_status: "",
-  // expire_time: "",
+  expire_time: "",
   remark: ""
 });
 
@@ -324,7 +325,7 @@ function resetEditForm() {
     custodian_account: "",
     domain: "",
     use_status: "",
-    // expire_time: "",
+    expire_time: "",
     remark: ""
   };
 }
@@ -346,6 +347,7 @@ function handleEdit(row: any) {
   editForm.value.custodian_account = row.custodian?.custodian_account;
   editForm.value.domain = row.domain;
   editForm.value.use_status = row.use_status;
+  editForm.value.expire_time = row.expire_time;
   editForm.value.remark = row.remark;
   fetchSupplierList();
   fetchCustodianList();

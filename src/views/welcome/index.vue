@@ -276,11 +276,13 @@ function fetchData() {
         initCharts();
       } else {
         ElMessage({ type: "error", message: resp.msg || "获取首页数据失败" });
+        initCharts();
       }
     })
     .catch((error) => {
       console.error("Error fetching domain data:", error);
       ElMessage({ type: "error", message: "获取首页数据失败" });
+      initCharts();
     })
 }
 

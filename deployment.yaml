@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    version: "20260203"
+  namespace: devops
+  name: new-domain-front
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 0
+    type: RollingUpdate
+  replicas: 2
+  selector:
+    matchLabels:
+      app: new-domain-front
+  template:
+    metadata:
+      labels:
+        app: new-domain-front
+    spec:
+      imagePullSecrets:
+        - name: 149-harbor-pull
+      containers:
+      - name: new-domain-front
+        image: 149harbor.bssrvc66.com/devops/new-domain-front:20260203
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+

@@ -101,9 +101,12 @@
         <el-form-item label="Access Key" >
           <el-input v-model="accountForm.access_key" placeholder="请输入Access Key" style="width: 85%"></el-input>
           </el-form-item>
-          <el-form-item label="Access Secret" >
-            <el-input v-model="accountForm.access_secret" placeholder="请输入Access Secret" style="width: 85%"></el-input>
-          </el-form-item>
+        <el-form-item label="Access Secret" >
+          <el-input v-model="accountForm.access_secret" placeholder="请输入Access Secret" style="width: 85%"></el-input>
+        </el-form-item>
+        <el-form-item label="Role Arn" >
+          <el-input v-model="accountForm.role_arn" placeholder="请输入Role Arn" style="width: 85%"></el-input>
+        </el-form-item>
         <el-form-item label="备注">
           <el-input v-model="accountForm.remark" type="textarea" :rows="3" style="width: 85%"></el-input>
         </el-form-item>
@@ -152,7 +155,8 @@ const accountForm = ref({
   access_key: "",
   access_secret: "",
   status: "正常",
-  remark: ""
+  remark: "",
+  role_arn: ""
 });
 
 const accountRules: FormRules = {
@@ -196,7 +200,8 @@ function handleAdd() {
     access_key: "",
     access_secret: "",
     status: "未知",
-    remark: ""
+    remark: "",
+    role_arn: ""
   };
   accountDialogVisible.value = true;
   nextTick(() => {

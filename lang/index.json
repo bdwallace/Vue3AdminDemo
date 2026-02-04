@@ -1058,5 +1058,33 @@
 	"aslzqgi": {
 		"zh-cn": " 海量域名与 DNS 统一治理平台 ",
 		"en": "Massive domain name and DNS unified management platform"
+	},
+	"bgbkn8": {
+		"zh-cn": "请输入托管商名称",
+		"en": "Please enter the host name"
+	},
+	"bptph8": {
+		"zh-cn": "请输入托管商账号",
+		"en": "Please enter your hosting provider account number"
+	},
+	"kdey7gb": {
+		"zh-cn": "获取托管商账号列表失败",
+		"en": "Failed to obtain hosting provider account list"
+	},
+	"ppmrhc5": {
+		"zh-cn": "托管商名称",
+		"en": "Host name"
+	},
+	"rgmwwj7": {
+		"zh-cn": "编辑托管商账号",
+		"en": "Edit hosting account"
+	},
+	"46tt1c7": {
+		"zh-cn": "新增托管商账号",
+		"en": "Add a new hosting provider account"
+	},
+	"gnzevwb": {
+		"zh-cn": "请输入Role Arn",
+		"en": "Please enter Role Arn"
 	}
 }

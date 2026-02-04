@@ -37,7 +37,7 @@ export function getPluginsList(
     vue(),
     // jsx、tsx语法支持
     vueJsx(),
-    // i18nPlugin,   // 国际化插件
+    i18nPlugin,   // 国际化插件
     // codeInspectorPlugin,   // 代码检查插件
     viteBuildInfo(),
     /**

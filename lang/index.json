@@ -369,31 +369,31 @@
 	},
 	"ch80x3": {
 		"zh-cn": "凌晨好",
-		"en": "good morning"
+		"en": "Good morning"
 	},
 	"fb4v03": {
 		"zh-cn": "早上好",
-		"en": "good morning"
+		"en": "Good morning"
 	},
 	"bu5kv3": {
 		"zh-cn": "上午好",
-		"en": "good morning"
+		"en": "Good morning"
 	},
 	"buvj63": {
 		"zh-cn": "中午好",
-		"en": "good noon"
+		"en": "Good noon"
 	},
 	"bu6bk3": {
 		"zh-cn": "下午好",
-		"en": "good afternoon"
+		"en": "Good afternoon"
 	},
 	"can5c3": {
 		"zh-cn": "傍晚好",
-		"en": "good evening"
+		"en": "Good evening"
 	},
 	"fdgnh3": {
 		"zh-cn": "晚上好",
-		"en": "good evening"
+		"en": "Good evening"
 	},
 	"gar1ro4": {
 		"zh-cn": "系统设置",
@@ -421,7 +421,7 @@
 	},
 	"cp4a6a4": {
 		"zh-cn": "快速指引",
-		"en": "quick guide"
+		"en": "Quick guide"
 	},
 	"k4g1": {
 		"zh-cn": "无",
@@ -445,7 +445,7 @@
 	},
 	"bfwh034": {
 		"zh-cn": "域名管理",
-		"en": "Domain name management"
+		"en": "Domain management"
 	},
 	"htxn5e4": {
 		"zh-cn": "解析记录",

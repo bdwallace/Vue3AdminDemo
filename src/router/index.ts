@@ -10,7 +10,6 @@ import {
   ascending,
   getTopMenu,
   initRouter,
-  isOneOfArray,
   getHistoryMode,
   findRouteByPath,
   handleAliveRoute,
@@ -26,8 +25,7 @@ import {
 import {
   type DataInfo,
   userKey,
-  removeToken,
-  multipleTabsKey
+  removeToken
 } from "@/utils/auth";
 
 /** 自动导入全部静态路由，无需再手动引入！匹配 src/router/modules 目录（任何嵌套级别）中具有 .ts 扩展名的所有文件，除了 remaining.ts 文件
@@ -170,14 +168,18 @@ router.beforeEach((to: ToRouteType, _from, next) => {
                 useMultiTagsStoreHook().handleTags("push", {
                   path,
                   name,
-                  meta
+                  meta,
+                  query: Object.keys(to.query || {}).length ? to.query : undefined,
+                  params: Object.keys(to.params || {}).length ? to.params : undefined
                 });
               } else {
                 const { path, name, meta } = route;
                 useMultiTagsStoreHook().handleTags("push", {
                   path,
                   name,
-                  meta
+                  meta,
+                  query: Object.keys(to.query || {}).length ? to.query : undefined,
+                  params: Object.keys(to.params || {}).length ? to.params : undefined
                 });
               }
             }

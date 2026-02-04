@@ -3,7 +3,7 @@
     <div class="main">
       <div>
         <el-input placeholder="请输入搜索内容, 支持所有内容模糊搜索, 回车或点击按钮搜索" v-model="params.search"
-                  style="width: 70%" class="input-with-select" size="large">
+                  style="width: 70%" class="input-with-select" size="large" @keyup.enter="fetchData" clearable>
           <template #append>
             <el-button :icon="Search" @click="fetchData" />
           </template>
@@ -63,19 +63,13 @@ import {
   Plus,
   Search,
 } from '@element-plus/icons-vue'
-import {getLogData} from "@/api/other_routes";
-import {ElMessage} from "element-plus";
-import {createPaginationHandlers} from "@/utils/common";
+import {getAuditLogList} from "@/api/auditlog";
+import { ElMessage } from "element-plus";
+import { createPaginationHandlers } from "@/utils/common";
 
-
-defineOptions({
-  name: "Log"
-});
-
-const dialogVisible = ref(false)
-const params = reactive({page: 1, pagesize: 20, total: 0, search: ""})
-const multipleSelection = ref([])
-const tableData = ref([])
+const params = reactive({ page: 1, pagesize: 20, total: 0, search: "" });
+const multipleSelection = ref([]);
+const tableData = ref([]);
 const {
   currentChange,
   handleSizeChange,
@@ -84,32 +78,44 @@ const {
 
 fetchData()
 function fetchData() {
-  getLogData(params).then(resp => {
+  getAuditLogList(params).then(resp => {
     if (resp.code === 200) {
-      tableData.value = resp.data
-      params.total = resp.total
+      tableData.value = resp.data;
+      params.total = resp.total;
     } else {
-      ElMessage({type: 'error', message: resp.msg})
+      ElMessage({ type: "error", message: resp.msg });
     }
   })
-  .catch(error => {
-    console.error("Error fetching supplier data:", error);
-  });
+    .catch((error) => {
+      console.error("Error fetching audit log data:", error);
+    });
 }
 
 function formattedJSON(raw: any): string {
   try {
-    let obj =
-      typeof raw === 'string'
-        ? JSON.parse(raw.replace(/'/g, '"'))
-        : raw;
-    return JSON.stringify(obj, null, 2)
-      .replace(/</g, '&lt;') // 防止 HTML 注入
-      .replace(/>/g, '&gt;')
-      .replace(/\n/g, '<br>')
-      .replace(/ /g, '&nbsp;');
+    if (raw === null || raw === undefined) {
+      return "";
+    }
+    if (typeof raw !== "string") {
+      return JSON.stringify(raw, null, 4);
+    }
+    const trimmed = raw.trim();
+    if (!trimmed) {
+      return "";
+    }
+    try {
+      return JSON.stringify(JSON.parse(trimmed), null, 4);
+    } catch (e) {
+      const normalized = trimmed
+        .replace(/\bNone\b/g, "null")
+        .replace(/\bTrue\b/g, "true")
+        .replace(/\bFalse\b/g, "false")
+        .replace(/'/g, '"');
+      return JSON.stringify(JSON.parse(normalized), null, 4);
+    }
   } catch (e) {
-    return String(raw);
+    console.error("Error formatting JSON:", e);
+    return String(raw); // 解析失败，返回原始字符串，防止报错
   }
 }
 

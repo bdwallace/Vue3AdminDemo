@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { getTopMenu } from "@/router/utils";
 import { useNav } from "@/layout/hooks/useNav";
+import domainLogo from "@/assets/domain.png";
 
 defineProps({
   collapse: Boolean
 });
 
-const { title, getLogo } = useNav();
+const { title} = useNav();
 </script>
 
 <template>
@@ -19,8 +20,8 @@ const { title, getLogo } = useNav();
         class="sidebar-logo-link"
         :to="getTopMenu()?.path ?? '/'"
       >
-        <img :src="getLogo()" alt="logo" />
-        <span class="sidebar-title">{{ title }}</span>
+        <img :src="domainLogo" alt="logo" />
+        <span class="sidebar-title" style="font-size: 24px; font-weight: 600;">{{ title }}</span>
       </router-link>
       <router-link
         v-else
@@ -29,8 +30,8 @@ const { title, getLogo } = useNav();
         class="sidebar-logo-link"
         :to="getTopMenu()?.path ?? '/'"
       >
-        <img :src="getLogo()" alt="logo" />
-        <span class="sidebar-title">{{ title }}</span>
+        <img :src="domainLogo" alt="logo" />
+        <span class="sidebar-title" style="font-size: 24px; font-weight: 600;">{{ title }}</span>
       </router-link>
     </transition>
   </div>
@@ -64,7 +65,7 @@ const { title, getLogo } = useNav();
       font-size: 18px;
       font-weight: 600;
       line-height: 32px;
-      color: var(--pure-theme-sub-menu-active-text);
+      color: var(--pure-theme-sidebar-logo-text, var(--pure-theme-menu-text));
       white-space: nowrap;
     }
   }

@@ -1,11 +1,10 @@
-
 const Layout = () => import("@/layout/index.vue");
 
 export default {
-  path: "/auditLog",
-  name: "auditLog",
+  path: "/auditlog",
+  name: "AuditLogNew",
   component: Layout,
-  redirect: "/log",
+  redirect: "/auditlog/list",
   meta: {
     icon: "IF-icon-log",
     title: "操作日志",
@@ -13,9 +12,9 @@ export default {
   },
   children: [
     {
-      path: "/log",
-      name: "Log",
-      component: () => import("@/views/log/index_view.vue"),
+      path: "/auditlog/list",
+      name: "AuditLogList",
+      component: () => import("@/views/log/index.vue"),
       meta: {
         icon: "IF-icon-log",
         title: "操作日志"
@@ -23,3 +22,4 @@ export default {
     }
   ]
 } satisfies RouteConfigsTable;
+

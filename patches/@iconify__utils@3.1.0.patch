@@ -1,0 +1,43 @@
+diff --git a/lib/loader/install-pkg.js b/lib/loader/install-pkg.js
+index bd0998d3890e8c6c7f85a84bb10d40ffe193385b..188858d3238b9a7ec67374b4c4bd55190b0c150d 100644
+--- a/lib/loader/install-pkg.js
++++ b/lib/loader/install-pkg.js
+@@ -1,6 +1,7 @@
+ import { warnOnce } from "./warn.js";
+ import { installPackage } from "@antfu/install-pkg";
+-import { styleText } from "node:util";
++// 兼容旧版 Node.js：移除 styleText 依赖
++// styleText 是 Node.js 20.11.0+ 才有的 API，在旧版本中不可用
+ 
+ let pending;
+ const tasks = {};
+@@ -8,7 +9,8 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+ async function tryInstallPkg(name, autoInstall) {
+ 	if (pending) await pending;
+ 	if (!tasks[name]) {
+-		console.log(styleText("cyan", `Installing ${name}...`));
++		// 直接输出消息，不使用样式（兼容 Node.js < 20.11.0）
++		console.log(`Installing ${name}...`);
+ 		if (typeof autoInstall === "function") tasks[name] = pending = autoInstall(name).then(() => sleep(300)).finally(() => {
+ 			pending = void 0;
+ 		});
+diff --git a/lib/loader/warn.js b/lib/loader/warn.js
+index 38987ae64258a3263beded6ca232723078136e5e..76eb816d1f6277cf238b9758d039edda9629c462 100644
+--- a/lib/loader/warn.js
++++ b/lib/loader/warn.js
+@@ -1,10 +1,13 @@
+-import { styleText } from "node:util";
++// 兼容旧版 Node.js：移除 styleText 依赖
++// styleText 是 Node.js 20.11.0+ 才有的 API，在旧版本中不可用
++// 直接输出警告消息，不使用样式
+ 
+ const warned = /* @__PURE__ */ new Set();
+ function warnOnce(msg) {
+ 	if (!warned.has(msg)) {
+ 		warned.add(msg);
+-		console.warn(styleText("yellow", `[@iconify-loader] ${msg}`));
++		// 直接输出警告消息，不使用样式（兼容 Node.js < 20.11.0）
++		console.warn(`[@iconify-loader] ${msg}`);
+ 	}
+ }
+ 

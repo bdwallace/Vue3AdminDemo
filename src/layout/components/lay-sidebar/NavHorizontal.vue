@@ -13,6 +13,7 @@ import { useRoute } from "vue-router";
 import GlobalizationIcon from "@/assets/svg/globalization.svg?component";
 import Setting from "~icons/ri/settings-3-line";
 import Check from "~icons/ep/check";
+import domainLogo from "@/assets/domain.png";
 
 const menuRef = ref();
 const showLogo = ref(
@@ -27,7 +28,6 @@ const {
   title,
   logout,
   onPanel,
-  getLogo,
   username,
   userAvatar,
   backTopMenu,
@@ -64,8 +64,8 @@ onMounted(() => {
     class="horizontal-header"
   >
     <div v-if="showLogo" class="horizontal-header-left" @click="backTopMenu">
-      <img :src="getLogo()" alt="logo" />
-      <span>{{ title }}</span>
+      <img :src="domainLogo" alt="logo" />
+      <span style="font-size: 24px; font-weight: 600;">{{ title }}</span>
     </div>
     <el-menu
       ref="menuRef"

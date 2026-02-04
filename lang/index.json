@@ -441,7 +441,7 @@
 	},
 	"ppd9ci5": {
 		"zh-cn": "托管商账号",
-		"en": "Host custodian account"
+		"en": "Custodian account"
 	},
 	"bfwh034": {
 		"zh-cn": "域名管理",
@@ -1061,7 +1061,7 @@
 	},
 	"bgbkn8": {
 		"zh-cn": "请输入托管商名称",
-		"en": "Please enter the host name"
+		"en": "Please enter the Custodian name"
 	},
 	"bptph8": {
 		"zh-cn": "请输入托管商账号",
@@ -1073,7 +1073,7 @@
 	},
 	"ppmrhc5": {
 		"zh-cn": "托管商名称",
-		"en": "Host name"
+		"en": "Custodian name"
 	},
 	"rgmwwj7": {
 		"zh-cn": "编辑托管商账号",

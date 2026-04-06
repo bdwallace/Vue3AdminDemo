@@ -1086,5 +1086,685 @@
 	"gnzevwb": {
 		"zh-cn": "请输入Role Arn",
 		"en": "Please enter Role Arn"
+	},
+	"k1e32": {
+		"zh-cn": "状态",
+		"en": "Status"
+	},
+	"fejzo34": {
+		"zh-cn": "监控平台",
+		"en": "Monitoring platform"
+	},
+	"asxjy14": {
+		"zh-cn": "刷新间隔",
+		"en": "refresh interval"
+	},
+	"pyrgsxe": {
+		"zh-cn": "请求响应失败, 请联系管理员",
+		"en": "Request response failed, please contact the administrator"
+	},
+	"qm5b2": {
+		"zh-cn": "静默",
+		"en": "silence"
+	},
+	"efg7b3": {
+		"zh-cn": "待处理",
+		"en": "Pending"
+	},
+	"e75dg3": {
+		"zh-cn": "已处理",
+		"en": "Processed"
+	},
+	"dljhn3": {
+		"zh-cn": "处理中",
+		"en": "Processing"
+	},
+	"gody2": {
+		"zh-cn": "异常",
+		"en": "Abnormal"
+	},
+	"ja8c836": {
+		"zh-cn": "提示音已关闭",
+		"en": "Alert tone is off"
+	},
+	"jaaa7s6": {
+		"zh-cn": "提示音已开启",
+		"en": "Alert tone is on"
+	},
+	"ggkld8o": {
+		"zh-cn": "开启或关闭告警提示音,有待处理的告警时发出提示音",
+		"en": "Turn on or off the alarm sound, and sound the sound when there are pending alarms."
+	},
+	"f6wghn7": {
+		"zh-cn": "🔇关闭提示音",
+		"en": "🔇Turn off the notification sound"
+	},
+	"ux4bu57": {
+		"zh-cn": "🔊开启提示音",
+		"en": "🔊Turn on the notification sound"
+	},
+	"bud4o3": {
+		"zh-cn": "业务域",
+		"en": "business domain"
+	},
+	"b7k3bz4": {
+		"zh-cn": "告警名称",
+		"en": "Alarm name"
+	},
+	"lny62": {
+		"zh-cn": "等级",
+		"en": "level"
+	},
+	"mo8xcr6": {
+		"zh-cn": "告警开始时间",
+		"en": "Alarm start time"
+	},
+	"ilr9q26": {
+		"zh-cn": "告警结束时间",
+		"en": "Alarm end time"
+	},
+	"bpkc804": {
+		"zh-cn": "处理人员",
+		"en": "Handler"
+	},
+	"gqgrxl4": {
+		"zh-cn": "自动恢复",
+		"en": "automatic recovery"
+	},
+	"eo9ev3": {
+		"zh-cn": "待认领",
+		"en": "To be claimed"
+	},
+	"d0muh64": {
+		"zh-cn": "持续时间",
+		"en": "duration"
+	},
+	"bpocz54": {
+		"zh-cn": "处理方案",
+		"en": "Solutions"
+	},
+	"1bibno5": {
+		"zh-cn": "SOP地址",
+		"en": "SOP address"
+	},
+	"i8we5c4": {
+		"zh-cn": "认领时间",
+		"en": "Claim time"
+	},
+	"i8we234": {
+		"zh-cn": "认领时长",
+		"en": "Claim duration"
+	},
+	"ol7m2": {
+		"zh-cn": "认领",
+		"en": "Claim"
+	},
+	"mekb2": {
+		"zh-cn": "编辑",
+		"en": "Edit"
+	},
+	"hnjoo3": {
+		"zh-cn": "确 定",
+		"en": "OK"
+	},
+	"b756d34": {
+		"zh-cn": "告警ID",
+		"en": "Alarm ID"
+	},
+	"2jaeja5": {
+		"zh-cn": "请输入备注",
+		"en": "Please enter remarks"
+	},
+	"ftjgj3": {
+		"zh-cn": "标签:",
+		"en": "Tags:"
+	},
+	"468hdza": {
+		"zh-cn": "请选中您要导出的规则",
+		"en": "Please select the rules you want to export"
+	},
+	"pqx3zza": {
+		"zh-cn": "请选中您要删除的规则",
+		"en": "Please select the rules you want to delete"
+	},
+	"npwhvmj": {
+		"zh-cn": "删除后是否更新到prometheus?",
+		"en": "Do you want to update to prometheus after deletion?"
+	},
+	"b14d2u4": {
+		"zh-cn": "取消删除",
+		"en": "Undelete"
+	},
+	"5a21noa": {
+		"zh-cn": "请选中您要配置的规则",
+		"en": "Please select the rules you want to configure"
+	},
+	"uco8fcc": {
+		"zh-cn": "请先选中要批量操作的规则",
+		"en": "Please select the rules you want to operate in batches first"
+	},
+	"9qnbn3k": {
+		"zh-cn": "此操作将会同步新增至prometheus",
+		"en": "This operation will be added to prometheus simultaneously"
+	},
+	"d7d8ar4": {
+		"zh-cn": "新增规则",
+		"en": "Add new rule"
+	},
+	"1uvxsgz": {
+		"zh-cn": "导入已存在的yaml 告警规则, 此操作将会同步至prometheus",
+		"en": "Import the existing yaml alarm rules, this operation will be synchronized to prometheus"
+	},
+	"by91tq4": {
+		"zh-cn": "导入规则",
+		"en": "Import rules"
+	},
+	"jrurb7h": {
+		"zh-cn": "将选中的告警规则导出成yaml文件",
+		"en": "Export the selected alarm rules into a yaml file"
+	},
+	"byc4b74": {
+		"zh-cn": "导出规则",
+		"en": "Export rules"
+	},
+	"d0w7cq4": {
+		"zh-cn": "批量删除",
+		"en": "Batch delete"
+	},
+	"spfbx98": {
+		"zh-cn": "批量配置告警发送",
+		"en": "Configure alarm sending in batches"
+	},
+	"d16to74": {
+		"zh-cn": "批量配置",
+		"en": "Batch configuration"
+	},
+	"a76peq4": {
+		"zh-cn": "业务域：",
+		"en": "Business domain:"
+	},
+	"feqfd84": {
+		"zh-cn": "监控组：",
+		"en": "Monitoring group:"
+	},
+	"hpkfjk4": {
+		"zh-cn": "规则ID",
+		"en": "Rule ID"
+	},
+	"hw5u63": {
+		"zh-cn": "监控组",
+		"en": "monitoring group"
+	},
+	"k5v82": {
+		"zh-cn": "环境",
+		"en": "environment"
+	},
+	"ogwh2": {
+		"zh-cn": "账号",
+		"en": "Account number"
+	},
+	"ajdjetb": {
+		"zh-cn": "告警频率(min/次)",
+		"en": "Alarm frequency (min/times)"
+	},
+	"gvbero6": {
+		"zh-cn": " min/次",
+		"en": "min/times"
+	},
+	"d0v603": {
+		"zh-cn": "告警群",
+		"en": "Alarm group"
+	},
+	"cjdoom4": {
+		"zh-cn": "恢复通知",
+		"en": "resume notification"
+	},
+	"fljd2": {
+		"zh-cn": "复制",
+		"en": "Copy"
+	},
+	"3hetj5s": {
+		"zh-cn": "编辑告警规则, 此操作将会同步更新至prometheus",
+		"en": "Edit alert rules, this operation will be updated to prometheus simultaneously"
+	},
+	"ohi8lk8": {
+		"zh-cn": "告警通知发送配置",
+		"en": "Alarm notification sending configuration"
+	},
+	"mg9y74": {
+		"zh-cn": " 配置 ",
+		"en": "Configuration"
+	},
+	"go8ny610": {
+		"zh-cn": "危险操作, 此操作将会同步删除prometheus的告警规则，请谨慎操作",
+		"en": "Dangerous operation. This operation will delete the alarm rules of prometheus simultaneously. Please operate with caution."
+	},
+	"362uyz6": {
+		"zh-cn": " 更多操作 ",
+		"en": "More actions"
+	},
+	"z75s0a7": {
+		"zh-cn": "请选择监控平台",
+		"en": "Please select a monitoring platform"
+	},
+	"rcdgdh6": {
+		"zh-cn": "Yaml内容",
+		"en": "Yaml content"
+	},
+	"ykq32hm": {
+		"zh-cn": "请输入prometheus YAML文件内容",
+		"en": "Please enter the prometheus YAML file content"
+	},
+	"gwya235": {
+		"zh-cn": "新增监控项",
+		"en": "Add monitoring items"
+	},
+	"2edywo5": {
+		"zh-cn": "请选择账号",
+		"en": "Please select an account"
+	},
+	"jg20vu5": {
+		"zh-cn": "监控项名称",
+		"en": "Monitoring item name"
+	},
+	"mbixiw7": {
+		"zh-cn": "请输入告警名称",
+		"en": "Please enter the alarm name"
+	},
+	"euh5y3": {
+		"zh-cn": "所属组",
+		"en": "Belonging to group"
+	},
+	"kqts4w7": {
+		"zh-cn": "请输入所属组名",
+		"en": "Please enter the group name"
+	},
+	"7yct6y6": {
+		"zh-cn": "请输入Key",
+		"en": "Please enter Key"
+	},
+	"re5mrs8": {
+		"zh-cn": "请输入Value",
+		"en": "Please enter Value"
+	},
+	"eslg2": {
+		"zh-cn": "删除",
+		"en": "Delete"
+	},
+	"am4wkh4": {
+		"zh-cn": "其他配置",
+		"en": "Other configurations"
+	},
+	"iai2i05": {
+		"zh-cn": "编辑监控项",
+		"en": "Edit monitoring items"
+	},
+	"b7ujh94": {
+		"zh-cn": "告警配置",
+		"en": "Alarm configuration"
+	},
+	"jggxuq5": {
+		"zh-cn": "监控项ID",
+		"en": "Monitoring item ID"
+	},
+	"n2bwtm9": {
+		"zh-cn": "请选择要发送的群组",
+		"en": "Please select the group to send to"
+	},
+	"b7vpma4": {
+		"zh-cn": "告警频率",
+		"en": "Alarm frequency"
+	},
+	"ffbg2mz": {
+		"zh-cn": "告警发送周期(步长), 告警期间多久发送一次告警, 默认为0只发送一次",
+		"en": "Alarm sending period (step size), how often the alarm is sent during the alarm period, the default is 0 and only sent once"
+	},
+	"hkhdwi7": {
+		"zh-cn": "min / 次",
+		"en": "min/times"
+	},
+	"dr8p2": {
+		"zh-cn": "一天",
+		"en": "one day"
+	},
+	"drgg2": {
+		"zh-cn": "三天",
+		"en": "three days"
+	},
+	"dqaw2": {
+		"zh-cn": "一周",
+		"en": "a week"
+	},
+	"xvqlla6": {
+		"zh-cn": "创建新的静默",
+		"en": "Create new silence"
+	},
+	"d7fyml4": {
+		"zh-cn": "新增静默",
+		"en": "Add silence"
+	},
+	"b3kavc4": {
+		"zh-cn": "匹配内容",
+		"en": "Match content"
+	},
+	"cxek146": {
+		"zh-cn": "静默开始时间",
+		"en": "Silence start time"
+	},
+	"gzw7nt6": {
+		"zh-cn": "静默结束时间",
+		"en": "silence end time"
+	},
+	"chizf3": {
+		"zh-cn": "创建人",
+		"en": "Creator"
+	},
+	"grwoac5": {
+		"zh-cn": "新增静默项",
+		"en": "Add silent item"
+	},
+	"90r9ld6": {
+		"zh-cn": "模糊匹配内容",
+		"en": "Fuzzy matching content"
+	},
+	"mfipzj7": {
+		"zh-cn": "请输入匹配内容",
+		"en": "Please enter matching content"
+	},
+	"wgcmo61d": {
+		"zh-cn": "您输入的匹配内容, 在告警规则管理页面能搜索出来的告警规则都会生效, 请先确认搜索出来的规则再提交",
+		"en": "The matching content you enter will take effect for all alarm rules that can be searched on the alarm rule management page. Please confirm the searched rules before submitting."
+	},
+	"da9tzs4": {
+		"zh-cn": "日期时间",
+		"en": "date time"
+	},
+	"po31": {
+		"zh-cn": "至",
+		"en": "to"
+	},
+	"cd0ag54": {
+		"zh-cn": "开始日期",
+		"en": "start date"
+	},
+	"gfhy2u4": {
+		"zh-cn": "结束日期",
+		"en": "end date"
+	},
+	"ifjo9r5": {
+		"zh-cn": "编辑静默项",
+		"en": "Edit silent items"
+	},
+	"dl4oop4": {
+		"zh-cn": "最近一周",
+		"en": "last week"
+	},
+	"4znkgj5": {
+		"zh-cn": "最近一个月",
+		"en": "last month"
+	},
+	"4zndsa5": {
+		"zh-cn": "最近三个月",
+		"en": "last three months"
+	},
+	"kbwybze": {
+		"zh-cn": "请求响应错误， 请联系管理员",
+		"en": "Request response error, please contact the administrator"
+	},
+	"7wvexqa": {
+		"zh-cn": "业务域与告警次数分布",
+		"en": "Business domain and alarm frequency distribution"
+	},
+	"mrx8q0d": {
+		"zh-cn": "处理人员与告警处理数量分布",
+		"en": "Distribution of number of processing personnel and alarm processing"
+	},
+	"eqg1i2f": {
+		"zh-cn": "证书状态与类型分布 自定义饼图",
+		"en": "Certificate status and type distribution Customized pie chart"
+	},
+	"b7nwln4": {
+		"zh-cn": "告警次数",
+		"en": "Alarm times"
+	},
+	"7mjlhz5": {
+		"zh-cn": "告警处理率",
+		"en": "Alarm handling rate"
+	},
+	"9yikms6": {
+		"zh-cn": "平均处理时间",
+		"en": "average processing time"
+	},
+	"ghqb8f6": {
+		"zh-cn": "平均认领时长",
+		"en": "Average claim time"
+	},
+	"2g4gkz5": {
+		"zh-cn": "检测失败，",
+		"en": "Detection failed,"
+	},
+	"es7pjr8": {
+		"zh-cn": "请确认是否删除？",
+		"en": "Please confirm to delete?"
+	},
+	"e68dg3": {
+		"zh-cn": "已取消",
+		"en": "Canceled"
+	},
+	"ltky3u6": {
+		"zh-cn": " 集成接入 ",
+		"en": "Integrated access"
+	},
+	"b40kf64": {
+		"zh-cn": "名称标识",
+		"en": "name identification"
+	},
+	"ar84e54": {
+		"zh-cn": "创建时间",
+		"en": "creation time"
+	},
+	"6uliok6": {
+		"zh-cn": "检测中...",
+		"en": "Under detection..."
+	},
+	"xffibe6": {
+		"zh-cn": "同步中...",
+		"en": "Syncing..."
+	},
+	"b1sw4d4": {
+		"zh-cn": "同步完成",
+		"en": "Synchronization completed"
+	},
+	"jp48a2k": {
+		"zh-cn": "检查是否可以将告警规则部署到K8s集群中",
+		"en": "Check whether the alarm rules can be deployed to the K8s cluster"
+	},
+	"if0r2": {
+		"zh-cn": "检测",
+		"en": "Detection"
+	},
+	"r5zoov6": {
+		"zh-cn": "新增监控平台",
+		"en": "New monitoring platform"
+	},
+	"l91f2rg": {
+		"zh-cn": "名称标识, 建议以域名为名称标识",
+		"en": "Name identification, it is recommended to use domain name as the name identification"
+	},
+	"2ei9xx5": {
+		"zh-cn": "请选择环境",
+		"en": "Please select an environment"
+	},
+	"b0ji0a4": {
+		"zh-cn": "命名空间",
+		"en": "namespace"
+	},
+	"32xd6dm": {
+		"zh-cn": "请输入prometheus所在集群的命名空间",
+		"en": "Please enter the namespace of the cluster where prometheus is located."
+	},
+	"fzicws4": {
+		"zh-cn": "秘钥文件",
+		"en": "Key file"
+	},
+	"itv1": {
+		"zh-cn": "当",
+		"en": "when"
+	},
+	"lu8ri3": {
+		"zh-cn": "部署在",
+		"en": "Deployed in"
+	},
+	"8uq2li7": {
+		"zh-cn": "集群中时，需要",
+		"en": "When in a cluster, you need"
+	},
+	"uinhv56": {
+		"zh-cn": "集群输出的.",
+		"en": "Output from the cluster."
+	},
+	"f91n73": {
+		"zh-cn": "文件。",
+		"en": "file."
+	},
+	"1gegks7": {
+		"zh-cn": "配置导出命令：",
+		"en": "Configure export command:"
+	},
+	"3gddtxg": {
+		"zh-cn": "如果需要本系统自动部署告警规则至",
+		"en": "If you need this system to automatically deploy alarm rules to"
+	},
+	"uqojfk8": {
+		"zh-cn": ",请输入文件内容",
+		"en": ", please enter the file content"
+	},
+	"ya97xl8": {
+		"zh-cn": "创建新的周期静默",
+		"en": "Create new periodic silence"
+	},
+	"vhg2gs6": {
+		"zh-cn": "新增周期静默",
+		"en": "Add periodic silence"
+	},
+	"ierhbp7": {
+		"zh-cn": "新增周期静默项",
+		"en": "Added periodic silent item"
+	},
+	"i5z22": {
+		"zh-cn": "时间",
+		"en": "time"
+	},
+	"cd0k3t4": {
+		"zh-cn": "开始时间",
+		"en": "start time"
+	},
+	"gfi7qi4": {
+		"zh-cn": "结束时间",
+		"en": "end time"
+	},
+	"tv79n36": {
+		"zh-cn": "选择时间范围",
+		"en": "Select time range"
+	},
+	"bse6g35": {
+		"zh-cn": "周期为每天",
+		"en": "Period is daily"
+	},
+	"mrhp3": {
+		"zh-cn": " 至 ",
+		"en": "to"
+	},
+	"l4x53": {
+		"zh-cn": " 生效",
+		"en": "Take effect"
+	},
+	"tcjgs87": {
+		"zh-cn": "编辑周期静默项",
+		"en": "Edit cycle silent items"
+	},
+	"i43xwh4": {
+		"zh-cn": "请求错误",
+		"en": "Request error"
+	},
+	"bltjfp4": {
+		"zh-cn": "基础静默",
+		"en": "basic silence"
+	},
+	"b2yj5a4": {
+		"zh-cn": "周期禁默",
+		"en": "periodic silence"
+	},
+	"qfyh7w7": {
+		"zh-cn": "新增标签或注解",
+		"en": "Add a new label or annotation"
+	},
+	"hs6m2": {
+		"zh-cn": "新增",
+		"en": "New"
+	},
+	"byxirl4": {
+		"zh-cn": "字段名称",
+		"en": "Field name"
+	},
+	"bz47ji4": {
+		"zh-cn": "字段类型",
+		"en": "Field type"
+	},
+	"idef2": {
+		"zh-cn": "标签",
+		"en": "label"
+	},
+	"ja4b2": {
+		"zh-cn": "注解",
+		"en": "annotation"
+	},
+	"d8sxjn4": {
+		"zh-cn": "是否显示",
+		"en": "Whether to display"
+	},
+	"lk5i3a7": {
+		"zh-cn": "请输入字段名称",
+		"en": "Please enter a field name"
+	},
+	"vrpzvp7": {
+		"zh-cn": "请选择字段类型",
+		"en": "Please select field type"
+	},
+	"b7ntuq4": {
+		"zh-cn": "告警概览",
+		"en": "Alarm overview"
+	},
+	"b7o2ls4": {
+		"zh-cn": "告警汇总",
+		"en": "Alarm summary"
+	},
+	"hb3fre6": {
+		"zh-cn": "告警规则管理",
+		"en": "Alarm rule management"
+	},
+	"jr2vl04": {
+		"zh-cn": "静默管理",
+		"en": "Silent management"
+	},
+	"ep6cbb7": {
+		"zh-cn": "标签与注解管理",
+		"en": "Tag and annotation management"
+	},
+	"jfco8w4": {
+		"zh-cn": "集成中心",
+		"en": "Integration Center"
+	},
+	"b7qsip4": {
+		"zh-cn": "告警管理",
+		"en": "Alarm management"
+	},
+	"3j67n25": {
+		"zh-cn": "标签与注解",
+		"en": "Tags and annotations"
+	},
+	"ge7ex3": {
+		"zh-cn": "欢迎页",
+		"en": "Welcome page"
 	}
 }

@@ -1,7 +1,27 @@
-
 const Layout = () => import("@/layout/index.vue");
 
 export default [
+  {
+    path: "/welcome",
+    name: "Welcome",
+    component: () => import("@/views/welcome/index.vue"),
+    meta: {
+      title: "欢迎页",
+      /** 不在侧边栏展示；业务首页为告警概览 /index/log */
+      showLink: false,
+      rank: 101
+    }
+  },
+  {
+    path: "/error/404",
+    name: "Page404",
+    component: () => import("@/views/error/404.vue"),
+    meta: {
+      title: "404",
+      showLink: false,
+      rank: 103
+    }
+  },
   // {
   //   path: "/login",
   //   name: "Login",

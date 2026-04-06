@@ -144,7 +144,8 @@ function addPathMatch() {
     router.addRoute({
       path: "/:pathMatch(.*)",
       name: "pathMatch",
-      redirect: "/error/404"
+      /** 必须使用已注册的具名路由，避免重定向到不存在的 /error/404 时被通配符再次命中形成死循环 */
+      redirect: { name: "Page404" }
     });
   }
 }
@@ -201,14 +202,11 @@ function initRouter() {
         resolve(router);
       });
     } else {
-      console.log('从后端获取动态路由')
-    //   return new Promise(resolve => {
-    //     getAsyncRoutes().then(({ data }) => {
-    //       handleAsyncRoutes(cloneDeep(data));
-    //       storageLocal().setItem(key, data);
-    //       resolve(router);
-    //     });
-    //   });
+      console.log("从后端获取动态路由：暂无缓存，走静态路由");
+      return new Promise(resolve => {
+        handleAsyncRoutes([]);
+        resolve(router);
+      });
     }
   } else {
     return new Promise(resolve => {
@@ -250,20 +248,25 @@ function formatFlatteningRoutes(routesList: RouteRecordRaw[]) {
  */
 function formatTwoStageRoutes(routesList: RouteRecordRaw[]) {
   if (routesList.length === 0) return routesList;
-  const newRoutesList: RouteRecordRaw[] = [];
-  routesList.forEach((v: RouteRecordRaw) => {
-    if (v.path === "/") {
-      newRoutesList.push({
-        component: v.component,
-        name: v.name,
-        path: v.path,
-        redirect: v.redirect,
-        meta: v.meta,
-        children: []
-      });
-    } else {
-      newRoutesList[0]?.children.push({ ...v });
+  const rootIndex = routesList.findIndex(v => v.path === "/");
+  if (rootIndex === -1) {
+    console.error("[router] 缺少 path 为 / 的根路由模块（如 root.ts）");
+    return routesList;
+  }
+  const root = routesList[rootIndex] as RouteRecordRaw;
+  const newRoutesList: RouteRecordRaw[] = [
+    {
+      component: root.component,
+      name: root.name,
+      path: root.path,
+      redirect: root.redirect,
+      meta: root.meta,
+      children: []
     }
+  ];
+  routesList.forEach((v: RouteRecordRaw, i) => {
+    if (i === rootIndex || v.path === "/") return;
+    newRoutesList[0].children.push({ ...v });
   });
   return newRoutesList;
 }
@@ -373,9 +376,14 @@ function hasAuth(value: string | Array<string>): boolean {
 }
 
 function handleTopMenu(route) {
+  if (!route) return route;
   if (route?.children && route.children.length > 1) {
     if (route.redirect) {
-      return route.children.filter(cur => cur.path === route.redirect)[0];
+      const matched = route.children.find(
+        cur => cur.path === route.redirect
+      );
+      /** redirect 为完整路径而子路由曾写相对 path 时 find 会失败，回退首个子路由 */
+      return matched ?? route.children[0];
     } else {
       return route.children[0];
     }
@@ -389,7 +397,9 @@ function getTopMenu(tag = false): menuType {
   const topMenu = handleTopMenu(
     usePermissionStoreHook().wholeMenus[0]?.children[0]
   );
-  tag && useMultiTagsStoreHook().handleTags("push", topMenu);
+  tag &&
+    topMenu?.path &&
+    useMultiTagsStoreHook().handleTags("push", topMenu);
   return topMenu;
 }
 

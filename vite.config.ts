@@ -28,7 +28,10 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
         "/api/v1": {
           // target : 'http://192.168.10.10:5000'
           // target : 'https://hycloud.bssrvc66.com'
-          target: "http://127.0.0.1:10087"
+          target: "https://ehmonitor.bssrvc66.com",
+          changeOrigin: true,
+          // 若 hosts 把域名指到本机，TLS 会以 localhost 校验证书导致报错，开发环境可关闭校验
+          secure: false
         }
       },
       // 预热文件以提前转换和缓存结果，降低启动期间的初始页面加载时长并防止转换瀑布

@@ -1,6 +1,6 @@
 {
-  "name": "DomainSystemFront",
-  "version": "6.0.0",
+  "name": "EhmonitorFront",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {

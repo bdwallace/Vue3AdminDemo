@@ -6,20 +6,20 @@ export default {
   component: Layout,
   redirect: "/auditlog/list",
   meta: {
-    icon: "IF-icon-log",
+    icon: "IF-icon-rizhi",
     title: "操作日志",
-    rank: 5
+    rank: 6
   },
   children: [
     {
       path: "/auditlog/list",
-      name: "AuditLogList",
-      component: () => import("@/views/log/index.vue"),
+      name: "EhmonitorLog",
+      component: () => import("@/views/log.vue"),
       meta: {
-        icon: "IF-icon-log",
-        title: "操作日志"
+        icon: "IF-icon-rizhi",
+        title: "操作日志",
+        keepAlive: true
       }
     }
   ]
 } satisfies RouteConfigsTable;
-

@@ -1,18 +1,16 @@
 import type { FunctionalComponent } from "vue";
-const { VITE_HIDE_HOME } = import.meta.env;
 
-export const routerArrays: Array<RouteConfigs> =
-  VITE_HIDE_HOME === "false"
-    ? [
-        {
-          path: "/welcome",
-          meta: {
-            title: "首页",
-            icon: "ep/home-filled"
-          }
-        }
-      ]
-    : [];
+/** 固定标签页「首页」：告警概览（与 root redirect、routerArrays 登录重置标签一致） */
+export const routerArrays: Array<RouteConfigs> = [
+  {
+    path: "/index/log",
+    name: "EhmonitorOverview",
+    meta: {
+      title: "告警概览",
+      icon: "ep/home-filled"
+    }
+  }
+];
 
 export type routeMetaType = {
   title?: string;

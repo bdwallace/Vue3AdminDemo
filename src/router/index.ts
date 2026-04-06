@@ -69,17 +69,15 @@ export const router: Router = createRouter({
   routes: constantRoutes.concat(...(remainingRouter as any)),
   strict: true,
   scrollBehavior(to, from, savedPosition) {
-    return new Promise(resolve => {
-      if (savedPosition) {
-        return savedPosition;
-      } else {
-        if (from.meta.saveSrollTop) {
-          const top: number =
-            document.documentElement.scrollTop || document.body.scrollTop;
-          resolve({ left: 0, top });
-        }
-      }
-    });
+    if (savedPosition) return savedPosition;
+    if (from.meta?.saveSrollTop) {
+      return {
+        left: 0,
+        top:
+          document.documentElement.scrollTop || document.body.scrollTop
+      };
+    }
+    return { left: 0, top: 0 };
   }
 });
 
@@ -99,8 +97,8 @@ export function resetRouter() {
   usePermissionStoreHook().clearAllCachePage();
 }
 
-/** 路由白名单 */
-const whiteList = ["/index", "/home"];
+/** 路由白名单（未登录可访问；勿把已登录业务页如 /index 放进来，否则 toCorrectRoute 会 next(_from) 造成循环） */
+const whiteList = ["/welcome", "/login"];
 
 const { VITE_HIDE_HOME } = import.meta.env;
 
@@ -136,7 +134,8 @@ router.beforeEach((to: ToRouteType, _from, next) => {
     // }
     // 开启隐藏首页后在浏览器地址栏手动输入首页welcome路由则跳转到404页面
     if (VITE_HIDE_HOME === "true" && to.fullPath === "/welcome") {
-      next({ path: "/error/404" });
+      next({ name: "Page404" });
+      return;
     }
     if (_from?.name) {
       // name为超链接
@@ -185,7 +184,7 @@ router.beforeEach((to: ToRouteType, _from, next) => {
             }
           }
           // 确保动态路由完全加入路由列表并且不影响静态路由（注意：动态路由刷新时router.beforeEach可能会触发两次，第一次触发动态路由还未完全添加，第二次动态路由才完全添加到路由列表，如果需要在router.beforeEach做一些判断可以在to.name存在的条件下去判断，这样就只会触发一次）
-          if (isAllEmpty(to.name)) router.push(to.fullPath);
+          /** 静态路由下无需二次 push；to.name 未解析时 push 会形成 beforeEach 死循环 */
         });
       }
       toCorrectRoute();

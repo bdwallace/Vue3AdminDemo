@@ -1,0 +1,119 @@
+/**
+ * Ehmonitor 业务页布局（对齐 DomainSystemFront/src/views）
+ * 根节点使用 class="eh-page"（通常加在 el-container 上）
+ */
+
+.el-container.eh-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.eh-page .main {
+  margin-top: 1px;
+  width: 100%;
+  min-height: calc(100vh - 140px);
+  box-sizing: border-box;
+}
+
+.eh-page .toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.eh-page .toolbar .input-with-select {
+  flex: 1 1 280px;
+  max-width: 70%;
+  min-width: 240px;
+}
+
+.eh-page .toolbar-actions {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.eh-page .eh-table-wrap,
+.eh-page .domainTable,
+.eh-page .logTable,
+.eh-page .auditTable,
+.eh-page .alertTable,
+.eh-page .indexTable,
+.eh-page .settingTable,
+.eh-page .labelsTable,
+.eh-page .silenceTable {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.eh-page .eh-pagination {
+  padding: 10px 16px;
+  text-align: right;
+}
+
+.eh-page .action-buttons {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+
+  :deep(.el-button + .el-button) {
+    margin-left: 0;
+  }
+
+  :deep(.action-btn.el-button) {
+    padding: 0 6px;
+    height: 24px;
+  }
+}
+
+/* 概览页（对齐 Domain welcome 卡片风） */
+.eh-dashboard {
+  padding-bottom: 8px;
+}
+
+.eh-dashboard__charts {
+  margin-bottom: 16px;
+}
+
+.eh-panel {
+  border-radius: 12px;
+  border: 1px solid var(--el-border-color);
+  background:
+    linear-gradient(135deg, var(--el-color-primary-light-9), transparent 60%),
+    var(--el-bg-color);
+}
+
+.eh-panel--chart {
+  min-height: 300px;
+}
+
+.eh-panel--chart :deep(.el-card__body) {
+  padding: 12px;
+}
+
+.eh-chart {
+  width: 100%;
+  min-height: 280px;
+}
+
+.eh-dashboard .eh-panel--section {
+  margin-top: 16px;
+}
+
+.eh-dashboard .eh-panel--section :deep(.el-card__body) {
+  padding: 16px;
+}
+
+.eh-dashboard .filter-row {
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}

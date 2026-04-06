@@ -48,6 +48,43 @@ export function createPaginationHandlers(
   };
 }
 
+/** 以下供 Ehmonitor 等 Options API 页面在 methods 中直接混入，依赖 this.params / this.fetchData / this.multipleSelection */
+
+export function currentChange(this: any, page: number) {
+  this.params.page = page;
+  this.fetchData();
+}
+
+export function handleSizeChange(this: any, pagesize: number) {
+  this.params.pagesize = pagesize;
+  this.fetchData();
+}
+
+export function handleSelectionChange(this: any, val: any[]) {
+  console.log(val);
+  this.multipleSelection = val;
+}
+
+export function saveYamlFile(yamlStr: string, filename = "alert_rules.yaml") {
+  const blob = new Blob([yamlStr], { type: "text/yaml;charset=utf-8" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+
+export function formatDateToLocalString(date: Date) {
+  const pad = (n: number) => n.toString().padStart(2, "0");
+  const Y = date.getFullYear();
+  const M = pad(date.getMonth() + 1);
+  const D = pad(date.getDate());
+  const h = pad(date.getHours());
+  const m = pad(date.getMinutes());
+  const s = pad(date.getSeconds());
+  return `${Y}-${M}-${D} ${h}:${m}:${s}`;
+}
+
 export function copyText(text) {
     let oInput = document.createElement('input');
     oInput.value = text;

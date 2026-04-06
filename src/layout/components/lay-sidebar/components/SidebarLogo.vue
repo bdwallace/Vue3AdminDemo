@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import { getTopMenu } from "@/router/utils";
-import { useNav } from "@/layout/hooks/useNav";
-import domainLogo from "@/assets/domain.png";
+import ehmonitorLogo from "@/assets/mc.png";
 
 defineProps({
   collapse: Boolean
 });
 
-const { title} = useNav();
 </script>
 
 <template>
@@ -16,22 +14,18 @@ const { title} = useNav();
       <router-link
         v-if="collapse"
         key="collapse"
-        :title="title"
         class="sidebar-logo-link"
         :to="getTopMenu()?.path ?? '/'"
       >
-        <img :src="domainLogo" alt="logo" />
-        <span class="sidebar-title" style="font-size: 24px; font-weight: 600;">{{ title }}</span>
+        <img :src="ehmonitorLogo" alt="logo" />
       </router-link>
       <router-link
         v-else
         key="expand"
-        :title="title"
         class="sidebar-logo-link"
         :to="getTopMenu()?.path ?? '/'"
       >
-        <img :src="domainLogo" alt="logo" />
-        <span class="sidebar-title" style="font-size: 24px; font-weight: 600;">{{ title }}</span>
+        <img :src="ehmonitorLogo" alt="logo" />
       </router-link>
     </transition>
   </div>
@@ -53,21 +47,9 @@ const { title} = useNav();
 
     img {
       display: inline-block;
-      height: 32px;
+      height: 50px;
     }
 
-    .sidebar-title {
-      display: inline-block;
-      height: 32px;
-      margin: 2px 0 0 12px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 18px;
-      font-weight: 600;
-      line-height: 32px;
-      color: var(--pure-theme-sidebar-logo-text, var(--pure-theme-menu-text));
-      white-space: nowrap;
-    }
   }
 }
 </style>

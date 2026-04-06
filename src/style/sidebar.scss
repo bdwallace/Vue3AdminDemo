@@ -712,6 +712,16 @@ body[layout="horizontal"] {
   .fixed-header {
     width: 100%;
   }
+
+  /* 单独控制水平布局 logo 尺寸，避免受其他页面样式影响 */
+  .horizontal-header {
+    height: 56px;
+
+    .horizontal-header-left img {
+      height: 42px !important;
+      width: auto;
+    }
+  }
 }
 
 body[layout="mix"] {
